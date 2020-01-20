@@ -3,18 +3,23 @@
     xmlns:str="http://exslt.org/strings"
     xmlns:exsl="http://exslt.org/common"
     xmlns:mal="http://projectmallard.org/1.0/"
+    xmlns:cache="http://projectmallard.org/cache/1.0/"
     xmlns:rng="http://relaxng.org/ns/structure/1.0"
     xmlns="http://relaxng.org/ns/structure/1.0"
-    exclude-result-prefixes="mal str exsl rng"
+    exclude-result-prefixes="mal cache str exsl rng"
     version="1.0">
 
 <xsl:param name="rng.strict" select="false()"/>
+<xsl:param name="rng.strict.allow" select="''"/>
 
 <xsl:template match="/*">
   <xsl:variable name="version">
     <xsl:choose>
       <xsl:when test="string(@version) != ''">
         <xsl:value-of select="@version"/>
+      </xsl:when>
+      <xsl:when test="/cache:cache">
+        <xsl:value-of select="'cache/1.0 1.0'"/>
       </xsl:when>
       <xsl:otherwise>
         <xsl:value-of select="'1.0'"/>
@@ -84,7 +89,36 @@
   <xsl:param name="nss"/>
   <xsl:choose>
     <xsl:when test="$rng.strict and rng:anyName">
-      <empty/>
+      <xsl:choose>
+        <xsl:when test="$rng.strict.allow != ''">
+          <xsl:copy>
+            <choice>
+              <xsl:if test="self::rng:attribute/ancestor::rng:element[1]/rng:anyName">
+                <nsName ns=""/>
+              </xsl:if>
+              <xsl:for-each select="str:split($rng.strict.allow)">
+                <nsName ns="{.}"/>
+              </xsl:for-each>
+              <xsl:if test="ancestor::rng:define/@name = 'mal_attr_external'">
+                <nsName ns="http://www.w3.org/XML/1998/namespace"/>
+              </xsl:if>
+            </choice>
+            <xsl:apply-templates mode="rng.mode" select="rng:anyName/following-sibling::*">
+              <xsl:with-param name="first" select="$first"/>
+              <xsl:with-param name="ns" select="$ns"/>
+              <xsl:with-param name="nss" select="$nss"/>
+            </xsl:apply-templates>
+          </xsl:copy>
+        </xsl:when>
+        <xsl:when test="ancestor::rng:define/@name = 'mal_attr_external'">
+          <xsl:copy>
+            <nsName ns="http://www.w3.org/XML/1998/namespace"/>
+          </xsl:copy>
+        </xsl:when>
+        <xsl:otherwise>
+          <empty/>
+        </xsl:otherwise>
+      </xsl:choose>
     </xsl:when>
     <xsl:otherwise>
       <xsl:variable name="nsmunge" select="self::rng:element or self::rng:attribute"/>

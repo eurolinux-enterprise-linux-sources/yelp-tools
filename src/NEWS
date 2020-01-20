@@ -1,3 +1,71 @@
+3.14.1
+======
+* yelp.m4: Fixed issues with make distcheck and install not running correclty
+  unless make is run first, #701959 and #738142 (Sebastian Geiger)
+
+3.14.0
+======
+* Stable release. No changes since 3.13.3
+
+3.13.3
+======
+* Added support for .page.stub files in yelp-check
+
+3.12.1
+======
+* yelp-check: Return non-zero exit status when there are broken hrefs
+
+3.12.0
+======
+* Stable release. No changes since 3.11.5
+
+3.11.5
+======
+* yelp-build: Added -i option to ignore missing media files
+* yelp-build: Added -p option to provide path for external files
+* yelp-build: Set LC_ALL instead of LANG for awk, #709354
+* yelp-check: Added check for missing media files
+* yelp-check: Added tool to check Mallard page licenses
+* yelp.m4: Use AS_HELP_STRING instead of AC_HELP_STRING, #709657
+
+3.11.3
+======
+* yelp.m4: no-lc-dist option to disable disting the generated lc files (Christian Persch)
+
+3.11.2
+======
+* yelp.m4: Added no-lc-media-links option for YELP_HELP_INIT
+* yelp.m4: Reverted HELP_MEDIA_NODUP and YELP_INIT_HELP
+
+3.11.1
+======
+* yelp-build: Handle conditional processing and other logic when copying
+  media and other external files, #709951
+* yelp-check: Support validate on DocBook 5 documents
+* yelp-check: Support explicitly allowed namespaces in strict validation
+* yelp-check: Fixed POSIX shell syntax error, #710331 (Michael Biebl)
+* yelp-new: Now much smarter about output file paths and extensions
+* yelp.m4: Added HELP_MEDIA_NODUP to install media without locale symlinks
+* yelp.m4: Added YELP_INIT_HELP as version-checking replacement for
+  YELP_HELP_INIT
+
+3.10.0
+======
+* Stable release. No changes since 3.9.90
+
+3.9.90
+======
+* yelp-build: Fix directionality issues for Mallard
+* yelp-check: Allow xml: attributes when validating in strict mode
+
+3.9.1
+=====
+* Fixed BSD compatibility issue in calling mktemp
+* Fixed 'make pot' when srcdir != builddir (Michael Terry)
+* yelp-check validate: Validate cache files
+* yelp-check ids: New command to check Mallard page IDs
+* yelp-build epub: Fixed issue with directory for media
+
 3.6.1
 =====
 * yelp-check: Added 'links -i' to ignore xrefs with hrefs

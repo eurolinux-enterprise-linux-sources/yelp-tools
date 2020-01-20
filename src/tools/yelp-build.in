@@ -26,6 +26,7 @@ yelp_js_dir='@YELP_JS_DIR@'
 xsl_mal_epub='@DATADIR@/xslt/mal-epub.xsl'
 xsl_mal_opf='@DATADIR@/xslt/mal-opf.xsl'
 xsl_mal_ncx='@DATADIR@/xslt/mal-ncx.xsl'
+xsl_mal_files='@DATADIR@/xslt/mal-files.xsl'
 
 mkdir_p () {
     if [ ! -d "$1" ]; then
@@ -35,7 +36,7 @@ mkdir_p () {
 }
 
 urlencode () {
-    LANG=C awk '
+    LC_ALL=C awk '
 BEGIN {
   for (i = 1; i <= 255; i++) chars[sprintf("%c", i)] = i;
 }
@@ -53,7 +54,7 @@ BEGIN {
 }
 
 urldecode () {
-    LANG=C awk '
+    LC_ALL=C awk '
 BEGIN {
   for(i = 0; i < 10; i++) hex[i] = i;
   hex["A"] = hex["a"] = 10;
@@ -116,6 +117,8 @@ yelp_usage_epub () {
         echo "  -c CACHE      Use the existing Mallard cache CACHE"
         echo "  -o OUT        Output en EPUB file named OUT"
         echo "  -x CUSTOM     Import the custom XSLT file CUSTOM"
+        echo "  -p PATHS      Extra paths to search for files"
+        echo "  -i            Ignore missing media files"
     ) 1>&2
 }
 yelp_usage_html () {
@@ -130,6 +133,8 @@ yelp_usage_html () {
         echo "  -c CACHE      Use the existing Mallard cache CACHE"
         echo "  -o OUT        Output files in the directory OUT"
         echo "  -x CUSTOM     Import the custom XSLT file CUSTOM"
+        echo "  -p PATHS      Extra paths to search for files"
+        echo "  -i            Ignore missing media files"
     ) 1>&2
 }
 
@@ -137,6 +142,12 @@ if [ $# = 0 ]; then
     yelp_usage
     exit 1
 fi
+
+yelp_paths_normalize () {
+    for path in $(echo "$1" | sed -e 's/[: ]/\n/g'); do
+        (cd "$path" && pwd)
+    done | tr '\n' ' '
+}
 
 yelp_cache_in () {
     echo '<cache:cache xmlns:cache="http://projectmallard.org/cache/1.0/"'
@@ -179,7 +190,8 @@ yelp_cache () {
         yelp_usage_cache
         exit 1
     fi
-    yelp_cache_in "$@" | xsltproc --xinclude -o "$cache_out" "$xsl_mal_cache" -
+    yelp_cache_in "$@" | xsltproc --path "$html_paths" \
+        --xinclude -o "$cache_out" "$xsl_mal_cache" -
 }
 
 yelp_html_xsl_common () {
@@ -196,21 +208,29 @@ yelp_html_xsl_common () {
     if [ "x$html_custom" != "x" ]; then
         echo '<xsl:include href="file://'`echo "$html_custom" | urlencode`'"/>'
     fi
-    echo '<xsl:variable name="yelp.locale">'
-    echo ' <xsl:choose>'
-    echo '  <xsl:when test="$l10n.locale != '"''"'">'
-    echo '   <xsl:value-of select="$l10n.locale"/>'
-    echo '  </xsl:when>'
-    echo '  <xsl:otherwise>'
-    echo '   <xsl:text>C</xsl:text>'
-    echo '  </xsl:otherwise>'
-    echo ' </xsl:choose>'
-    echo '</xsl:variable>'
     echo '<xsl:template name="html.css">'
     echo ' <xsl:param name="node" select="."/>'
+    echo ' <xsl:variable name="yelp.locale">'
+    echo '  <xsl:choose>'
+    echo '   <xsl:when test="$node/@xml:lang != '"''"'">'
+    echo '    <xsl:value-of select="$node/@xml:lang"/>'
+    echo '   </xsl:when>'
+    echo '   <xsl:when test="$node/@lang != '"''"'">'
+    echo '    <xsl:value-of select="$node/@lang"/>'
+    echo '   </xsl:when>'
+    echo '   <xsl:otherwise>'
+    echo '    <xsl:text>C</xsl:text>'
+    echo '   </xsl:otherwise>'
+    echo '  </xsl:choose>'
+    echo ' </xsl:variable>'
     echo ' <exsl:document href="{$yelp.internal.datadir}{$yelp.locale}.css" method="text">'
     echo '  <xsl:call-template name="html.css.content">'
     echo '   <xsl:with-param name="node" select="$node"/>'
+    echo '   <xsl:with-param name="direction">'
+    echo '    <xsl:call-template name="l10n.direction">'
+    echo '     <xsl:with-param name="lang" select="$yelp.locale"/>'
+    echo '    </xsl:call-template>'
+    echo '   </xsl:with-param>'
     echo '  </xsl:call-template>'
     echo ' </exsl:document>'
     echo ' <link rel="stylesheet" type="text/css" href="{$html.css.root}{$yelp.locale}.css"/>'
@@ -251,7 +271,7 @@ yelp_html_db2html () {
             echo '<xsl:import href="'"$xsl"'"/>'
             yelp_html_xsl_common
             echo '</xsl:stylesheet>'
-        ) | xsltproc --xinclude -o "$html_out"/ - "$xml"
+        ) | xsltproc --path "$html_paths" --xinclude -o "$html_out"/ - "$xml"
         # Copy media
         if [ "x$xmldir" != "x$html_out" ]; then
             (
@@ -269,12 +289,26 @@ yelp_html_db2html () {
                 echo ' </xsl:for-each>'
                 echo '</xsl:template>'
                 echo '</xsl:stylesheet>'
-            ) | xsltproc --xinclude - "$xml" | while read media; do
+            ) | xsltproc --path "$html_paths" --xinclude - "$xml" | while read media; do
                 mfile=`echo "$media" | urldecode`
                 minput="$xmldir/$mfile"
                 moutput="$html_out/$mfile"
                 mkdir_p `dirname "$moutput"`
-                cp "$minput" "$moutput"
+                if [ ! -f "$minput" -a "x$html_paths" != "x" ]; then
+                    if [ $(expr index "$minput" "$(pwd)/") = 1 ]; then
+                        minput_rel=$(expr substr "$minput" \
+                            $(expr length "$(pwd)//") $(expr length "$minput"))
+                        for path in $html_paths; do
+                            if [ -f "$path/$minput_rel" ]; then
+                                minput="$path/$minput_rel"
+                                break
+                            fi
+                        done
+                    fi
+                fi
+                if [ -f "$minput" -o "x$html_ignore_media" != "x1" ]; then
+                    cp "$minput" "$moutput"
+                fi
             done
         fi
         # Copy icons
@@ -303,7 +337,7 @@ yelp_html_db2html () {
             echo ' </xsl:for-each>'
             echo '</xsl:template>'
             echo '</xsl:stylesheet>'
-        ) | xsltproc --xinclude - "$xml" | sort | uniq | while read icon; do
+        ) | xsltproc --path "$html_paths" --xinclude - "$xml" | sort | uniq | while read icon; do
             cp "${yelp_icon_dir}/${icon}.png" "$html_out/$html_internal_datadir"
         done;
         # Copy jQuery
@@ -333,7 +367,7 @@ yelp_html_db2html () {
             echo ' </xsl:for-each>'
             echo '</xsl:template>'
             echo '</xsl:stylesheet>'
-        ) | xsltproc --xinclude - "$xml" | sort | uniq \
+        ) | xsltproc --path "$html_paths" --xinclude - "$xml" | sort | uniq \
             | grep '^contents syntax ' | sed -e 's/^contents syntax brush-/brush./' \
             | while read js; do
             cp "${yelp_js_dir}/jquery.syntax.${js}.js" "$html_out/$html_internal_datadir"
@@ -346,10 +380,10 @@ yelp_html_mal2html () {
         html_cache_file=`(cd $(dirname "$html_cache_file") && pwd)`/`basename "$html_cache_file"`
     else
         html_cache_file_is_tmp="yes"
-        html_cache_file=`mktemp`
+        html_cache_file=`mktemp "${TMPDIR:-/tmp}"/yelp-XXXXXXXX`
         yelp_cache -o "$html_cache_file" "$@"
     fi
-    html_tmp_infile=`mktemp`
+    html_tmp_infile=`mktemp "${TMPDIR:-/tmp}"/yelp-XXXXXXXX`
     yelp_cache_in "$@" > "$html_tmp_infile"
     (
         echo '<xsl:stylesheet'
@@ -367,115 +401,59 @@ yelp_html_mal2html () {
             xsl='file://'`echo "$xsl_mal2html" | urlencode`
         fi
         echo '<xsl:import href="'"$xsl"'"/>'
+        echo '<xsl:include href="'"$xsl_mal_files"'"/>'
+        echo '<xsl:output method="text"/>'
         yelp_html_xsl_common
         html_cache_url='file://'`echo "$html_cache_file" | urlencode`
         echo '<xsl:param name="mal.cache.file" select="'"'$html_cache_url'"'"/>'
         echo '<xsl:template match="/">'
         echo '<xsl:for-each select="cache:cache/mal:page">'
-        echo '<xsl:call-template name="html.output">'
-        echo '<xsl:with-param name="node" select="document(@cache:href)/mal:page"/>'
+        echo '<xsl:variable name="href" select="@cache:href"/>'
+        echo '<xsl:for-each select="document(@cache:href)/mal:page">'
+        echo '<xsl:call-template name="html.output"/>'
+        echo '<xsl:call-template name="mal.files.copy">'
+        echo ' <xsl:with-param name="href" select="substring-after($href, '\''file://'\'')"/>'
         echo '</xsl:call-template>'
         echo '</xsl:for-each>'
-        echo '</xsl:template>'
-        echo '</xsl:stylesheet>'
-    ) | xsltproc $html_profile --xinclude -o "$html_out"/ - "$html_tmp_infile"
-    (
-        echo '<xsl:stylesheet'
-        echo ' xmlns:xsl="http://www.w3.org/1999/XSL/Transform"'
-        echo ' xmlns:mal="http://projectmallard.org/1.0/"'
-        echo ' xmlns:cache="http://projectmallard.org/cache/1.0/"'
-        echo ' xmlns:e="http://projectmallard.org/experimental/"'
-        echo ' xmlns:exsl="http://exslt.org/common"'
-        echo ' xmlns:html="http://www.w3.org/1999/xhtml"'
-        echo ' extension-element-prefixes="exsl"'
-        echo ' version="1.0">'
-        xsl='file://'`echo "$xsl_mal2xhtml" | urlencode`
-        echo '<xsl:import href="'"$xsl"'"/>'
-        echo '<xsl:output method="text"/>'
-        echo '<xsl:template name="dirname">'
-        echo ' <xsl:param name="str"/>'
-        echo ' <xsl:if test="contains($str, '\''/'\'')">'
-        echo '  <xsl:value-of select="substring-before($str, '\''/'\'')"/>'
-        echo '  <xsl:text>/</xsl:text>'
-        echo '  <xsl:call-template name="dirname">'
-        echo '   <xsl:with-param name="str" select="substring-after($str, '\''/'\'')"/>'
-        echo '  </xsl:call-template>'
-        echo ' </xsl:if>'
-        echo '</xsl:template>'
-        echo '<xsl:template match="/">'
-        echo '<xsl:for-each select="cache:cache/mal:page">'
-	echo ' <xsl:variable name="dir">'
-        echo '  <xsl:call-template name="dirname">'
-        echo '   <xsl:with-param name="str" select="substring-after(@cache:href, '\''file://'\'')"/>'
-        echo '  </xsl:call-template>'
-        echo ' </xsl:variable>'
-        echo ' <xsl:variable name="node" select="document(@cache:href)/mal:page"/>'
-        # Media
-        echo ' <xsl:for-each select="$node//mal:media | $node//e:mouseover">'
-	echo '  <xsl:if test="not(contains(@src, '\'':'\''))">'
-        echo '   <xsl:value-of select="concat($dir, @src, '"' '"')"/>'
-        echo '   <xsl:value-of select="concat(@src, '"'&#x000A;'"')"/>'
-	echo '  </xsl:if>'
-        echo ' </xsl:for-each>'
-        # Syntax highlighting
-        echo ' <xsl:for-each select="$node//mal:code[@mime]">'
-        echo '  <xsl:variable name="out">'
-        echo '   <xsl:call-template name="mal2html.pre"/>'
-        echo '  </xsl:variable>'
-        echo '  <xsl:variable name="class">'
-        echo '   <xsl:value-of select="exsl:node-set($out)/*/html:pre[last()]/@class"/>'
-        echo '  </xsl:variable>'
-        echo '  <xsl:if test="starts-with($class, '\''contents syntax brush-'\'')">'
-        echo '   <xsl:text>'"${yelp_js_dir}"'/jquery.syntax.brush.</xsl:text>'
-        echo '   <xsl:value-of select="substring-after($class, '\''contents syntax brush-'\'')"/>'
-        echo '   <xsl:text>.js ./&#x000A;</xsl:text>'
-        echo '  </xsl:if>'
-        echo ' </xsl:for-each>'
-        # Icons
-        echo ' <xsl:for-each select="$node//mal:note">'
-        echo '  <xsl:variable name="style" select="concat('\'' '\'', @style, '\'' '\'')"/>'
-        echo '  <xsl:choose>'
-        echo '   <xsl:when test="contains($style, '\'' advanced '\'')">'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note-advanced.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:when>'
-        echo '   <xsl:when test="contains($style, '\'' bug '\'')">'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note-bug.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:when>'
-        echo '   <xsl:when test="contains($style, '\'' important '\'')">'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note-important.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:when>'
-        echo '   <xsl:when test="contains($style, '\'' sidebar '\'')"/>'
-        echo '   <xsl:when test="contains($style, '\'' tip '\'')">'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note-tip.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:when>'
-        echo '   <xsl:when test="contains($style, '\'' warning '\'')">'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note-warning.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:when>'
-        echo '   <xsl:otherwise>'
-        echo '    <xsl:text>'"${yelp_icon_dir}"'/yelp-note.png ./&#x000A;</xsl:text>'
-        echo '   </xsl:otherwise>'
-        echo '  </xsl:choose>'
-        echo ' </xsl:for-each>'
         echo '</xsl:for-each>'
         echo '</xsl:template>'
         echo '</xsl:stylesheet>'
-    ) | xsltproc --xinclude - "$html_tmp_infile" | sort | uniq |
+    ) | (cd "$html_out" && xsltproc $html_profile \
+        --path "$html_paths" --xinclude \
+        --stringparam mal.files.copy.icon.dir "$yelp_icon_dir" \
+        --stringparam mal.files.copy.js.dir "$yelp_js_dir" \
+        - "$html_tmp_infile") | sort | uniq | \
     while read line; do
-	line_src=`echo "$line" | cut -d' ' -f1`
+        use_internal_datadir=`expr substr "$line" 1 1`
+        line=`expr substr "$line" 2 1000`
+        line_src=`echo "$line" | cut -d' ' -f1`
         line_src=`echo "$line_src" | urldecode`
-	line_dest="$html_out/$html_internal_datadir"`echo "$line" | cut -d' ' -f2`
+        if [ "x$use_internal_datadir" = "x+" ]; then
+            line_dest="$html_out/$html_internal_datadir"`echo "$line" | cut -d' ' -f2`
+        else
+            line_dest="$html_out/"`echo "$line" | cut -d' ' -f2`
+        fi
+        if [ ! -f "$line_src" -a "x$html_paths" != "x" ]; then
+            if [ $(expr index "$line_src" "$(pwd)/") = 1 ]; then
+                line_src_rel=$(expr substr "$line_src" \
+                    $(expr length "$(pwd)//") $(expr length "$line_src"))
+                for path in $html_paths; do
+                    if [ -f "$path/$line_src_rel" ]; then
+                        line_src="$path/$line_src_rel"
+                        break
+                    fi
+                done
+            fi
+        fi
         line_dest=`echo "$line_dest" | urldecode`
-	if [ "$line_src" != "$line_dest" ]; then
+        if [ "$line_src" != "$line_dest" ]; then
             line_dir=`dirname "$line_dest"`
             mkdir_p "$line_dir"
-	    cp "$line_src" "$line_dest"
-	fi
+            if [ -f "$minput" -o "x$html_ignore_media" != "x1" ]; then
+                cp "$line_src" "$line_dest"
+            fi
+        fi
     done
-    cp "${yelp_js_dir}/jquery.js" "$html_out/$html_internal_datadir"
-    cp "${yelp_js_dir}/jquery.syntax.js" "$html_out/$html_internal_datadir"
-    cp "${yelp_js_dir}/jquery.syntax.core.js" "$html_out/$html_internal_datadir"
-    cp "${yelp_js_dir}/jquery.syntax.layout.yelp.js" "$html_out/$html_internal_datadir"
-
     rm "$html_tmp_infile"
     if [ "x$html_cache_file_is_tmp" = "xyes" ]; then
         rm "$html_cache_file"
@@ -499,6 +477,15 @@ yelp_html () {
                 shift
                 html_custom="$1"
                 shift
+                ;;
+            "-p")
+                shift
+                html_paths=$(yelp_paths_normalize "$1")
+                shift
+                ;;
+            "-i")
+                shift
+                html_ignore_media="1"
                 ;;
             "--profile")
                 html_profile="--profile"
@@ -551,6 +538,15 @@ yelp_epub () {
                 html_custom="$1"
                 shift
                 ;;
+            "-p")
+                shift
+                html_paths=$(yelp_paths_normalize "$1")
+                shift
+                ;;
+            "-i")
+                shift
+                html_ignore_media="1"
+                ;;
             *)
                 break
                 ;;
@@ -564,11 +560,11 @@ yelp_epub () {
         epub_cache_file=`(cd $(dirname "$epub_cache_file") && pwd)`/`basename "$epub_cache_file"`
     else
         epub_cache_file_is_tmp="yes"
-        epub_cache_file=`mktemp`
+        epub_cache_file=`mktemp "${TMPDIR:-/tmp}"/yelp-XXXXXXXX`
         yelp_cache -o "$epub_cache_file" "$@"
     fi
     html_cache_file="$epub_cache_file"
-    epub_data_out=`mktemp -d`
+    epub_data_out=`mktemp -d "${TMPDIR:-/tmp}"/yelp-XXXXXXXX`
     html_out="$epub_data_out/OPS"
     mkdir "$html_out"
     mkdir "$html_out/yelp"
@@ -579,11 +575,13 @@ yelp_epub () {
     epub_id=`uuidgen`
     epub_data=`(cd "$html_out" && ls yelp/*.*)`
     xsltproc \
+        --path "$html_paths" \
         -o "$html_out/opf.opf" \
         --stringparam opf.id "$epub_id" \
         --stringparam opf.data "$epub_data" \
         "$xsl_mal_opf" "$epub_cache_file"
     xsltproc \
+        --path "$html_paths" \
         -o "$html_out/ncx.ncx" \
         --stringparam ncx.id "$epub_id" \
         "$xsl_mal_ncx" "$epub_cache_file"
