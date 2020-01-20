@@ -1,3 +1,97 @@
+commit c0e9669fbbeddbeac7dd3778abfbbd68d85d93ba
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Feb 6 08:22:37 2018 -0500
+
+    Version 3.27.90
+
+ NEWS         | 8 ++++++++
+ configure.ac | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+commit 71e8c4bd285a576ad3b3c38eb6aa9a2a0a1b24de
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Feb 6 08:17:27 2018 -0500
+
+    yelp.m4: Disable net access in make check
+    
+    https://bugzilla.gnome.org/show_bug.cgi?id=772334
+    https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839549
+
+ tools/yelp.m4 | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+commit 4daf828149ec8e027ae57d1940d4fd4666cca3f6
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Jul 7 12:04:19 2017 -0400
+
+    Adapt to recent major changes in yelp-xsl
+
+ tools/yelp-build.in | 86 ++++++-----------------------------------------------
+ xslt/mal-files.xsl  | 70 ++-----------------------------------------
+ 2 files changed, 12 insertions(+), 144 deletions(-)
+
+commit decc5890e1e38122f5ed94440d9744ffdc7e375b
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Feb 22 14:16:42 2017 -0500
+
+    yelp-check: Add --jing option to validate command to use jing
+    
+    libxml2 doesn't always give the best error messages for validation failures.
+    With this option, you can choose to use jing instead of xmllint, which might
+    give you better error messages in some cases.
+
+ tools/yelp-check.in | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
+
+commit 0fa70e34daa8eb59566dbbf9b04c6e915c54f3e8
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Feb 14 12:47:14 2017 -0500
+
+    yelp-check: Fixed style list handling in `yelp-check style`
+
+ tools/yelp-check.in | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit 7eef4170b327ab9e0cc9d9933bd1d0672c1b6a47
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Feb 14 12:36:33 2017 -0500
+
+    yelp-check: Add style command to list page styles
+
+ tools/yelp-check.in | 132 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 132 insertions(+)
+
+commit 5dceb68e097cc6a9908a2264312916fe34587900
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Oct 7 09:12:22 2016 -0400
+
+    yelp-check: Remember URLs we already checked in `hrefs`
+
+ tools/yelp-check.in | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
+
+commit 193c2bd0b4d9e80344184e3f14b21c4a5296701c
+Author: Javier Jardón <jjardon@gnome.org>
+Date:   Mon Jul 11 23:11:13 2016 +0100
+
+    gnome-autogen.sh: Remove unused file
+    
+    gnome-autogen.sh is not used since commit
+    758fc9f914de88dfae80aa43d25c089dde0a8a15
+
+ gnome-autogen.sh | 427 -------------------------------------------------------
+ 1 file changed, 427 deletions(-)
+
+commit 606ba9aac9f2633da371c7db8333e0c131e50b90
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Sep 21 13:02:54 2015 -0400
+
+    Version 3.18.0
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
 commit 6df6bf24e385bbc1ac0b800be8a6e878f18a775c
 Author: Shaun McCance <shaunm@gnome.org>
 Date:   Wed Jul 22 10:25:26 2015 -0400
@@ -523,12 +617,11 @@ Date:   Mon Nov 18 23:50:56 2013 -0500
     This reverts commit 2e63c1ae0f1bad71c6d7b9bf328f919e6372e719.
     Going to do an option to YELP_HELP_INIT instead.
 
- .gitignore        |   1 -
- configure.ac      |   6 +-
- tools/Makefile.am |   2 +-
- tools/yelp.m4     | 195 ++++++++++++++++++++++++++++++++++++++++++++
- tools/yelp.m4.in  | 237 ------------------------------------------------------
- 5 files changed, 197 insertions(+), 244 deletions(-)
+ .gitignore                    |  1 -
+ configure.ac                  |  6 +-----
+ tools/Makefile.am             |  2 +-
+ tools/{yelp.m4.in => yelp.m4} | 46 ++-----------------------------------------
+ 4 files changed, 4 insertions(+), 51 deletions(-)
 
 commit df25cfbba44232464b4219ec276a3faf476dfb3a
 Author: Shaun McCance <shaunm@gnome.org>
@@ -557,12 +650,11 @@ Date:   Mon Nov 18 09:57:49 2013 -0500
     deprecated), and YELP_INIT_HELP is stingy about checking minimum
     version.
 
- .gitignore        |   1 +
- configure.ac      |   6 +-
- tools/Makefile.am |   2 +-
- tools/yelp.m4     | 195 --------------------------------------------
- tools/yelp.m4.in  | 237 ++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 5 files changed, 244 insertions(+), 197 deletions(-)
+ .gitignore                    |  1 +
+ configure.ac                  |  6 +++++-
+ tools/Makefile.am             |  2 +-
+ tools/{yelp.m4 => yelp.m4.in} | 46 +++++++++++++++++++++++++++++++++++++++++--
+ 4 files changed, 51 insertions(+), 4 deletions(-)
 
 commit 69014c0374ae8acbc0c93b3d43f28264791dca75
 Author: Shaun McCance <shaunm@gnome.org>
@@ -2370,9 +2462,8 @@ Date:   Sun Jun 13 15:40:45 2010 -0500
 
     [yelp-tools.doap] Updated DOAP file for yelp-tools
 
- gnome-doc-utils.doap | 30 ------------------------------
- yelp-tools.doap      | 30 ++++++++++++++++++++++++++++++
- 2 files changed, 30 insertions(+), 30 deletions(-)
+ gnome-doc-utils.doap => yelp-tools.doap | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 commit 45d7f79ee4456e0efc16b16902febf6c7765a396
 Author: Shaun McCance <shaunm@gnome.org>
@@ -3466,49 +3557,31 @@ Date:   Mon Sep 28 21:47:24 2009 -0500
 
     Moving icons into "status" subdirectory, for correct icon theme usage
 
- configure.in                                       |    2 +
- data/icons/hicolor/48x48/Makefile.am               |   11 +-
- data/icons/hicolor/48x48/admon-bug.png             |  Bin 2952 -> 0 bytes
- data/icons/hicolor/48x48/admon-caution.png         |  Bin 2959 -> 0 bytes
- data/icons/hicolor/48x48/admon-important.png       |  Bin 2454 -> 0 bytes
- data/icons/hicolor/48x48/admon-note.png            |  Bin 1733 -> 0 bytes
- data/icons/hicolor/48x48/admon-tip.png             |  Bin 2491 -> 0 bytes
- data/icons/hicolor/48x48/admon-warning.png         |  Bin 2959 -> 0 bytes
- data/icons/hicolor/48x48/status/Makefile.am        |   10 +
- data/icons/hicolor/48x48/status/admon-bug.png      |  Bin 0 -> 2952 bytes
- data/icons/hicolor/48x48/status/admon-caution.png  |  Bin 0 -> 2959 bytes
- .../icons/hicolor/48x48/status/admon-important.png |  Bin 0 -> 2454 bytes
- data/icons/hicolor/48x48/status/admon-note.png     |  Bin 0 -> 1733 bytes
- data/icons/hicolor/48x48/status/admon-tip.png      |  Bin 0 -> 2491 bytes
- data/icons/hicolor/48x48/status/admon-warning.png  |  Bin 0 -> 2959 bytes
- data/icons/hicolor/scalable/Makefile.am            |   11 +-
- data/icons/hicolor/scalable/admon-bug-shadow.svg   |  297 -----
- data/icons/hicolor/scalable/admon-bug.svg          |  285 -----
- .../hicolor/scalable/admon-caution-shadow.svg      |  197 ----
- data/icons/hicolor/scalable/admon-caution.svg      |  187 ----
- .../hicolor/scalable/admon-important-shadow.svg    | 1172 --------------------
- data/icons/hicolor/scalable/admon-important.svg    | 1157 -------------------
- data/icons/hicolor/scalable/admon-note-shadow.svg  |  927 ----------------
- data/icons/hicolor/scalable/admon-note.svg         |  958 ----------------
- data/icons/hicolor/scalable/admon-tip-shadow.svg   |  188 ----
- data/icons/hicolor/scalable/admon-tip.svg          |  178 ---
- .../hicolor/scalable/admon-warning-shadow.svg      |  197 ----
- data/icons/hicolor/scalable/admon-warning.svg      |  187 ----
- data/icons/hicolor/scalable/status/Makefile.am     |   10 +
- .../hicolor/scalable/status/admon-bug-shadow.svg   |  297 +++++
- data/icons/hicolor/scalable/status/admon-bug.svg   |  285 +++++
- .../scalable/status/admon-caution-shadow.svg       |  197 ++++
- .../hicolor/scalable/status/admon-caution.svg      |  187 ++++
- .../scalable/status/admon-important-shadow.svg     | 1172 ++++++++++++++++++++
- .../hicolor/scalable/status/admon-important.svg    | 1157 +++++++++++++++++++
- .../hicolor/scalable/status/admon-note-shadow.svg  |  927 ++++++++++++++++
- data/icons/hicolor/scalable/status/admon-note.svg  |  958 ++++++++++++++++
- .../hicolor/scalable/status/admon-tip-shadow.svg   |  188 ++++
- data/icons/hicolor/scalable/status/admon-tip.svg   |  178 +++
- .../scalable/status/admon-warning-shadow.svg       |  197 ++++
- .../hicolor/scalable/status/admon-warning.svg      |  187 ++++
- tools/gnome-doc-tool.in                            |    2 +-
- 42 files changed, 5955 insertions(+), 5951 deletions(-)
+ configure.in                                                |   2 ++
+ data/icons/hicolor/48x48/Makefile.am                        |  11 +----------
+ data/icons/hicolor/48x48/status/Makefile.am                 |  10 ++++++++++
+ data/icons/hicolor/48x48/{ => status}/admon-bug.png         | Bin
+ data/icons/hicolor/48x48/{ => status}/admon-caution.png     | Bin
+ data/icons/hicolor/48x48/{ => status}/admon-important.png   | Bin
+ data/icons/hicolor/48x48/{ => status}/admon-note.png        | Bin
+ data/icons/hicolor/48x48/{ => status}/admon-tip.png         | Bin
+ data/icons/hicolor/48x48/{ => status}/admon-warning.png     | Bin
+ data/icons/hicolor/scalable/Makefile.am                     |  11 +----------
+ data/icons/hicolor/scalable/status/Makefile.am              |  10 ++++++++++
+ .../hicolor/scalable/{ => status}/admon-bug-shadow.svg      |   0
+ data/icons/hicolor/scalable/{ => status}/admon-bug.svg      |   0
+ .../hicolor/scalable/{ => status}/admon-caution-shadow.svg  |   0
+ data/icons/hicolor/scalable/{ => status}/admon-caution.svg  |   0
+ .../scalable/{ => status}/admon-important-shadow.svg        |   0
+ .../icons/hicolor/scalable/{ => status}/admon-important.svg |   0
+ .../hicolor/scalable/{ => status}/admon-note-shadow.svg     |   0
+ data/icons/hicolor/scalable/{ => status}/admon-note.svg     |   0
+ .../hicolor/scalable/{ => status}/admon-tip-shadow.svg      |   0
+ data/icons/hicolor/scalable/{ => status}/admon-tip.svg      |   0
+ .../hicolor/scalable/{ => status}/admon-warning-shadow.svg  |   0
+ data/icons/hicolor/scalable/{ => status}/admon-warning.svg  |   0
+ tools/gnome-doc-tool.in                                     |   2 +-
+ 24 files changed, 25 insertions(+), 21 deletions(-)
 
 commit d6d2feb785cd5c64198bbaa98a925a8eec79f998
 Author: Khaled Hosny <khaledhosny@eglug.org>
@@ -4301,30 +4374,24 @@ Date:   Sat Aug 1 23:42:42 2009 +0200
     /modes as a subdirectory). It should now be possible to call xml2po from any
     python code with an "import xml2po" command, without resorting to command line.
 
- bootstrap.make                  |   2 +-
- configure.in                    |   5 +-
- xml2po/.gitignore               |   1 -
- xml2po/Makefile.am              |  17 +-
- xml2po/modes/Makefile.am        |   4 -
- xml2po/modes/basic.py           |  63 ---
- xml2po/modes/docbook.py         | 207 ----------
- xml2po/modes/gs.py              |  73 ----
- xml2po/modes/mallard.py         | 134 ------
- xml2po/modes/ubuntu.py          |  25 --
- xml2po/modes/xhtml.py           |  38 --
- xml2po/tests/relnotes/test.sh   |   4 +-
- xml2po/tests/test.py            |  12 +-
- xml2po/xml2po.py                | 889 ----------------------------------------
- xml2po/xml2po/__init__.py       | 700 +++++++++++++++++++++++++++++++
- xml2po/xml2po/modes/Makefile.am |   4 +
- xml2po/xml2po/modes/basic.py    |  65 +++
- xml2po/xml2po/modes/docbook.py  | 207 ++++++++++
- xml2po/xml2po/modes/gs.py       |  73 ++++
- xml2po/xml2po/modes/mallard.py  | 134 ++++++
- xml2po/xml2po/modes/ubuntu.py   |  22 +
- xml2po/xml2po/modes/xhtml.py    |  38 ++
- xml2po/xml2po/xml2po.py.in      | 187 +++++++++
- 23 files changed, 1443 insertions(+), 1461 deletions(-)
+ bootstrap.make                       |   2 +-
+ configure.in                         |   5 +-
+ xml2po/.gitignore                    |   1 -
+ xml2po/Makefile.am                   |  17 +-
+ xml2po/modes/Makefile.am             |   4 -
+ xml2po/tests/relnotes/test.sh        |   4 +-
+ xml2po/tests/test.py                 |  12 +-
+ xml2po/xml2po.py                     | 889 -----------------------------------
+ xml2po/xml2po/__init__.py            | 700 +++++++++++++++++++++++++++
+ xml2po/xml2po/modes/Makefile.am      |   4 +
+ xml2po/{ => xml2po}/modes/basic.py   |  10 +-
+ xml2po/{ => xml2po}/modes/docbook.py |   8 +-
+ xml2po/{ => xml2po}/modes/gs.py      |   2 +-
+ xml2po/{ => xml2po}/modes/mallard.py |   0
+ xml2po/{ => xml2po}/modes/ubuntu.py  |   3 -
+ xml2po/{ => xml2po}/modes/xhtml.py   |   0
+ xml2po/xml2po/xml2po.py.in           | 187 ++++++++
+ 17 files changed, 915 insertions(+), 933 deletions(-)
 
 commit 1b230c3e7b1950a73870c19d6970163e472d58bf
 Author: drtvasudevan <agnihot3@gmail.com>
@@ -4460,8 +4527,7 @@ Date:   Sat Jul 4 15:39:15 2009 +0200
 
     Migrate from cvsignore to gitignore
 
- .cvsignore                             | 16 ----------------
- .gitignore                             | 15 +++++++++++++++
+ .cvsignore => .gitignore               | 11 +++++------
  doc/.cvsignore                         |  2 --
  doc/gnome-doc-make/.cvsignore          |  3 ---
  doc/gnome-doc-make/C/.cvsignore        |  1 -
@@ -4469,8 +4535,7 @@ Date:   Sat Jul 4 15:39:15 2009 +0200
  doc/xslt/C/.cvsignore                  | 30 ------------------------------
  doc/xslt/sr/.cvsignore                 | 32 --------------------------------
  m4/.gitignore                          |  1 +
- po/.cvsignore                          | 14 --------------
- po/.gitignore                          | 11 +++++++++++
+ po/{.cvsignore => .gitignore}          |  7 ++-----
  rng/mallard/.gitignore                 |  2 ++
  sandbox/mallard/.cvsignore             |  9 ---------
  test/.cvsignore                        |  2 --
@@ -4493,7 +4558,7 @@ Date:   Sat Jul 4 15:39:15 2009 +0200
  xslt/gettext/.gitignore                |  1 +
  xslt/rngdoc/.cvsignore                 |  2 --
  xslt/xsldoc/.cvsignore                 |  2 --
- 33 files changed, 40 insertions(+), 177 deletions(-)
+ 31 files changed, 21 insertions(+), 158 deletions(-)
 
 commit e67602972ca5ac603108cc8d0ee625de7ae7d4b1
 Author: Shaun McCance <shaunm@gnome.org>
@@ -4916,153 +4981,85 @@ Date:   Mon Jun 8 15:19:16 2009 -0500
 
     [mallard] Rename pages to .page, XSLT fixed for Yelp
 
- doc/mallard/C/details.page              |  33 +++
- doc/mallard/C/details.xml               |  33 ---
- doc/mallard/C/explore.page              |  30 ++
- doc/mallard/C/explore.xml               |  30 --
- doc/mallard/C/i18n.page                 |  22 ++
- doc/mallard/C/i18n.xml                  |  22 --
- doc/mallard/C/index.page                |  33 +++
- doc/mallard/C/index.xml                 |  33 ---
- doc/mallard/C/its.page                  | 359 ++++++++++++++++++++++++
- doc/mallard/C/its.xml                   | 359 ------------------------
- doc/mallard/C/l10n.page                 |  22 ++
- doc/mallard/C/l10n.xml                  |  22 --
- doc/mallard/C/links.page                |  43 +++
- doc/mallard/C/links.xml                 |  43 ---
- doc/mallard/C/mal_TODO.page             |  13 +
- doc/mallard/C/mal_TODO.xml              |  13 -
- doc/mallard/C/mal_attr_link.page        |  39 +++
- doc/mallard/C/mal_attr_link.xml         |  39 ---
- doc/mallard/C/mal_block.page            | 185 +++++++++++++
- doc/mallard/C/mal_block.xml             | 185 -------------
- doc/mallard/C/mal_block_cite.page       |  69 +++++
- doc/mallard/C/mal_block_cite.xml        |  69 -----
- doc/mallard/C/mal_block_code.page       | 142 ++++++++++
- doc/mallard/C/mal_block_code.xml        | 142 ----------
- doc/mallard/C/mal_block_comment.page    | 179 ++++++++++++
- doc/mallard/C/mal_block_comment.xml     | 179 ------------
- doc/mallard/C/mal_block_desc.page       | 135 +++++++++
- doc/mallard/C/mal_block_desc.xml        | 135 ---------
- doc/mallard/C/mal_block_example.page    | 134 +++++++++
- doc/mallard/C/mal_block_example.xml     | 134 ---------
- doc/mallard/C/mal_block_figure.page     | 115 ++++++++
- doc/mallard/C/mal_block_figure.xml      | 115 --------
- doc/mallard/C/mal_block_list.page       | 208 ++++++++++++++
- doc/mallard/C/mal_block_list.xml        | 208 --------------
- doc/mallard/C/mal_block_listing.page    | 127 +++++++++
- doc/mallard/C/mal_block_listing.xml     | 127 ---------
- doc/mallard/C/mal_block_media.page      | 157 +++++++++++
- doc/mallard/C/mal_block_media.xml       | 157 -----------
- doc/mallard/C/mal_block_note.page       | 233 ++++++++++++++++
- doc/mallard/C/mal_block_note.xml        | 233 ----------------
- doc/mallard/C/mal_block_p.page          | 106 +++++++
- doc/mallard/C/mal_block_p.xml           | 106 -------
- doc/mallard/C/mal_block_quote.page      | 156 +++++++++++
- doc/mallard/C/mal_block_quote.xml       | 156 -----------
- doc/mallard/C/mal_block_screen.page     | 185 +++++++++++++
- doc/mallard/C/mal_block_screen.xml      | 185 -------------
- doc/mallard/C/mal_block_steps.page      | 195 +++++++++++++
- doc/mallard/C/mal_block_steps.xml       | 195 -------------
- doc/mallard/C/mal_block_subtitle.page   |  17 ++
- doc/mallard/C/mal_block_subtitle.xml    |  17 --
- doc/mallard/C/mal_block_synopsis.page   | 136 +++++++++
- doc/mallard/C/mal_block_synopsis.xml    | 136 ---------
- doc/mallard/C/mal_block_terms.page      | 187 +++++++++++++
- doc/mallard/C/mal_block_terms.xml       | 187 -------------
- doc/mallard/C/mal_block_title.page      |  17 ++
- doc/mallard/C/mal_block_title.xml       |  17 --
- doc/mallard/C/mal_block_tree.page       | 190 +++++++++++++
- doc/mallard/C/mal_block_tree.xml        | 190 -------------
- doc/mallard/C/mal_external.page         |  75 +++++
- doc/mallard/C/mal_external.xml          |  75 -----
- doc/mallard/C/mal_info.page             |  53 ++++
- doc/mallard/C/mal_info.xml              |  53 ----
- doc/mallard/C/mal_info_copyright.page   |  96 +++++++
- doc/mallard/C/mal_info_copyright.xml    |  96 -------
- doc/mallard/C/mal_info_credit.page      | 139 ++++++++++
- doc/mallard/C/mal_info_credit.xml       | 139 ----------
- doc/mallard/C/mal_info_desc.page        |  73 +++++
- doc/mallard/C/mal_info_desc.xml         |  73 -----
- doc/mallard/C/mal_info_license.page     |  93 +++++++
- doc/mallard/C/mal_info_license.xml      |  93 -------
- doc/mallard/C/mal_info_link.page        |  21 ++
- doc/mallard/C/mal_info_link.xml         |  21 --
- doc/mallard/C/mal_info_revision.page    | 155 +++++++++++
- doc/mallard/C/mal_info_revision.xml     | 155 -----------
- doc/mallard/C/mal_info_title.page       | 140 ++++++++++
- doc/mallard/C/mal_info_title.xml        | 140 ----------
- doc/mallard/C/mal_inline.page           |  99 +++++++
- doc/mallard/C/mal_inline.xml            |  99 -------
- doc/mallard/C/mal_inline_app.page       | 132 +++++++++
- doc/mallard/C/mal_inline_app.xml        | 132 ---------
- doc/mallard/C/mal_inline_cmd.page       | 179 ++++++++++++
- doc/mallard/C/mal_inline_cmd.xml        | 179 ------------
- doc/mallard/C/mal_inline_code.page      | 171 ++++++++++++
- doc/mallard/C/mal_inline_code.xml       | 171 ------------
- doc/mallard/C/mal_inline_em.page        | 124 +++++++++
- doc/mallard/C/mal_inline_em.xml         | 124 ---------
- doc/mallard/C/mal_inline_file.page      |  89 ++++++
- doc/mallard/C/mal_inline_file.xml       |  89 ------
- doc/mallard/C/mal_inline_gui.page       | 177 ++++++++++++
- doc/mallard/C/mal_inline_gui.xml        | 177 ------------
- doc/mallard/C/mal_inline_guiseq.page    | 117 ++++++++
- doc/mallard/C/mal_inline_guiseq.xml     | 117 --------
- doc/mallard/C/mal_inline_input.page     | 126 +++++++++
- doc/mallard/C/mal_inline_input.xml      | 126 ---------
- doc/mallard/C/mal_inline_key.page       | 146 ++++++++++
- doc/mallard/C/mal_inline_key.xml        | 146 ----------
- doc/mallard/C/mal_inline_keyseq.page    | 172 ++++++++++++
- doc/mallard/C/mal_inline_keyseq.xml     | 172 ------------
- doc/mallard/C/mal_inline_link.page      | 206 ++++++++++++++
- doc/mallard/C/mal_inline_link.xml       | 206 --------------
- doc/mallard/C/mal_inline_media.page     | 155 +++++++++++
- doc/mallard/C/mal_inline_media.xml      | 155 -----------
- doc/mallard/C/mal_inline_output.page    | 173 ++++++++++++
- doc/mallard/C/mal_inline_output.xml     | 173 ------------
- doc/mallard/C/mal_inline_span.page      | 110 ++++++++
- doc/mallard/C/mal_inline_span.xml       | 110 --------
- doc/mallard/C/mal_inline_sys.page       | 110 ++++++++
- doc/mallard/C/mal_inline_sys.xml        | 110 --------
- doc/mallard/C/mal_inline_var.page       |  98 +++++++
- doc/mallard/C/mal_inline_var.xml        |  98 -------
- doc/mallard/C/mal_page.page             | 159 +++++++++++
- doc/mallard/C/mal_page.xml              | 159 -----------
- doc/mallard/C/mal_section.page          |  92 +++++++
- doc/mallard/C/mal_section.xml           |  92 -------
- doc/mallard/C/mal_table.page            | 471 ++++++++++++++++++++++++++++++++
- doc/mallard/C/mal_table.xml             | 471 --------------------------------
- doc/mallard/C/mal_table_col.page        |  24 ++
- doc/mallard/C/mal_table_col.xml         |  24 --
- doc/mallard/C/mal_table_td.page         |  20 ++
- doc/mallard/C/mal_table_td.xml          |  20 --
- doc/mallard/C/mal_table_tr.page         |  38 +++
- doc/mallard/C/mal_table_tr.xml          |  38 ---
- doc/mallard/C/principle-guide.page      |  15 +
- doc/mallard/C/principle-guide.xml       |  15 -
- doc/mallard/C/principle-justenough.page |  14 +
- doc/mallard/C/principle-justenough.xml  |  14 -
- doc/mallard/C/principle-redundancy.page |  13 +
- doc/mallard/C/principle-redundancy.xml  |  13 -
- doc/mallard/C/principles.page           |  61 +++++
- doc/mallard/C/principles.xml            |  61 -----
- doc/mallard/C/spec.page                 |  30 ++
- doc/mallard/C/spec.xml                  |  30 --
- doc/mallard/C/tenminutes.page           |  29 ++
- doc/mallard/C/tenminutes.xml            |  29 --
- sandbox/mallard/html/Makefile           |  10 +-
- tools/Makefile.am                       |   2 +-
- xslt/Makefile.am                        |   2 +-
- xslt/common/Makefile.am                 |   2 +-
- xslt/common/utils.xsl                   |  82 ++++++
- xslt/mallard/html/Makefile.am           |   3 +-
- xslt/mallard/html/mal2html-block.xsl    |   4 +-
- xslt/mallard/html/mal2html.xsl          |   2 +-
- xslt/mallard/html/mal2xhtml.xsl         |   2 +-
- xslt/mallard/html/theme.xml             |  43 ---
- xslt/mallard/html/theme.xsl             |  78 ------
- xslt/mallard/html/util.xsl              |  82 ------
- 146 files changed, 7758 insertions(+), 7878 deletions(-)
+ doc/mallard/C/{details.xml => details.page}        |  0
+ doc/mallard/C/{explore.xml => explore.page}        |  0
+ doc/mallard/C/{i18n.xml => i18n.page}              |  0
+ doc/mallard/C/{index.xml => index.page}            |  0
+ doc/mallard/C/{its.xml => its.page}                |  0
+ doc/mallard/C/{l10n.xml => l10n.page}              |  0
+ doc/mallard/C/{links.xml => links.page}            |  0
+ doc/mallard/C/{mal_TODO.xml => mal_TODO.page}      |  0
+ .../C/{mal_attr_link.xml => mal_attr_link.page}    |  0
+ doc/mallard/C/{mal_block.xml => mal_block.page}    |  0
+ .../C/{mal_block_cite.xml => mal_block_cite.page}  |  0
+ .../C/{mal_block_code.xml => mal_block_code.page}  |  0
+ ...al_block_comment.xml => mal_block_comment.page} |  0
+ .../C/{mal_block_desc.xml => mal_block_desc.page}  |  0
+ ...al_block_example.xml => mal_block_example.page} |  0
+ ...{mal_block_figure.xml => mal_block_figure.page} |  0
+ .../C/{mal_block_list.xml => mal_block_list.page}  |  0
+ ...al_block_listing.xml => mal_block_listing.page} |  0
+ .../{mal_block_media.xml => mal_block_media.page}  |  0
+ .../C/{mal_block_note.xml => mal_block_note.page}  |  0
+ .../C/{mal_block_p.xml => mal_block_p.page}        |  0
+ .../{mal_block_quote.xml => mal_block_quote.page}  |  0
+ ...{mal_block_screen.xml => mal_block_screen.page} |  0
+ .../{mal_block_steps.xml => mal_block_steps.page}  |  0
+ ..._block_subtitle.xml => mal_block_subtitle.page} |  0
+ ..._block_synopsis.xml => mal_block_synopsis.page} |  0
+ .../{mal_block_terms.xml => mal_block_terms.page}  |  0
+ .../{mal_block_title.xml => mal_block_title.page}  |  0
+ .../C/{mal_block_tree.xml => mal_block_tree.page}  |  0
+ .../C/{mal_external.xml => mal_external.page}      |  0
+ doc/mallard/C/{mal_info.xml => mal_info.page}      |  0
+ ..._info_copyright.xml => mal_info_copyright.page} |  0
+ .../{mal_info_credit.xml => mal_info_credit.page}  |  0
+ .../C/{mal_info_desc.xml => mal_info_desc.page}    |  0
+ ...{mal_info_license.xml => mal_info_license.page} |  0
+ .../C/{mal_info_link.xml => mal_info_link.page}    |  0
+ ...al_info_revision.xml => mal_info_revision.page} |  0
+ .../C/{mal_info_title.xml => mal_info_title.page}  |  0
+ doc/mallard/C/{mal_inline.xml => mal_inline.page}  |  0
+ .../C/{mal_inline_app.xml => mal_inline_app.page}  |  0
+ .../C/{mal_inline_cmd.xml => mal_inline_cmd.page}  |  0
+ .../{mal_inline_code.xml => mal_inline_code.page}  |  0
+ .../C/{mal_inline_em.xml => mal_inline_em.page}    |  0
+ .../{mal_inline_file.xml => mal_inline_file.page}  |  0
+ .../C/{mal_inline_gui.xml => mal_inline_gui.page}  |  0
+ ...al_inline_guiseq.xml => mal_inline_guiseq.page} |  0
+ ...{mal_inline_input.xml => mal_inline_input.page} |  0
+ .../C/{mal_inline_key.xml => mal_inline_key.page}  |  0
+ ...al_inline_keyseq.xml => mal_inline_keyseq.page} |  0
+ .../{mal_inline_link.xml => mal_inline_link.page}  |  0
+ ...{mal_inline_media.xml => mal_inline_media.page} |  0
+ ...al_inline_output.xml => mal_inline_output.page} |  0
+ .../{mal_inline_span.xml => mal_inline_span.page}  |  0
+ .../C/{mal_inline_sys.xml => mal_inline_sys.page}  |  0
+ .../C/{mal_inline_var.xml => mal_inline_var.page}  |  0
+ doc/mallard/C/{mal_page.xml => mal_page.page}      |  0
+ .../C/{mal_section.xml => mal_section.page}        |  0
+ doc/mallard/C/{mal_table.xml => mal_table.page}    |  0
+ .../C/{mal_table_col.xml => mal_table_col.page}    |  0
+ .../C/{mal_table_td.xml => mal_table_td.page}      |  0
+ .../C/{mal_table_tr.xml => mal_table_tr.page}      |  0
+ .../{principle-guide.xml => principle-guide.page}  |  0
+ ...le-justenough.xml => principle-justenough.page} |  0
+ ...le-redundancy.xml => principle-redundancy.page} |  0
+ doc/mallard/C/{principles.xml => principles.page}  |  0
+ doc/mallard/C/{spec.xml => spec.page}              |  0
+ doc/mallard/C/{tenminutes.xml => tenminutes.page}  |  0
+ sandbox/mallard/html/Makefile                      | 10 +--
+ tools/Makefile.am                                  |  2 +-
+ xslt/Makefile.am                                   |  2 +-
+ xslt/common/Makefile.am                            |  2 +-
+ xslt/{mallard/html/util.xsl => common/utils.xsl}   |  6 +-
+ xslt/mallard/html/Makefile.am                      |  3 +-
+ xslt/mallard/html/mal2html-block.xsl               |  4 +-
+ xslt/mallard/html/mal2html.xsl                     |  2 +-
+ xslt/mallard/html/mal2xhtml.xsl                    |  2 +-
+ xslt/mallard/html/theme.xml                        | 43 ------------
+ xslt/mallard/html/theme.xsl                        | 78 ----------------------
+ 78 files changed, 17 insertions(+), 137 deletions(-)
 
 commit 979b6dd10423ef6bc3d42de3d0120f1751fa6a22
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5137,71 +5134,70 @@ Date:   Fri May 29 14:39:26 2009 -0500
 
     [mallard] Changing version element to revision
 
- doc/mallard/C/details.xml              |  2 +-
- doc/mallard/C/explore.xml              |  2 +-
- doc/mallard/C/i18n.xml                 |  2 +-
- doc/mallard/C/index.xml                |  2 +-
- doc/mallard/C/its.xml                  |  2 +-
- doc/mallard/C/l10n.xml                 |  2 +-
- doc/mallard/C/links.xml                |  2 +-
- doc/mallard/C/mal_attr_link.xml        |  2 +-
- doc/mallard/C/mal_block.xml            |  2 +-
- doc/mallard/C/mal_block_cite.xml       |  2 +-
- doc/mallard/C/mal_block_code.xml       |  2 +-
- doc/mallard/C/mal_block_comment.xml    |  2 +-
- doc/mallard/C/mal_block_desc.xml       |  2 +-
- doc/mallard/C/mal_block_example.xml    |  2 +-
- doc/mallard/C/mal_block_figure.xml     |  2 +-
- doc/mallard/C/mal_block_list.xml       |  2 +-
- doc/mallard/C/mal_block_listing.xml    |  2 +-
- doc/mallard/C/mal_block_media.xml      |  2 +-
- doc/mallard/C/mal_block_note.xml       |  2 +-
- doc/mallard/C/mal_block_p.xml          |  2 +-
- doc/mallard/C/mal_block_quote.xml      |  2 +-
- doc/mallard/C/mal_block_screen.xml     |  2 +-
- doc/mallard/C/mal_block_steps.xml      |  2 +-
- doc/mallard/C/mal_block_subtitle.xml   |  2 +-
- doc/mallard/C/mal_block_synopsis.xml   |  2 +-
- doc/mallard/C/mal_block_terms.xml      |  2 +-
- doc/mallard/C/mal_block_title.xml      |  2 +-
- doc/mallard/C/mal_block_tree.xml       |  2 +-
- doc/mallard/C/mal_external.xml         |  2 +-
- doc/mallard/C/mal_info.xml             |  4 ++--
- doc/mallard/C/mal_info_copyright.xml   |  2 +-
- doc/mallard/C/mal_info_credit.xml      |  2 +-
- doc/mallard/C/mal_info_desc.xml        |  2 +-
- doc/mallard/C/mal_info_license.xml     |  2 +-
- doc/mallard/C/mal_info_link.xml        |  2 +-
- doc/mallard/C/mal_info_revision.xml    | 27 +++++++++++++++++++++++++++
- doc/mallard/C/mal_info_title.xml       |  2 +-
- doc/mallard/C/mal_info_version.xml     | 23 -----------------------
- doc/mallard/C/mal_inline.xml           |  2 +-
- doc/mallard/C/mal_inline_app.xml       |  2 +-
- doc/mallard/C/mal_inline_cmd.xml       |  2 +-
- doc/mallard/C/mal_inline_code.xml      |  2 +-
- doc/mallard/C/mal_inline_em.xml        |  2 +-
- doc/mallard/C/mal_inline_file.xml      |  2 +-
- doc/mallard/C/mal_inline_gui.xml       |  2 +-
- doc/mallard/C/mal_inline_guiseq.xml    |  2 +-
- doc/mallard/C/mal_inline_input.xml     |  2 +-
- doc/mallard/C/mal_inline_key.xml       |  2 +-
- doc/mallard/C/mal_inline_keyseq.xml    |  2 +-
- doc/mallard/C/mal_inline_link.xml      |  2 +-
- doc/mallard/C/mal_inline_media.xml     |  2 +-
- doc/mallard/C/mal_inline_output.xml    |  2 +-
- doc/mallard/C/mal_inline_span.xml      |  2 +-
- doc/mallard/C/mal_inline_sys.xml       |  2 +-
- doc/mallard/C/mal_inline_var.xml       |  2 +-
- doc/mallard/C/mal_page.xml             |  2 +-
- doc/mallard/C/mal_section.xml          |  2 +-
- doc/mallard/C/mal_table.xml            | 10 +++++-----
- doc/mallard/C/principle-guide.xml      |  2 +-
- doc/mallard/C/principle-justenough.xml |  2 +-
- doc/mallard/C/principle-redundancy.xml |  2 +-
- doc/mallard/C/principles.xml           |  2 +-
- doc/mallard/C/spec.xml                 |  2 +-
- doc/mallard/C/tenminutes.xml           |  2 +-
- 64 files changed, 94 insertions(+), 90 deletions(-)
+ doc/mallard/C/details.xml                                     |  2 +-
+ doc/mallard/C/explore.xml                                     |  2 +-
+ doc/mallard/C/i18n.xml                                        |  2 +-
+ doc/mallard/C/index.xml                                       |  2 +-
+ doc/mallard/C/its.xml                                         |  2 +-
+ doc/mallard/C/l10n.xml                                        |  2 +-
+ doc/mallard/C/links.xml                                       |  2 +-
+ doc/mallard/C/mal_attr_link.xml                               |  2 +-
+ doc/mallard/C/mal_block.xml                                   |  2 +-
+ doc/mallard/C/mal_block_cite.xml                              |  2 +-
+ doc/mallard/C/mal_block_code.xml                              |  2 +-
+ doc/mallard/C/mal_block_comment.xml                           |  2 +-
+ doc/mallard/C/mal_block_desc.xml                              |  2 +-
+ doc/mallard/C/mal_block_example.xml                           |  2 +-
+ doc/mallard/C/mal_block_figure.xml                            |  2 +-
+ doc/mallard/C/mal_block_list.xml                              |  2 +-
+ doc/mallard/C/mal_block_listing.xml                           |  2 +-
+ doc/mallard/C/mal_block_media.xml                             |  2 +-
+ doc/mallard/C/mal_block_note.xml                              |  2 +-
+ doc/mallard/C/mal_block_p.xml                                 |  2 +-
+ doc/mallard/C/mal_block_quote.xml                             |  2 +-
+ doc/mallard/C/mal_block_screen.xml                            |  2 +-
+ doc/mallard/C/mal_block_steps.xml                             |  2 +-
+ doc/mallard/C/mal_block_subtitle.xml                          |  2 +-
+ doc/mallard/C/mal_block_synopsis.xml                          |  2 +-
+ doc/mallard/C/mal_block_terms.xml                             |  2 +-
+ doc/mallard/C/mal_block_title.xml                             |  2 +-
+ doc/mallard/C/mal_block_tree.xml                              |  2 +-
+ doc/mallard/C/mal_external.xml                                |  2 +-
+ doc/mallard/C/mal_info.xml                                    |  4 ++--
+ doc/mallard/C/mal_info_copyright.xml                          |  2 +-
+ doc/mallard/C/mal_info_credit.xml                             |  2 +-
+ doc/mallard/C/mal_info_desc.xml                               |  2 +-
+ doc/mallard/C/mal_info_license.xml                            |  2 +-
+ doc/mallard/C/mal_info_link.xml                               |  2 +-
+ doc/mallard/C/{mal_info_version.xml => mal_info_revision.xml} | 10 +++++++---
+ doc/mallard/C/mal_info_title.xml                              |  2 +-
+ doc/mallard/C/mal_inline.xml                                  |  2 +-
+ doc/mallard/C/mal_inline_app.xml                              |  2 +-
+ doc/mallard/C/mal_inline_cmd.xml                              |  2 +-
+ doc/mallard/C/mal_inline_code.xml                             |  2 +-
+ doc/mallard/C/mal_inline_em.xml                               |  2 +-
+ doc/mallard/C/mal_inline_file.xml                             |  2 +-
+ doc/mallard/C/mal_inline_gui.xml                              |  2 +-
+ doc/mallard/C/mal_inline_guiseq.xml                           |  2 +-
+ doc/mallard/C/mal_inline_input.xml                            |  2 +-
+ doc/mallard/C/mal_inline_key.xml                              |  2 +-
+ doc/mallard/C/mal_inline_keyseq.xml                           |  2 +-
+ doc/mallard/C/mal_inline_link.xml                             |  2 +-
+ doc/mallard/C/mal_inline_media.xml                            |  2 +-
+ doc/mallard/C/mal_inline_output.xml                           |  2 +-
+ doc/mallard/C/mal_inline_span.xml                             |  2 +-
+ doc/mallard/C/mal_inline_sys.xml                              |  2 +-
+ doc/mallard/C/mal_inline_var.xml                              |  2 +-
+ doc/mallard/C/mal_page.xml                                    |  2 +-
+ doc/mallard/C/mal_section.xml                                 |  2 +-
+ doc/mallard/C/mal_table.xml                                   | 10 +++++-----
+ doc/mallard/C/principle-guide.xml                             |  2 +-
+ doc/mallard/C/principle-justenough.xml                        |  2 +-
+ doc/mallard/C/principle-redundancy.xml                        |  2 +-
+ doc/mallard/C/principles.xml                                  |  2 +-
+ doc/mallard/C/spec.xml                                        |  2 +-
+ doc/mallard/C/tenminutes.xml                                  |  2 +-
+ 63 files changed, 74 insertions(+), 70 deletions(-)
 
 commit 144c37101691232fda15eb24150e31e0d149d0e3
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5240,11 +5236,10 @@ Date:   Fri May 29 12:22:45 2009 -0500
 
     [mal2html] Added link trails, moved mallard.xml to index.xml
 
- doc/mallard/C/index.xml             |  33 +++++++++++
- doc/mallard/C/mallard.xml           |  33 -----------
- xslt/mallard/html/mal2html-css.xsl  |   6 ++
- xslt/mallard/html/mal2html-page.xsl | 107 ++++++++++++++++++++++++++++++++++++
- 4 files changed, 146 insertions(+), 33 deletions(-)
+ doc/mallard/C/{mallard.xml => index.xml} |   2 +-
+ xslt/mallard/html/mal2html-css.xsl       |   6 ++
+ xslt/mallard/html/mal2html-page.xsl      | 107 +++++++++++++++++++++++++++++++
+ 3 files changed, 114 insertions(+), 1 deletion(-)
 
 commit 7dd6ea9960c783cc641fa62fbb189e297821c44d
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5465,45 +5460,42 @@ Date:   Thu May 21 12:23:46 2009 -0500
     content model anyway.  Besides the basic list element, we now have
     the steps, terms, and tree elements.
 
- doc/mallard/C/mal_block.xml          |  16 ++---
- doc/mallard/C/mal_block_cite.xml     |   4 +-
- doc/mallard/C/mal_block_code.xml     |   4 +-
- doc/mallard/C/mal_block_comment.xml  |   4 +-
- doc/mallard/C/mal_block_desc.xml     |   4 +-
- doc/mallard/C/mal_block_dlist.xml    |  92 ----------------------------
- doc/mallard/C/mal_block_example.xml  |   4 +-
- doc/mallard/C/mal_block_figure.xml   |   4 +-
- doc/mallard/C/mal_block_list.xml     | 114 +++++++++++++++++++++++++++++++++++
- doc/mallard/C/mal_block_listing.xml  |   4 +-
- doc/mallard/C/mal_block_media.xml    |   4 +-
- doc/mallard/C/mal_block_note.xml     |   4 +-
- doc/mallard/C/mal_block_olist.xml    |  90 ---------------------------
- doc/mallard/C/mal_block_p.xml        |   4 +-
- doc/mallard/C/mal_block_quote.xml    |   4 +-
- doc/mallard/C/mal_block_screen.xml   |   4 +-
- doc/mallard/C/mal_block_steps.xml    |  90 +++++++++++++++++++++++++++
- doc/mallard/C/mal_block_synopsis.xml |   4 +-
- doc/mallard/C/mal_block_terms.xml    |  92 ++++++++++++++++++++++++++++
- doc/mallard/C/mal_block_ulist.xml    |  90 ---------------------------
- doc/mallard/C/mal_inline_app.xml     |   4 +-
- doc/mallard/C/mal_inline_cmd.xml     |   4 +-
- doc/mallard/C/mal_inline_code.xml    |   4 +-
- doc/mallard/C/mal_inline_em.xml      |   4 +-
- doc/mallard/C/mal_inline_file.xml    |   4 +-
- doc/mallard/C/mal_inline_gui.xml     |   4 +-
- doc/mallard/C/mal_inline_guiseq.xml  |   4 +-
- doc/mallard/C/mal_inline_input.xml   |   4 +-
- doc/mallard/C/mal_inline_key.xml     |   4 +-
- doc/mallard/C/mal_inline_keyseq.xml  |   4 +-
- doc/mallard/C/mal_inline_link.xml    |  12 ++--
- doc/mallard/C/mal_inline_media.xml   |   4 +-
- doc/mallard/C/mal_inline_output.xml  |   4 +-
- doc/mallard/C/mal_inline_span.xml    |   4 +-
- doc/mallard/C/mal_inline_sys.xml     |   4 +-
- doc/mallard/C/mal_inline_var.xml     |   4 +-
- doc/mallard/C/mal_page.xml           |   4 +-
- xslt/mallard/html/mal2html-list.xsl  |  71 +++++++++++-----------
- 38 files changed, 405 insertions(+), 378 deletions(-)
+ doc/mallard/C/mal_block.xml                        | 16 ++---
+ doc/mallard/C/mal_block_cite.xml                   |  4 +-
+ doc/mallard/C/mal_block_code.xml                   |  4 +-
+ doc/mallard/C/mal_block_comment.xml                |  4 +-
+ doc/mallard/C/mal_block_desc.xml                   |  4 +-
+ doc/mallard/C/mal_block_example.xml                |  4 +-
+ doc/mallard/C/mal_block_figure.xml                 |  4 +-
+ .../C/{mal_block_ulist.xml => mal_block_list.xml}  | 48 +++++++++++----
+ doc/mallard/C/mal_block_listing.xml                |  4 +-
+ doc/mallard/C/mal_block_media.xml                  |  4 +-
+ doc/mallard/C/mal_block_note.xml                   |  4 +-
+ doc/mallard/C/mal_block_p.xml                      |  4 +-
+ doc/mallard/C/mal_block_quote.xml                  |  4 +-
+ doc/mallard/C/mal_block_screen.xml                 |  4 +-
+ .../C/{mal_block_olist.xml => mal_block_steps.xml} | 10 +--
+ doc/mallard/C/mal_block_synopsis.xml               |  4 +-
+ .../C/{mal_block_dlist.xml => mal_block_terms.xml} |  8 +--
+ doc/mallard/C/mal_inline_app.xml                   |  4 +-
+ doc/mallard/C/mal_inline_cmd.xml                   |  4 +-
+ doc/mallard/C/mal_inline_code.xml                  |  4 +-
+ doc/mallard/C/mal_inline_em.xml                    |  4 +-
+ doc/mallard/C/mal_inline_file.xml                  |  4 +-
+ doc/mallard/C/mal_inline_gui.xml                   |  4 +-
+ doc/mallard/C/mal_inline_guiseq.xml                |  4 +-
+ doc/mallard/C/mal_inline_input.xml                 |  4 +-
+ doc/mallard/C/mal_inline_key.xml                   |  4 +-
+ doc/mallard/C/mal_inline_keyseq.xml                |  4 +-
+ doc/mallard/C/mal_inline_link.xml                  | 12 ++--
+ doc/mallard/C/mal_inline_media.xml                 |  4 +-
+ doc/mallard/C/mal_inline_output.xml                |  4 +-
+ doc/mallard/C/mal_inline_span.xml                  |  4 +-
+ doc/mallard/C/mal_inline_sys.xml                   |  4 +-
+ doc/mallard/C/mal_inline_var.xml                   |  4 +-
+ doc/mallard/C/mal_page.xml                         |  4 +-
+ xslt/mallard/html/mal2html-list.xsl                | 71 +++++++++++-----------
+ 35 files changed, 154 insertions(+), 127 deletions(-)
 
 commit 0f291e8144450329c7e50b3d3e739715e17d34b6
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5600,26 +5592,24 @@ Date:   Tue May 19 13:54:28 2009 -0500
 
     [mallard] Moving mal_title to mal_block_title and mal_subtitle to mal_block_subtitle
 
- doc/mallard/C/mal_block.xml          |  6 +++---
- doc/mallard/C/mal_block_comment.xml  |  6 +++---
- doc/mallard/C/mal_block_dlist.xml    |  2 +-
- doc/mallard/C/mal_block_example.xml  |  2 +-
- doc/mallard/C/mal_block_figure.xml   |  4 ++--
- doc/mallard/C/mal_block_listing.xml  |  4 ++--
- doc/mallard/C/mal_block_note.xml     |  4 ++--
- doc/mallard/C/mal_block_olist.xml    |  2 +-
- doc/mallard/C/mal_block_quote.xml    |  4 ++--
- doc/mallard/C/mal_block_subtitle.xml | 17 +++++++++++++++++
- doc/mallard/C/mal_block_synopsis.xml |  6 +++---
- doc/mallard/C/mal_block_title.xml    | 17 +++++++++++++++++
- doc/mallard/C/mal_block_ulist.xml    |  2 +-
- doc/mallard/C/mal_info_version.xml   |  4 ++--
- doc/mallard/C/mal_page.xml           |  4 ++--
- doc/mallard/C/mal_section.xml        |  2 +-
- doc/mallard/C/mal_subtitle.xml       | 17 -----------------
- doc/mallard/C/mal_table.xml          |  2 +-
- doc/mallard/C/mal_title.xml          | 17 -----------------
- 19 files changed, 61 insertions(+), 61 deletions(-)
+ doc/mallard/C/mal_block.xml                                | 6 +++---
+ doc/mallard/C/mal_block_comment.xml                        | 6 +++---
+ doc/mallard/C/mal_block_dlist.xml                          | 2 +-
+ doc/mallard/C/mal_block_example.xml                        | 2 +-
+ doc/mallard/C/mal_block_figure.xml                         | 4 ++--
+ doc/mallard/C/mal_block_listing.xml                        | 4 ++--
+ doc/mallard/C/mal_block_note.xml                           | 4 ++--
+ doc/mallard/C/mal_block_olist.xml                          | 2 +-
+ doc/mallard/C/mal_block_quote.xml                          | 4 ++--
+ doc/mallard/C/{mal_subtitle.xml => mal_block_subtitle.xml} | 4 ++--
+ doc/mallard/C/mal_block_synopsis.xml                       | 6 +++---
+ doc/mallard/C/{mal_title.xml => mal_block_title.xml}       | 4 ++--
+ doc/mallard/C/mal_block_ulist.xml                          | 2 +-
+ doc/mallard/C/mal_info_version.xml                         | 4 ++--
+ doc/mallard/C/mal_page.xml                                 | 4 ++--
+ doc/mallard/C/mal_section.xml                              | 2 +-
+ doc/mallard/C/mal_table.xml                                | 2 +-
+ 17 files changed, 31 insertions(+), 31 deletions(-)
 
 commit 5e1f23d4285564258ab8c9c43ec2c7b33853d528
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5728,10 +5718,9 @@ Date:   Wed May 13 19:03:45 2009 -0500
 
     [mallard] Adding info to mal_block, marking review
 
- doc/mallard/C/mal_block.xml      | 81 +++++++++++++++++++++++++++++++++-------
- doc/mallard/C/mal_block_tree.xml | 24 ++++++++++++
- doc/mallard/C/mal_list_tree.xml  | 24 ------------
- 3 files changed, 91 insertions(+), 38 deletions(-)
+ doc/mallard/C/mal_block.xml                        | 81 ++++++++++++++++++----
+ .../C/{mal_list_tree.xml => mal_block_tree.xml}    |  2 +-
+ 2 files changed, 68 insertions(+), 15 deletions(-)
 
 commit 3b4995aff52910b4bef8052a362f5ae046806008
 Author: Shaun McCance <shaunm@gnome.org>
@@ -5958,31 +5947,28 @@ Date:   Wed May 6 11:05:54 2009 -0500
 
     [mallard] Restructuring of block elements spec
 
- doc/mallard/C/mal_block.xml           | 110 ++++++++++++++++++++++++++--------
- doc/mallard/C/mal_block_cite.xml      |   2 -
- doc/mallard/C/mal_block_code.xml      |   1 -
- doc/mallard/C/mal_block_comment.xml   |   1 -
- doc/mallard/C/mal_block_desc.xml      |   2 -
- doc/mallard/C/mal_block_dlist.xml     |  34 +++++++++++
- doc/mallard/C/mal_block_example.xml   |   1 -
- doc/mallard/C/mal_block_figure.xml    |   1 -
- doc/mallard/C/mal_block_listing.xml   |   1 -
- doc/mallard/C/mal_block_media.xml     |   1 -
- doc/mallard/C/mal_block_note.xml      |   1 -
- doc/mallard/C/mal_block_olist.xml     |  34 +++++++++++
- doc/mallard/C/mal_block_p.xml         |   1 -
- doc/mallard/C/mal_block_quote.xml     |   1 -
- doc/mallard/C/mal_block_screen.xml    |   1 -
- doc/mallard/C/mal_block_synopsis.xml  |   2 -
- doc/mallard/C/mal_block_ulist.xml     |  34 +++++++++++
- doc/mallard/C/mal_list.xml            |  29 ---------
- doc/mallard/C/mal_list_bullet.xml     |  24 --------
- doc/mallard/C/mal_list_definition.xml |  24 --------
- doc/mallard/C/mal_list_numbered.xml   |  24 --------
- doc/mallard/C/mal_subtitle.xml        |   1 -
- doc/mallard/C/mal_table.xml           |   1 -
- doc/mallard/C/mal_title.xml           |   1 -
- 24 files changed, 188 insertions(+), 144 deletions(-)
+ doc/mallard/C/mal_block.xml                        | 110 ++++++++++++++++-----
+ doc/mallard/C/mal_block_cite.xml                   |   2 -
+ doc/mallard/C/mal_block_code.xml                   |   1 -
+ doc/mallard/C/mal_block_comment.xml                |   1 -
+ doc/mallard/C/mal_block_desc.xml                   |   2 -
+ ...mal_list_definition.xml => mal_block_dlist.xml} |  14 ++-
+ doc/mallard/C/mal_block_example.xml                |   1 -
+ doc/mallard/C/mal_block_figure.xml                 |   1 -
+ doc/mallard/C/mal_block_listing.xml                |   1 -
+ doc/mallard/C/mal_block_media.xml                  |   1 -
+ doc/mallard/C/mal_block_note.xml                   |   1 -
+ .../{mal_list_numbered.xml => mal_block_olist.xml} |  14 ++-
+ doc/mallard/C/mal_block_p.xml                      |   1 -
+ doc/mallard/C/mal_block_quote.xml                  |   1 -
+ doc/mallard/C/mal_block_screen.xml                 |   1 -
+ doc/mallard/C/mal_block_synopsis.xml               |   2 -
+ .../C/{mal_list_bullet.xml => mal_block_ulist.xml} |  14 ++-
+ doc/mallard/C/mal_list.xml                         |  29 ------
+ doc/mallard/C/mal_subtitle.xml                     |   1 -
+ doc/mallard/C/mal_table.xml                        |   1 -
+ doc/mallard/C/mal_title.xml                        |   1 -
+ 21 files changed, 122 insertions(+), 78 deletions(-)
 
 commit 89ec0e581538735fcaf44a7dd4893500c90e8ece
 Author: Shaun McCance <shaunm@gnome.org>
@@ -6802,15 +6788,13 @@ Date:   Tue Nov 11 09:11:33 2008 -0600
 
     Fixing validity errors
 
- doc/mallard/C/10minutes.xml         | 26 ---------------------
- doc/mallard/C/explore.xml           |  4 +++-
- doc/mallard/C/mal_block_cite.xml    | 45 +++++++++++++++++++++++++++++++++++++
- doc/mallard/C/mal_block_comment.xml |  4 ++--
- doc/mallard/C/mal_cite.xml          | 43 -----------------------------------
- doc/mallard/C/mal_inline_code.xml   |  2 +-
- doc/mallard/C/mallard.xml           |  2 +-
- doc/mallard/C/tenminutes.xml        | 27 ++++++++++++++++++++++
- 8 files changed, 79 insertions(+), 74 deletions(-)
+ doc/mallard/C/explore.xml                          | 4 +++-
+ doc/mallard/C/{mal_cite.xml => mal_block_cite.xml} | 6 ++++--
+ doc/mallard/C/mal_block_comment.xml                | 4 ++--
+ doc/mallard/C/mal_inline_code.xml                  | 2 +-
+ doc/mallard/C/mallard.xml                          | 2 +-
+ doc/mallard/C/{10minutes.xml => tenminutes.xml}    | 3 ++-
+ 6 files changed, 13 insertions(+), 8 deletions(-)
 
 commit 94fc66ee11ee6e574be6ec63d493433dc0dc4d71
 Author: Shaun McCance <shaunm@gnome.org>
@@ -6863,11 +6847,10 @@ Date:   Tue Nov 11 08:50:35 2008 -0600
 
     Updating attributes of media and allowing media children
 
- doc/mallard/C/mal_block_caption.xml | 86 +++++++++++++++++++++++++++++++++++++
- doc/mallard/C/mal_block_media.xml   |  8 +++-
- doc/mallard/C/mal_caption.xml       | 86 -------------------------------------
- doc/mallard/C/mal_inline_media.xml  |  8 +++-
- 4 files changed, 98 insertions(+), 90 deletions(-)
+ doc/mallard/C/{mal_caption.xml => mal_block_caption.xml} | 0
+ doc/mallard/C/mal_block_media.xml                        | 8 ++++++--
+ doc/mallard/C/mal_inline_media.xml                       | 8 ++++++--
+ 3 files changed, 12 insertions(+), 4 deletions(-)
 
 commit 1f303478813a698aec80b717768cd8681424ec15
 Author: Shaun McCance <shaunm@gnome.org>
@@ -7190,13 +7173,10 @@ Date:   Tue Nov 4 17:38:44 2008 -0600
 
     Getting html builds to work for the mallard spec
 
- sandbox/mallard/xslt/theme.xml |  43 ----------------
- sandbox/mallard/xslt/theme.xsl |  78 -----------------------------
- sandbox/mallard/xslt/util.xsl  | 110 -----------------------------------------
- xslt/mallard/html/theme.xml    |  43 ++++++++++++++++
- xslt/mallard/html/theme.xsl    |  78 +++++++++++++++++++++++++++++
- xslt/mallard/html/util.xsl     | 110 +++++++++++++++++++++++++++++++++++++++++
- 6 files changed, 231 insertions(+), 231 deletions(-)
+ {sandbox/mallard/xslt => xslt/mallard/html}/theme.xml | 0
+ {sandbox/mallard/xslt => xslt/mallard/html}/theme.xsl | 0
+ {sandbox/mallard/xslt => xslt/mallard/html}/util.xsl  | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
 
 commit 4ef56c68032cf0685ee9688eb700442ce3d1c234
 Author: Shaun McCance <shaunm@gnome.org>
@@ -7204,26 +7184,22 @@ Date:   Tue Nov 4 10:55:58 2008 -0600
 
     More work on incorporating mallard into the main layout
 
- Makefile.am                        |   2 +-
- configure.in                       |   7 +
- doc/Makefile.am                    |   2 +-
- doc/mallard/Makefile.am            |   8 +
- rng/Makefile.am                    |   1 +
- rng/mallard/Makefile.am            |  23 +++
- rng/mallard/mal2rnc.xsl            |  31 +++
- rng/mallard/rnc2rng.awk            | 404 +++++++++++++++++++++++++++++++++++++
- sandbox/mallard/rng/Makefile       |  23 ---
- sandbox/mallard/rng/rnc2rng.awk    | 404 -------------------------------------
- sandbox/mallard/xslt/mal-link.xsl  | 111 ----------
- sandbox/mallard/xslt/mal2cache.xsl | 117 -----------
- sandbox/mallard/xslt/mal2rnc.xsl   |  31 ---
- xslt/mallard/Makefile.am           |   1 +
- xslt/mallard/common/Makefile.am    |   5 +
- xslt/mallard/common/mal-link.xsl   | 111 ++++++++++
- xslt/mallard/html/Makefile.am      |  13 ++
- xslt/mallard/utils/Makefile.am     |   5 +
- xslt/mallard/utils/mal2cache.xsl   | 117 +++++++++++
- 19 files changed, 728 insertions(+), 688 deletions(-)
+ Makefile.am                                        |  2 +-
+ configure.in                                       |  7 +++++++
+ doc/Makefile.am                                    |  2 +-
+ doc/mallard/Makefile.am                            |  8 ++++++++
+ rng/Makefile.am                                    |  1 +
+ rng/mallard/Makefile.am                            | 23 ++++++++++++++++++++++
+ {sandbox/mallard/xslt => rng/mallard}/mal2rnc.xsl  |  0
+ {sandbox/mallard/rng => rng/mallard}/rnc2rng.awk   |  0
+ sandbox/mallard/rng/Makefile                       | 23 ----------------------
+ xslt/mallard/Makefile.am                           |  1 +
+ xslt/mallard/common/Makefile.am                    |  5 +++++
+ .../xslt => xslt/mallard/common}/mal-link.xsl      |  0
+ xslt/mallard/html/Makefile.am                      | 13 ++++++++++++
+ xslt/mallard/utils/Makefile.am                     |  5 +++++
+ .../xslt => xslt/mallard/utils}/mal2cache.xsl      |  0
+ 15 files changed, 65 insertions(+), 25 deletions(-)
 
 commit 838d94e15f7b7f185c191abbd88ae1611ec5e7e0
 Author: Shaun McCance <shaunm@gnome.org>
@@ -7231,151 +7207,79 @@ Date:   Mon Nov 3 21:17:17 2008 -0600
 
     Moved some mallard files into the main layout
 
- doc/mallard/C/10minutes.xml                   |  28 +
- doc/mallard/C/Makefile                        |  57 ++
- doc/mallard/C/TODO                            |  21 +
- doc/mallard/C/explore.xml                     |  27 +
- doc/mallard/C/figures/mallard.png             | Bin 0 -> 725 bytes
- doc/mallard/C/legal.xml                       |   9 +
- doc/mallard/C/mal_TODO.xml                    |  11 +
- doc/mallard/C/mal_attr_link.xml               |  36 ++
- doc/mallard/C/mal_block.xml                   |  64 +++
- doc/mallard/C/mal_block_code.xml              |  66 +++
- doc/mallard/C/mal_block_comment.xml           |  62 ++
- doc/mallard/C/mal_block_figure.xml            |  25 +
- doc/mallard/C/mal_block_media.xml             |  18 +
- doc/mallard/C/mal_block_note.xml              |  17 +
- doc/mallard/C/mal_block_p.xml                 |  63 ++
- doc/mallard/C/mal_block_quote.xml             |  24 +
- doc/mallard/C/mal_block_screen.xml            |  23 +
- doc/mallard/C/mal_block_synopsis.xml          |  44 ++
- doc/mallard/C/mal_caption.xml                 |  86 +++
- doc/mallard/C/mal_cite.xml                    |  43 ++
- doc/mallard/C/mal_info.xml                    |  44 ++
- doc/mallard/C/mal_info_copyright.xml          |  31 +
- doc/mallard/C/mal_info_credit.xml             |  27 +
- doc/mallard/C/mal_info_desc.xml               |  17 +
- doc/mallard/C/mal_info_license.xml            |  17 +
- doc/mallard/C/mal_info_link.xml               |  31 +
- doc/mallard/C/mal_info_version.xml            |  20 +
- doc/mallard/C/mal_inline.xml                  |  46 ++
- doc/mallard/C/mal_inline_app.xml              |  60 ++
- doc/mallard/C/mal_inline_cmd.xml              | 113 ++++
- doc/mallard/C/mal_inline_code.xml             |  68 +++
- doc/mallard/C/mal_inline_em.xml               |  75 +++
- doc/mallard/C/mal_inline_file.xml             |  34 ++
- doc/mallard/C/mal_inline_gui.xml              |  30 +
- doc/mallard/C/mal_inline_guiseq.xml           |  30 +
- doc/mallard/C/mal_inline_input.xml            |  29 +
- doc/mallard/C/mal_inline_key.xml              |  18 +
- doc/mallard/C/mal_inline_keyseq.xml           |  28 +
- doc/mallard/C/mal_inline_link.xml             |  38 ++
- doc/mallard/C/mal_inline_media.xml            |  18 +
- doc/mallard/C/mal_inline_output.xml           |  29 +
- doc/mallard/C/mal_inline_quote.xml            |  38 ++
- doc/mallard/C/mal_inline_span.xml             |  19 +
- doc/mallard/C/mal_inline_sys.xml              |  18 +
- doc/mallard/C/mal_inline_var.xml              |  18 +
- doc/mallard/C/mal_list.xml                    |  29 +
- doc/mallard/C/mal_list_bullet.xml             |  22 +
- doc/mallard/C/mal_list_definition.xml         |  22 +
- doc/mallard/C/mal_list_numbered.xml           |  22 +
- doc/mallard/C/mal_list_tree.xml               |  22 +
- doc/mallard/C/mal_output.xml                  |  11 +
- doc/mallard/C/mal_page.xml                    |  22 +
- doc/mallard/C/mal_section.xml                 |  19 +
- doc/mallard/C/mal_subtitle.xml                |  17 +
- doc/mallard/C/mal_table.xml                   | 797 ++++++++++++++++++++++++++
- doc/mallard/C/mal_title.xml                   |  17 +
- doc/mallard/C/mallard.xml                     |  29 +
- doc/mallard/C/principle-guide.xml             |  14 +
- doc/mallard/C/principle-justenough.xml        |  12 +
- doc/mallard/C/principle-redundancy.xml        |  11 +
- doc/mallard/C/principles.xml                  |  59 ++
- doc/mallard/C/spec.xml                        |  17 +
- doc/mallard/C/spec_info.xml                   |  27 +
- doc/mallard/C/spec_pages.xml                  |  28 +
- sandbox/mallard/spec/10minutes.xml            |  28 -
- sandbox/mallard/spec/Makefile                 |  57 --
- sandbox/mallard/spec/TODO                     |  21 -
- sandbox/mallard/spec/explore.xml              |  27 -
- sandbox/mallard/spec/figures/mallard.png      | Bin 725 -> 0 bytes
- sandbox/mallard/spec/legal.xml                |   9 -
- sandbox/mallard/spec/mal_TODO.xml             |  11 -
- sandbox/mallard/spec/mal_attr_link.xml        |  36 --
- sandbox/mallard/spec/mal_block.xml            |  64 ---
- sandbox/mallard/spec/mal_block_code.xml       |  66 ---
- sandbox/mallard/spec/mal_block_comment.xml    |  62 --
- sandbox/mallard/spec/mal_block_figure.xml     |  25 -
- sandbox/mallard/spec/mal_block_media.xml      |  18 -
- sandbox/mallard/spec/mal_block_note.xml       |  17 -
- sandbox/mallard/spec/mal_block_p.xml          |  63 --
- sandbox/mallard/spec/mal_block_quote.xml      |  24 -
- sandbox/mallard/spec/mal_block_screen.xml     |  23 -
- sandbox/mallard/spec/mal_block_synopsis.xml   |  44 --
- sandbox/mallard/spec/mal_caption.xml          |  86 ---
- sandbox/mallard/spec/mal_cite.xml             |  43 --
- sandbox/mallard/spec/mal_info.xml             |  44 --
- sandbox/mallard/spec/mal_info_copyright.xml   |  31 -
- sandbox/mallard/spec/mal_info_credit.xml      |  27 -
- sandbox/mallard/spec/mal_info_desc.xml        |  17 -
- sandbox/mallard/spec/mal_info_license.xml     |  17 -
- sandbox/mallard/spec/mal_info_link.xml        |  31 -
- sandbox/mallard/spec/mal_info_version.xml     |  20 -
- sandbox/mallard/spec/mal_inline.xml           |  46 --
- sandbox/mallard/spec/mal_inline_app.xml       |  60 --
- sandbox/mallard/spec/mal_inline_cmd.xml       | 113 ----
- sandbox/mallard/spec/mal_inline_code.xml      |  68 ---
- sandbox/mallard/spec/mal_inline_em.xml        |  75 ---
- sandbox/mallard/spec/mal_inline_file.xml      |  34 --
- sandbox/mallard/spec/mal_inline_gui.xml       |  30 -
- sandbox/mallard/spec/mal_inline_guiseq.xml    |  30 -
- sandbox/mallard/spec/mal_inline_input.xml     |  29 -
- sandbox/mallard/spec/mal_inline_key.xml       |  18 -
- sandbox/mallard/spec/mal_inline_keyseq.xml    |  28 -
- sandbox/mallard/spec/mal_inline_link.xml      |  38 --
- sandbox/mallard/spec/mal_inline_media.xml     |  18 -
- sandbox/mallard/spec/mal_inline_output.xml    |  29 -
- sandbox/mallard/spec/mal_inline_quote.xml     |  38 --
- sandbox/mallard/spec/mal_inline_span.xml      |  19 -
- sandbox/mallard/spec/mal_inline_sys.xml       |  18 -
- sandbox/mallard/spec/mal_inline_var.xml       |  18 -
- sandbox/mallard/spec/mal_list.xml             |  29 -
- sandbox/mallard/spec/mal_list_bullet.xml      |  22 -
- sandbox/mallard/spec/mal_list_definition.xml  |  22 -
- sandbox/mallard/spec/mal_list_numbered.xml    |  22 -
- sandbox/mallard/spec/mal_list_tree.xml        |  22 -
- sandbox/mallard/spec/mal_output.xml           |  11 -
- sandbox/mallard/spec/mal_page.xml             |  22 -
- sandbox/mallard/spec/mal_section.xml          |  19 -
- sandbox/mallard/spec/mal_subtitle.xml         |  17 -
- sandbox/mallard/spec/mal_table.xml            | 797 --------------------------
- sandbox/mallard/spec/mal_title.xml            |  17 -
- sandbox/mallard/spec/mallard.xml              |  29 -
- sandbox/mallard/spec/principle-guide.xml      |  14 -
- sandbox/mallard/spec/principle-justenough.xml |  12 -
- sandbox/mallard/spec/principle-redundancy.xml |  11 -
- sandbox/mallard/spec/principles.xml           |  59 --
- sandbox/mallard/spec/spec.xml                 |  17 -
- sandbox/mallard/spec/spec_info.xml            |  27 -
- sandbox/mallard/spec/spec_pages.xml           |  28 -
- sandbox/mallard/xslt/mal2html-block.xsl       | 289 ----------
- sandbox/mallard/xslt/mal2html-css.xsl         | 134 -----
- sandbox/mallard/xslt/mal2html-inline.xsl      | 253 --------
- sandbox/mallard/xslt/mal2html-list.xsl        |  90 ---
- sandbox/mallard/xslt/mal2html-media.xsl       |  41 --
- sandbox/mallard/xslt/mal2html-page.xsl        | 789 -------------------------
- sandbox/mallard/xslt/mal2html-table.xsl       | 407 -------------
- sandbox/mallard/xslt/mal2html.xsl             |  67 ---
- xslt/mallard/html/mal2html-block.xsl          | 289 ++++++++++
- xslt/mallard/html/mal2html-css.xsl            | 134 +++++
- xslt/mallard/html/mal2html-inline.xsl         | 253 ++++++++
- xslt/mallard/html/mal2html-list.xsl           |  90 +++
- xslt/mallard/html/mal2html-media.xsl          |  41 ++
- xslt/mallard/html/mal2html-page.xsl           | 789 +++++++++++++++++++++++++
- xslt/mallard/html/mal2html-table.xsl          | 407 +++++++++++++
- xslt/mallard/html/mal2html.xsl                |  67 +++
- 144 files changed, 4887 insertions(+), 4887 deletions(-)
+ {sandbox/mallard/spec => doc/mallard/C}/10minutes.xml       |   0
+ {sandbox/mallard/spec => doc/mallard/C}/Makefile            |   0
+ {sandbox/mallard/spec => doc/mallard/C}/TODO                |   0
+ {sandbox/mallard/spec => doc/mallard/C}/explore.xml         |   0
+ {sandbox/mallard/spec => doc/mallard/C}/figures/mallard.png | Bin
+ {sandbox/mallard/spec => doc/mallard/C}/legal.xml           |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_TODO.xml        |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_attr_link.xml   |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block.xml       |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block_code.xml  |   0
+ .../mallard/spec => doc/mallard/C}/mal_block_comment.xml    |   0
+ .../mallard/spec => doc/mallard/C}/mal_block_figure.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block_media.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block_note.xml  |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block_p.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_block_quote.xml |   0
+ .../mallard/spec => doc/mallard/C}/mal_block_screen.xml     |   0
+ .../mallard/spec => doc/mallard/C}/mal_block_synopsis.xml   |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_caption.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_cite.xml        |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_info.xml        |   0
+ .../mallard/spec => doc/mallard/C}/mal_info_copyright.xml   |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_info_credit.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_info_desc.xml   |   0
+ .../mallard/spec => doc/mallard/C}/mal_info_license.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_info_link.xml   |   0
+ .../mallard/spec => doc/mallard/C}/mal_info_version.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline.xml      |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_app.xml  |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_cmd.xml  |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_code.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_em.xml   |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_file.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_gui.xml  |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_guiseq.xml    |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_input.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_key.xml  |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_keyseq.xml    |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_link.xml |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_media.xml     |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_output.xml    |   0
+ .../mallard/spec => doc/mallard/C}/mal_inline_quote.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_span.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_sys.xml  |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_inline_var.xml  |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_list.xml        |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_list_bullet.xml |   0
+ .../mallard/spec => doc/mallard/C}/mal_list_definition.xml  |   0
+ .../mallard/spec => doc/mallard/C}/mal_list_numbered.xml    |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_list_tree.xml   |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_output.xml      |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_page.xml        |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_section.xml     |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_subtitle.xml    |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_table.xml       |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mal_title.xml       |   0
+ {sandbox/mallard/spec => doc/mallard/C}/mallard.xml         |   0
+ {sandbox/mallard/spec => doc/mallard/C}/principle-guide.xml |   0
+ .../mallard/spec => doc/mallard/C}/principle-justenough.xml |   0
+ .../mallard/spec => doc/mallard/C}/principle-redundancy.xml |   0
+ {sandbox/mallard/spec => doc/mallard/C}/principles.xml      |   0
+ {sandbox/mallard/spec => doc/mallard/C}/spec.xml            |   0
+ {sandbox/mallard/spec => doc/mallard/C}/spec_info.xml       |   0
+ {sandbox/mallard/spec => doc/mallard/C}/spec_pages.xml      |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-block.xsl   |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-css.xsl     |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-inline.xsl  |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-list.xsl    |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-media.xsl   |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-page.xsl    |   0
+ .../mallard/xslt => xslt/mallard/html}/mal2html-table.xsl   |   0
+ {sandbox/mallard/xslt => xslt/mallard/html}/mal2html.xsl    |   0
+ 72 files changed, 0 insertions(+), 0 deletions(-)
 
 commit e913321def8b19ca8f09c34d4a9093919210eb00
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -7402,7 +7306,7 @@ Date:   Sun Apr 5 02:05:39 2009 +0000
     
     2009-04-05  Takeshi AIHANA <takeshi.aihana@gmail.com>
     
-    	* ja.po: Fixed wrong translation.
+            * ja.po: Fixed wrong translation.
     
     svn path=/trunk/; revision=1161
 
@@ -7418,9 +7322,9 @@ Date:   Thu Apr 2 08:05:42 2009 +0000
     
     2009-04-02  Claude Paroz  <claude@2xlibre.net>
     
-    	* modes/docbook.py: Use new hashlib module rather than deprecated md5
-    	module, when available.
-    	Fixes bug #576161.
+            * modes/docbook.py: Use new hashlib module rather than deprecated md5
+            module, when available.
+            Fixes bug #576161.
     
     svn path=/trunk/; revision=1160
 
@@ -7629,7 +7533,7 @@ Date:   Sun Jan 25 11:20:32 2009 +0000
     
     2009-01-25  Raivis Dejus  <orvils@gmail.com>
     
-    	* lv.po: Updated Latvian translation.
+            * lv.po: Updated Latvian translation.
     
     
     svn path=/trunk/; revision=1142
@@ -7811,8 +7715,8 @@ Date:   Fri Oct 24 17:46:27 2008 +0000
 
     chmod +x gnome-doc-{tool,prepare} on configure. Bug #557732.
     
-    	* configure.in: chmod +x gnome-doc-{tool,prepare} on configure. Bug
-    	#557732.
+            * configure.in: chmod +x gnome-doc-{tool,prepare} on configure. Bug
+            #557732.
     
     svn path=/trunk/; revision=1127
 
@@ -7827,14 +7731,14 @@ Date:   Tue Oct 21 22:53:27 2008 +0000
 
     Save disk space by Symlinking the non-localised figures to the C figures
     
-    	* tools/gnome-doc-utils.make: Save disk space by Symlinking the
-    	non-localised figures to the C figures instead of copying them. Bug
-    	#557227.
+            * tools/gnome-doc-utils.make: Save disk space by Symlinking the
+            non-localised figures to the C figures instead of copying them. Bug
+            #557227.
     
-    	* tools/gnome-doc-utils.m4: Require AC_PROG_LN_S.
+            * tools/gnome-doc-utils.m4: Require AC_PROG_LN_S.
     
-    	* configure.ac: Call AC_PROG_LN_S explicitly since g-d-u doesn't use
-    	GNOME_DOC_INIT itself.
+            * configure.ac: Call AC_PROG_LN_S explicitly since g-d-u doesn't use
+            GNOME_DOC_INIT itself.
     
     svn path=/trunk/; revision=1126
 
@@ -7882,9 +7786,9 @@ Date:   Fri Sep 19 07:39:07 2008 +0000
     
     2008-09-19  Roozbeh Pournader  <roozbeh@gmail.com>
     
-    	* LINGUAS: Added Persian ('fa').
-    	* fa.po: Added Persian translation by Amir Hedayaty and Roozbeh
-    	  Pournader.
+            * LINGUAS: Added Persian ('fa').
+            * fa.po: Added Persian translation by Amir Hedayaty and Roozbeh
+              Pournader.
     
     svn path=/trunk/; revision=1122
 
@@ -7989,11 +7893,10 @@ Date:   Mon Aug 25 14:52:34 2008 +0000
     
     svn path=/trunk/; revision=1114
 
- po/ChangeLog   |    5 +
- po/LINGUAS     |    2 +-
- po/sr@Latn.po  | 2335 --------------------------------------------------------
- po/sr@latin.po | 2335 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 2341 insertions(+), 2336 deletions(-)
+ po/ChangeLog                   | 5 +++++
+ po/LINGUAS                     | 2 +-
+ po/{sr@Latn.po => sr@latin.po} | 0
+ 3 files changed, 6 insertions(+), 1 deletion(-)
 
 commit a640417f44b5c8124538a836c4faf7b5623cbd55
 Author: Manoj Kumar Giri <mgiri@src.gnome.org>
@@ -8061,7 +7964,7 @@ Date:   Sat Jul 5 10:30:38 2008 +0000
     
     2008-07-05  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated.
+            * hu.po: Translation updated.
     
     svn path=/trunk/; revision=1108
 
@@ -8121,7 +8024,7 @@ Date:   Tue Jun 3 07:26:18 2008 +0000
     
     2008-06-03  Priit Laes  <plaes at svn dot gnome dot org>
     
-    	* et.po: Translation updated by Ivar Smolin
+            * et.po: Translation updated by Ivar Smolin
     
     svn path=/trunk/; revision=1104
 
@@ -8184,9 +8087,9 @@ Date:   Fri Mar 21 01:30:41 2008 +0000
     
     2008-03-21  Marc-Andre Lureau <marcandre.lureau@gmail.com>
     
-    	* Makefile.am, configure.in, m4/glib-gettext.m4:
-    	Remove GLib build dependency.  Include glib-gettext.m4, with AX_
-    	namespace.  (Closes #510915)
+            * Makefile.am, configure.in, m4/glib-gettext.m4:
+            Remove GLib build dependency.  Include glib-gettext.m4, with AX_
+            namespace.  (Closes #510915)
     
     svn path=/trunk/; revision=1099
 
@@ -8289,7 +8192,7 @@ Date:   Sat Mar 8 00:26:52 2008 +0000
     
     2008-03-08  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated
+            * hu.po: Translation updated
     
     
     svn path=/trunk/; revision=1091
@@ -8342,7 +8245,7 @@ Date:   Sun Mar 2 00:53:20 2008 +0000
     
     2008-03-02  Gintautas Miliauskas  <gintas@akl.lt>
     
-    	* lt.po: Updated Lithuanian translation.
+            * lt.po: Updated Lithuanian translation.
     
     
     
@@ -8577,7 +8480,7 @@ Date:   Mon Feb 4 12:00:09 2008 +0000
     
     2008-02-04  Wouter Bolsterlee  <wbolster@svn.gnome.org>
     
-    	* nl.po: Dutch translation updated by Wouter Bolsterlee.
+            * nl.po: Dutch translation updated by Wouter Bolsterlee.
     
     svn path=/trunk/; revision=1075
 
@@ -8653,10 +8556,10 @@ Date:   Fri Dec 21 18:43:43 2007 +0000
     
     2007-12-21  Sven Herzberg  <herzi@gnome-de.org>
     
-    	reviewed by: Shaun McCance
+            reviewed by: Shaun McCance
     
-    	* tools/gnome-doc-utils.make: pass --xinclude to xmllint in the 'make
-    	check' rule
+            * tools/gnome-doc-utils.make: pass --xinclude to xmllint in the 'make
+            check' rule
     
     
     svn path=/trunk/; revision=1069
@@ -8673,11 +8576,11 @@ Date:   Fri Dec 21 17:46:43 2007 +0000
     
     2007-12-21  Sven Herzberg  <herzi@gnome-de.org>
     
-    	reviewed by: Shaun McCance
+            reviewed by: Shaun McCance
     
-    	* tools/gnome-doc-utils.m4: set DISTCHECK_CONFIGURE_FLAGS to
-    	disable scrollkeeper so application developers don't have to do this
-    	anymore
+            * tools/gnome-doc-utils.m4: set DISTCHECK_CONFIGURE_FLAGS to
+            disable scrollkeeper so application developers don't have to do this
+            anymore
     
     
     svn path=/trunk/; revision=1068
@@ -8720,8 +8623,8 @@ Date:   Thu Dec 13 11:45:14 2007 +0000
     
     2007-12-13  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nn.po: Updated Norwegian nynorsk translation from
-    	Eskild Hustvedt <eskild at zerodogg org>
+            * nn.po: Updated Norwegian nynorsk translation from
+            Eskild Hustvedt <eskild at zerodogg org>
     
     svn path=/trunk/; revision=1065
 
@@ -8813,8 +8716,8 @@ Date:   Tue Nov 13 14:51:21 2007 +0000
     
     2007-11-13  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* LINGUAS: Remove uzbek for now since the translations
-    	are missing.
+            * LINGUAS: Remove uzbek for now since the translations
+            are missing.
     
     svn path=/trunk/; revision=1058
 
@@ -8931,8 +8834,8 @@ Date:   Mon Sep 17 19:15:44 2007 +0000
     
     2007-09-17  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
     
     svn path=/trunk/; revision=1048
 
@@ -8960,7 +8863,7 @@ Date:   Sun Sep 16 15:50:19 2007 +0000
     
     2007-09-16  Nickolay V. Shmyrev  <nshmyrev@yandex.ru>
     
-    	* ru.po: Updated Russian translation.
+            * ru.po: Updated Russian translation.
     
     
     svn path=/trunk/; revision=1046
@@ -8977,8 +8880,8 @@ Date:   Sat Sep 15 19:52:55 2007 +0000
     
     2007-09-15  Stéphane Raimbault  <stephane.raimbault@gmail.com>
     
-    	* fr.po: Updated French translation by Stéphane Raimbault and
-    	Vincent Untz.
+            * fr.po: Updated French translation by Stéphane Raimbault and
+            Vincent Untz.
     
     svn path=/trunk/; revision=1045
 
@@ -9011,7 +8914,7 @@ Date:   Sat Sep 15 17:08:15 2007 +0000
     
     2007-09-15  Artur Flinta  <aflinta@svn.gnome.org>
     
-    	* pl.po: Updated Polish translation by GNOME PL Team.
+            * pl.po: Updated Polish translation by GNOME PL Team.
     
     
     svn path=/trunk/; revision=1043
@@ -9052,7 +8955,7 @@ Date:   Thu Sep 13 17:46:59 2007 +0000
     
     2007-09-13 Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated.
+            * hu.po: Translation updated.
     
     
     svn path=/trunk/; revision=1040
@@ -9082,7 +8985,7 @@ Date:   Tue Sep 11 13:21:59 2007 +0000
     
     2007-09-11 Maxim Dziumanenko <dziumanenko@gmail.com>
     
-    	* Update Ukrainian translation.
+            * Update Ukrainian translation.
     
     
     svn path=/trunk/; revision=1038
@@ -9134,7 +9037,7 @@ Date:   Mon Sep 3 09:13:03 2007 +0000
     
     2007-09-03  Luca Ferretti  <elle.uca@libero.it>
     
-    	* it.po: Updated Italian translation.
+            * it.po: Updated Italian translation.
     
     
     svn path=/trunk/; revision=1034
@@ -9176,7 +9079,7 @@ Date:   Sun Sep 2 10:27:15 2007 +0000
     
     2007-09-02  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
     
     svn path=/trunk/; revision=1031
 
@@ -9227,7 +9130,7 @@ Date:   Sun Aug 26 21:22:45 2007 +0000
     
     2007-08-26  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
     
     
     
@@ -9283,7 +9186,7 @@ Date:   Tue Aug 21 07:49:11 2007 +0000
     
     2007-08-21  Priit Laes  <plaes@svn.gnome.org>
     
-    	* et.po: Estonian translation updates by Ivar Smolin <okul@linux.ee>
+            * et.po: Estonian translation updates by Ivar Smolin <okul@linux.ee>
     
     svn path=/trunk/; revision=1023
 
@@ -9381,7 +9284,7 @@ Date:   Wed Aug 15 10:18:06 2007 +0000
     
     2007-08-15  Hendrik Richter  <hendrikr@gnome.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
     
     svn path=/trunk/; revision=1015
 
@@ -9397,7 +9300,7 @@ Date:   Tue Aug 14 14:06:44 2007 +0000
     
     2007-08-14  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
+            * nb.po: Updated Norwegian bokmål translation.
     
     svn path=/trunk/; revision=1014
 
@@ -9563,7 +9466,7 @@ Date:   Wed Aug 8 01:32:01 2007 +0000
 
     Updated Thai translation.
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
     
     
     svn path=/trunk/; revision=1003
@@ -9633,7 +9536,7 @@ Date:   Sun Aug 5 22:20:58 2007 +0000
     
     2007-08-05  Leonardo Ferreira Fontenelle  <leonardof@svn.gnome.org>
     
-    	* pt_BR.po: s/Conteúdo/Sumário. See bug #461308.
+            * pt_BR.po: s/Conteúdo/Sumário. See bug #461308.
     
     svn path=/trunk/; revision=999
 
@@ -9649,7 +9552,7 @@ Date:   Sat Aug 4 09:02:23 2007 +0000
     
     2007-08-04  Inaki Larranaga Murgoitio  <dooteo@zundan.com>
     
-    	* eu.po: Updated Basque translation.
+            * eu.po: Updated Basque translation.
     
     
     svn path=/trunk/; revision=998
@@ -9682,7 +9585,7 @@ Date:   Wed Aug 1 13:44:46 2007 +0000
     
     2007-08-01  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
+            * nb.po: Updated Norwegian bokmål translation.
     
     svn path=/trunk/; revision=996
 
@@ -9722,47 +9625,32 @@ Date:   Tue Jul 31 14:46:33 2007 +0000
     
     svn path=/trunk/; revision=994
 
- sandbox/mallard/ChangeLog                  |  7 +++
- sandbox/mallard/html/Makefile              |  4 ++
- sandbox/mallard/spec/10minutes.xml         |  2 +-
- sandbox/mallard/spec/mal_app.xml           | 51 ---------------------
- sandbox/mallard/spec/mal_block.xml         | 23 +++++-----
- sandbox/mallard/spec/mal_block_code.xml    | 56 +++++++++++++++++++++++
- sandbox/mallard/spec/mal_block_comment.xml | 50 +++++++++++++++++++++
- sandbox/mallard/spec/mal_block_figure.xml  | 24 ++++++++++
- sandbox/mallard/spec/mal_block_note.xml    | 10 +++++
- sandbox/mallard/spec/mal_block_p.xml       | 63 ++++++++++++++++++++++++++
- sandbox/mallard/spec/mal_block_screen.xml  | 22 +++++++++
- sandbox/mallard/spec/mal_cmd.xml           | 72 ------------------------------
- sandbox/mallard/spec/mal_code.xml          | 64 --------------------------
- sandbox/mallard/spec/mal_comment.xml       | 50 ---------------------
- sandbox/mallard/spec/mal_date.xml          | 20 ---------
- sandbox/mallard/spec/mal_em.xml            | 23 ----------
- sandbox/mallard/spec/mal_figure.xml        | 24 ----------
- sandbox/mallard/spec/mal_file.xml          | 23 ----------
- sandbox/mallard/spec/mal_gui.xml           | 30 -------------
- sandbox/mallard/spec/mal_inline_app.xml    | 51 +++++++++++++++++++++
- sandbox/mallard/spec/mal_inline_cmd.xml    | 72 ++++++++++++++++++++++++++++++
- sandbox/mallard/spec/mal_inline_code.xml   | 64 ++++++++++++++++++++++++++
- sandbox/mallard/spec/mal_inline_em.xml     | 23 ++++++++++
- sandbox/mallard/spec/mal_inline_file.xml   | 23 ++++++++++
- sandbox/mallard/spec/mal_inline_gui.xml    | 30 +++++++++++++
- sandbox/mallard/spec/mal_inline_input.xml  | 11 +++++
- sandbox/mallard/spec/mal_inline_key.xml    | 11 +++++
- sandbox/mallard/spec/mal_inline_sys.xml    | 11 +++++
- sandbox/mallard/spec/mal_inline_var.xml    | 11 +++++
- sandbox/mallard/spec/mal_input.xml         | 11 -----
- sandbox/mallard/spec/mal_key.xml           | 11 -----
- sandbox/mallard/spec/mal_note.xml          | 10 -----
- sandbox/mallard/spec/mal_p.xml             | 63 --------------------------
- sandbox/mallard/spec/mal_screen.xml        | 22 ---------
- sandbox/mallard/spec/mal_section.xml       |  1 -
- sandbox/mallard/spec/mal_sys.xml           | 11 -----
- sandbox/mallard/spec/mal_var.xml           | 11 -----
- sandbox/mallard/spec/mallard.xml           |  8 ++--
- sandbox/mallard/spec/spec.xml              |  2 +
- sandbox/mallard/xslt/mal2html-page.xsl     |  4 +-
- 40 files changed, 563 insertions(+), 516 deletions(-)
+ sandbox/mallard/ChangeLog                          |  7 +++
+ sandbox/mallard/html/Makefile                      |  4 ++
+ sandbox/mallard/spec/10minutes.xml                 |  2 +-
+ sandbox/mallard/spec/mal_block.xml                 | 23 +++++----
+ sandbox/mallard/spec/mal_block_code.xml            | 56 ++++++++++++++++++++++
+ .../{mal_comment.xml => mal_block_comment.xml}     |  4 +-
+ .../spec/{mal_figure.xml => mal_block_figure.xml}  |  0
+ .../spec/{mal_note.xml => mal_block_note.xml}      |  0
+ .../mallard/spec/{mal_p.xml => mal_block_p.xml}    |  0
+ .../spec/{mal_screen.xml => mal_block_screen.xml}  |  0
+ sandbox/mallard/spec/mal_date.xml                  | 20 --------
+ .../spec/{mal_app.xml => mal_inline_app.xml}       |  0
+ .../spec/{mal_cmd.xml => mal_inline_cmd.xml}       |  0
+ .../spec/{mal_code.xml => mal_inline_code.xml}     |  6 +--
+ .../mallard/spec/{mal_em.xml => mal_inline_em.xml} |  0
+ .../spec/{mal_file.xml => mal_inline_file.xml}     |  0
+ .../spec/{mal_gui.xml => mal_inline_gui.xml}       |  0
+ .../spec/{mal_input.xml => mal_inline_input.xml}   |  0
+ .../spec/{mal_key.xml => mal_inline_key.xml}       |  0
+ .../spec/{mal_sys.xml => mal_inline_sys.xml}       |  0
+ .../spec/{mal_var.xml => mal_inline_var.xml}       |  0
+ sandbox/mallard/spec/mal_section.xml               |  1 -
+ sandbox/mallard/spec/mallard.xml                   |  8 ++--
+ sandbox/mallard/spec/spec.xml                      |  2 +
+ sandbox/mallard/xslt/mal2html-page.xsl             |  4 +-
+ 25 files changed, 92 insertions(+), 45 deletions(-)
 
 commit 806cd77539a1bbfba2a33adc789fb3d09a05c7e6
 Author: Daniel Nylander <dnylande@src.gnome.org>
@@ -9784,7 +9672,7 @@ Date:   Mon Jul 30 20:28:17 2007 +0000
     
     2007-07-30  Priit Laes  <plaes@svn.gnome.org>
     
-    	* et.po: Estonian translation update by Ivar Smolin.
+            * et.po: Estonian translation update by Ivar Smolin.
     
     svn path=/trunk/; revision=992
 
@@ -9856,7 +9744,7 @@ Date:   Wed Jul 25 08:07:43 2007 +0000
 
     Updated Thai translation.
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
     
     
     svn path=/trunk/; revision=986
@@ -9943,7 +9831,7 @@ Date:   Tue Jul 24 12:13:17 2007 +0000
     
     2007-07-24  Priit Laes  <plaes@svn.gnome.org>
     
-    	* et.po: Estonian translation update by Ivar Smolin.
+            * et.po: Estonian translation update by Ivar Smolin.
     
     svn path=/trunk/; revision=983
 
@@ -9971,7 +9859,7 @@ Date:   Fri Jul 20 18:05:00 2007 +0000
     
     2007-07-20  Hendrik Richter  <hendrikr@gnome.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
     
     svn path=/trunk/; revision=981
 
@@ -9987,7 +9875,7 @@ Date:   Tue Jul 17 16:11:53 2007 +0000
     
     2007-07-17  Wouter Bolsterlee  <wbolster@svn.gnome.org>
     
-    	* nl.po: Dutch translation updated by Wouter Bolsterlee.
+            * nl.po: Dutch translation updated by Wouter Bolsterlee.
     
     svn path=/trunk/; revision=980
 
@@ -10027,7 +9915,7 @@ Date:   Sun Jul 15 23:10:52 2007 +0000
     
     2007-07-16 Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated.
+            * hu.po: Translation updated.
     
     
     svn path=/trunk/; revision=977
@@ -10044,7 +9932,7 @@ Date:   Fri Jul 13 10:31:10 2007 +0000
     
     2007-07-13  Priit Laes  <plaes@svn.gnome.org>
     
-    	* et.po: Estonian translation update by Ivar Smolin.
+            * et.po: Estonian translation update by Ivar Smolin.
     
     svn path=/trunk/; revision=976
 
@@ -10070,7 +9958,7 @@ Date:   Mon Jul 9 14:56:51 2007 +0000
 
     Updated Thai translation.
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
     
     
     svn path=/trunk/; revision=974
@@ -10249,7 +10137,7 @@ Date:   Sat Jun 23 09:35:10 2007 +0000
     
     2007-06-23  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
+            * nb.po: Updated Norwegian bokmål translation.
     
     svn path=/trunk/; revision=966
 
@@ -10277,7 +10165,7 @@ Date:   Sun Jun 3 19:05:51 2007 +0000
     
     2007-06-03  Priit Laes  <plaes@svn.gnome.org>
     
-    	* et.po: Updated Estonian translation by Ivar Smolin <okul@linux.ee>.
+            * et.po: Updated Estonian translation by Ivar Smolin <okul@linux.ee>.
     
     svn path=/trunk/; revision=964
 
@@ -10365,7 +10253,7 @@ Date:   Wed May 23 02:13:55 2007 +0000
 
     Updated Thai translation.
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
     
     
     svn path=/trunk/; revision=958
@@ -10457,7 +10345,7 @@ Date:   Fri May 18 06:17:21 2007 +0000
 
     Updated Thai translation.
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
     
     
     svn path=/trunk/; revision=955
@@ -10855,7 +10743,7 @@ Date:   Tue May 8 11:00:09 2007 +0000
     
     2007-05-08  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated translation from Espen Stefansen
+            * nb.po: Updated translation from Espen Stefansen
     
     svn path=/trunk/; revision=935
 
@@ -10907,11 +10795,10 @@ Date:   Mon May 7 15:50:32 2007 +0000
     
     svn path=/trunk/; revision=933
 
- ChangeLog                   |   9 ++
- doc/xslt/Makefile.am        |   6 +-
- doc/xslt/xsldoc-docbook.xsl | 327 ++++++++++++++++++++++++++++++++++++++++++++
- doc/xslt/xsldoc.xsl         | 327 --------------------------------------------
- 4 files changed, 339 insertions(+), 330 deletions(-)
+ ChangeLog                                   | 9 +++++++++
+ doc/xslt/Makefile.am                        | 6 +++---
+ doc/xslt/{xsldoc.xsl => xsldoc-docbook.xsl} | 2 +-
+ 3 files changed, 13 insertions(+), 4 deletions(-)
 
 commit e3afcaea9125ebeca3ec75aa132725cddeb6118a
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -11810,8 +11697,8 @@ Date:   Thu Mar 8 21:12:21 2007 +0000
     
     2007-03-08  Leonardo Ferreira Fontenelle  <leonardof@svn.gnome.org>
     
-    	* pt_BR.po: Fixed Brazilian Portuguese translation. Closes
-    	bug #416174. Thanks to Shaun McCance by noticing it!
+            * pt_BR.po: Fixed Brazilian Portuguese translation. Closes
+            bug #416174. Thanks to Shaun McCance by noticing it!
     
     svn path=/trunk/; revision=894
 
@@ -11960,7 +11847,7 @@ Date:   Tue Feb 27 14:42:00 2007 +0000
     
     2007-02-27  Gintautas Miliauskas  <gintas@akl.lt>
     
-    	* lt.po: Updated Lithuanian translation.
+            * lt.po: Updated Lithuanian translation.
     
     
     svn path=/trunk/; revision=891
@@ -11978,7 +11865,7 @@ Date:   Wed Feb 21 10:14:08 2007 +0000
     2007-02-21 Maxim Dziumanenko <dziumanenko@gmail.com>
     
     
-    	* Update Ukrainian translation.
+            * Update Ukrainian translation.
     
     
     svn path=/trunk/; revision=890
@@ -11995,7 +11882,7 @@ Date:   Tue Feb 20 20:49:53 2007 +0000
     
     2007-02-20  Artur Flinta  <aflinta@cvs.gnome.org>
     
-    	* pl.po: Updated Polish translation by GNOME PL Team.
+            * pl.po: Updated Polish translation by GNOME PL Team.
     
     
     svn path=/trunk/; revision=889
@@ -12027,7 +11914,7 @@ Date:   Tue Feb 20 20:25:34 2007 +0000
     
     2007-02-20  Artur Flinta  <aflinta@cvs.gnome.org>
     
-    	* pl.po: Updated Polish translation by GNOME PL Team.
+            * pl.po: Updated Polish translation by GNOME PL Team.
     
     
     svn path=/trunk/; revision=887
@@ -12487,7 +12374,7 @@ Date:   Fri Jan 26 14:33:45 2007 +0000
     
     2007-01-26  Christian Persch  <chpe@svn.gnome.org>
     
-    	* Makefile.am: Fix distcheck.
+            * Makefile.am: Fix distcheck.
     
     svn path=/trunk/; revision=869
 
@@ -12503,10 +12390,10 @@ Date:   Fri Jan 26 13:34:38 2007 +0000
     
     2007-01-25  Christian Persch  <chpe@svn.gnome.org>
     
-    	* configure.in:
-    	* tools/gnome-doc-utils.m4:
-    	* tools/gnome-doc-utils.make: Make make dist fail when gdu isn't
-    	present. Bug #400705.
+            * configure.in:
+            * tools/gnome-doc-utils.m4:
+            * tools/gnome-doc-utils.make: Make make dist fail when gdu isn't
+            present. Bug #400705.
     
     2007-01-25  Christian Persch  <chpe@svn.gnome.org>
     
@@ -12527,7 +12414,7 @@ Date:   Fri Jan 26 13:01:40 2007 +0000
     
     2007-01-26  Luca Ferretti  <elle.uca@libero.it>
     
-    	* it.po: Update Italian translation.
+            * it.po: Update Italian translation.
     
     
     svn path=/trunk/; revision=867
@@ -12555,7 +12442,7 @@ Date:   Thu Jan 25 18:23:04 2007 +0000
     
     2007-01-25  Christian Persch  <chpe@svn.gnome.org>
     
-    	* configure.in: Actually remove the ALL_LINGUAS line too.
+            * configure.in: Actually remove the ALL_LINGUAS line too.
     
     svn path=/trunk/; revision=865
 
@@ -12571,11 +12458,11 @@ Date:   Thu Jan 25 18:20:29 2007 +0000
     
     2006-04-15  Brian Pepple  <bdpepple@gmail.com>
     
-     	* po/LINGUAS: New file listing all supported languages.
+            * po/LINGUAS: New file listing all supported languages.
     
-     	* configure.in: Use po/LINGUAS instead of including all languages
-     	directly in this file. See the wiki for more information:
-     	http://live.gnome.org/GnomeGoals/PoLinguas. Bug #337987.
+            * configure.in: Use po/LINGUAS instead of including all languages
+            directly in this file. See the wiki for more information:
+            http://live.gnome.org/GnomeGoals/PoLinguas. Bug #337987.
     
     
     svn path=/trunk/; revision=864
@@ -12593,9 +12480,9 @@ Date:   Thu Jan 25 18:01:38 2007 +0000
     
     2007-01-25  Christian Persch  <chpe@svn.gnome.org>
     
-    	* tools/gnome-doc-utils.m4:
-    	- Provide a 3-argument variant of GNOME_DOC_INIT, to use if you don't
-    	want missing gdu be fatal. Bug #392424, also fixes bug #350441.
+            * tools/gnome-doc-utils.m4:
+            - Provide a 3-argument variant of GNOME_DOC_INIT, to use if you don't
+            want missing gdu be fatal. Bug #392424, also fixes bug #350441.
     
     svn path=/trunk/; revision=863
 
@@ -12611,9 +12498,9 @@ Date:   Thu Jan 18 11:41:52 2007 +0000
     
     2007-01-18  Joachim Noreiko  <jnoreiko@yahoo.com>
     
-    	* data/templates/gnome-app-template.xml:
-    	* data/templates/gnome-applet-template.xml:
-    	- Adding <abstract role="description">, #397174
+            * data/templates/gnome-app-template.xml:
+            * data/templates/gnome-applet-template.xml:
+            - Adding <abstract role="description">, #397174
     
     svn path=/trunk/; revision=862
 
@@ -12741,7 +12628,7 @@ commit ca0099c53c51acec536bbbec0b2c8b0450501ba3
 Author: Joachim Noreiko <joachimn@src.gnome.org>
 Date:   Sun Dec 10 17:05:32 2006 +0000
 
-    	- explicit 'on adding &applet; to a panel' in link to User Guide
+            - explicit 'on adding &applet; to a panel' in link to User Guide
 
  ChangeLog                                | 1 +
  data/templates/gnome-applet-template.xml | 2 +-
@@ -12751,8 +12638,8 @@ commit 89bc936b4678bda3d16266e0788c245ee4c91564
 Author: Joachim Noreiko <joachimn@src.gnome.org>
 Date:   Sun Dec 10 16:57:12 2006 +0000
 
-    	- made all ids consistenly "myapplet-" (figures were "applet-")
-    	- changed screenshot to informalfigure, as 'Figure 1' is overkill
+            - made all ids consistenly "myapplet-" (figures were "applet-")
+            - changed screenshot to informalfigure, as 'Figure 1' is overkill
 
  ChangeLog                                |  2 ++
  data/templates/gnome-applet-template.xml | 14 +++++++-------
@@ -12766,9 +12653,9 @@ Date:   Sun Dec 10 16:04:38 2006 +0000
     
     2006-12-10  Joachim Noreiko  <jnoreiko@yahoo.com>
     
-    	* data/templates/gnome-applet-template.xml:
-    	- First draft of an applet manual template, based on
-    	  http://developer.gnome.org/projects/gdp/templates.html
+            * data/templates/gnome-applet-template.xml:
+            - First draft of an applet manual template, based on
+              http://developer.gnome.org/projects/gdp/templates.html
 
  ChangeLog                                |   8 +-
  data/templates/gnome-applet-template.xml | 522 +++++++++++++++++++++++++++++++
@@ -12782,7 +12669,7 @@ Date:   Sat Dec 9 17:32:31 2006 +0000
     
     2006-12-09  Joachim Noreiko  <jnoreiko@yahoo.com>
     
-    	* data/templates/gnome-app-template.xml:
+            * data/templates/gnome-app-template.xml:
         Fixed a few old links and quaint verbiage
 
  ChangeLog                             |  5 +++
@@ -12797,7 +12684,7 @@ Date:   Sat Dec 2 15:32:56 2006 +0000
     
     2006-12-02  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog | 4 ++++
  po/et.po     | 4 +++-
@@ -12820,16 +12707,13 @@ Date:   Fri Dec 1 17:10:57 2006 +0000
     * tools/gnome-doc-utils.pc.in:
     - Moving files to tools
 
- Makefile.am                 |  11 +-
- configure.in                |   6 +-
- gnome-doc-html.in           | 218 ---------------------------
- gnome-doc-prepare.in        | 350 --------------------------------------------
- gnome-doc-utils.pc.in       |  14 --
- tools/Makefile.am           |  18 ++-
- tools/gnome-doc-html.in     | 218 +++++++++++++++++++++++++++
- tools/gnome-doc-prepare.in  | 350 ++++++++++++++++++++++++++++++++++++++++++++
- tools/gnome-doc-utils.pc.in |  14 ++
- 9 files changed, 603 insertions(+), 596 deletions(-)
+ Makefile.am                                          | 11 +++--------
+ configure.in                                         |  6 +++---
+ tools/Makefile.am                                    | 18 +++++++++++++++---
+ gnome-doc-html.in => tools/gnome-doc-html.in         |  0
+ gnome-doc-prepare.in => tools/gnome-doc-prepare.in   |  0
+ gnome-doc-utils.pc.in => tools/gnome-doc-utils.pc.in |  0
+ 6 files changed, 21 insertions(+), 14 deletions(-)
 
 commit 72b4797345262f0dfc5e34f71f0e31527dfb32c6
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -12919,16 +12803,14 @@ Date:   Thu Nov 16 16:51:01 2006 +0000
     - Added GNOME_DOC_DEFINES to M4 for cleaner bootstrapping, allowing:
     - Now using the system-installed gnome-autogen.sh, fixing #340128
 
- ChangeLog                  |  14 ++
- Makefile.am                |  23 +-
- autogen.sh                 |   7 +-
- configure.in               |   3 +-
- gnome-doc-utils.m4         |  39 ----
- gnome-doc-utils.make       | 560 ---------------------------------------------
- tools/Makefile.am          |   9 +
- tools/gnome-doc-utils.m4   |  43 ++++
- tools/gnome-doc-utils.make | 560 +++++++++++++++++++++++++++++++++++++++++++++
- 9 files changed, 635 insertions(+), 623 deletions(-)
+ ChangeLog                                          | 14 ++++++++++++
+ Makefile.am                                        | 23 ++++---------------
+ autogen.sh                                         |  7 +++---
+ configure.in                                       |  3 ++-
+ tools/Makefile.am                                  |  9 ++++++++
+ gnome-doc-utils.m4 => tools/gnome-doc-utils.m4     | 26 +++++++++++++---------
+ gnome-doc-utils.make => tools/gnome-doc-utils.make |  0
+ 7 files changed, 47 insertions(+), 35 deletions(-)
 
 commit 31083934182cf25f80fc36e58813dab1a3aa65cc
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -13187,7 +13069,7 @@ Date:   Fri Oct 27 18:03:08 2006 +0000
     
     2006-10-27  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog |   4 ++
  po/et.po     | 174 +++++++++++++++++++++++++++++------------------------------
@@ -13221,10 +13103,10 @@ Date:   Wed Oct 11 06:07:32 2006 +0000
     
     2006-10-11  Mariano Suárez-Alvarez  <msuarezalvarez@arnet.com.ar>
     
-    	* Makefile.am: install the .pc file even if the build utils are not
-    	enabled. Bug #355553.
-    	* xslt/xsldoc/xsldoc.xsl: add xi and fxi to exclude-result-prefixes,
-    	so that we don't get spurious xmlns attributes all over the place.
+            * Makefile.am: install the .pc file even if the build utils are not
+            enabled. Bug #355553.
+            * xslt/xsldoc/xsldoc.xsl: add xi and fxi to exclude-result-prefixes,
+            so that we don't get spurious xmlns attributes all over the place.
 
  ChangeLog              | 7 +++++++
  Makefile.am            | 6 +++---
@@ -13295,8 +13177,8 @@ Date:   Mon Sep 11 16:46:03 2006 +0000
     
     2006-09-11  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* xslt/gettext/l10n-numbers.xsl:
-    	- Removed excessive alpha-thai elements. (part of bug #323249)
+            * xslt/gettext/l10n-numbers.xsl:
+            - Removed excessive alpha-thai elements. (part of bug #323249)
 
  ChangeLog                     | 5 +++++
  xslt/gettext/l10n-numbers.xsl | 2 +-
@@ -13310,7 +13192,7 @@ Date:   Sun Sep 10 09:12:23 2006 +0000
     
     2006-09-10  David Lodge <dave@cirt.net>
     
-    	* en_GB.po: Updated English (British) translation.
+            * en_GB.po: Updated English (British) translation.
 
  po/ChangeLog |   4 +
  po/en_GB.po  | 535 +++++++++++++++++++++++++++++++----------------------------
@@ -13339,8 +13221,8 @@ Date:   Mon Sep 4 05:11:43 2006 +0000
     
     2006-09-04  Lucas Rocha  <lucasr@gnome.org>
     
-    	* pt_BR.po: Updated Brazilian Portuguese translation
-    	by Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>
+            * pt_BR.po: Updated Brazilian Portuguese translation
+            by Leonardo Ferreira Fontenelle <leo.fontenelle@gmail.com>
 
  po/ChangeLog |   7 +-
  po/pt_BR.po  | 418 ++++++++++++++++++-----------------------------------------
@@ -13364,7 +13246,7 @@ Date:   Fri Sep 1 11:34:49 2006 +0000
     
     2006-09-01  Abel Cheung  <abel@oaka.org>
     
-    	* configure.in: Added 'mk' 'ta' to ALL_LINGUAS.
+            * configure.in: Added 'mk' 'ta' to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -13406,7 +13288,7 @@ Date:   Thu Aug 31 00:06:40 2006 +0000
     
     2006-08-31  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated.
+            * hu.po: Translation updated.
 
  po/ChangeLog |  4 ++++
  po/hu.po     | 69 ++++++++++++++++++++++--------------------------------------
@@ -13420,7 +13302,7 @@ Date:   Wed Aug 30 21:03:52 2006 +0000
     
     2006-08-30  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 ++
  po/pt.po     | 164 +++++++++++++++++++++++++++++------------------------------
@@ -13478,7 +13360,7 @@ Date:   Sat Aug 26 01:18:30 2006 +0000
     
     2006-08-26  Matic Zgur  <mr.zgur@gmail.com>
     
-    	* sl.po: Updated Slovenian translation.
+            * sl.po: Updated Slovenian translation.
 
  po/ChangeLog |  4 +++
  po/sl.po     | 82 +++++++++++++++++++++++++++++++++++++++++++++---------------
@@ -13512,7 +13394,7 @@ Date:   Wed Aug 23 10:32:30 2006 +0000
     
     2006-08-23  Inaki Larranaga  <dooteo@euskalgnu.org>
     
-    	* eu.po: Added Basque translation.
+            * eu.po: Added Basque translation.
 
  po/ChangeLog |    4 +
  po/eu.po     | 1908 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -13526,7 +13408,7 @@ Date:   Wed Aug 23 10:31:34 2006 +0000
     
     2006-08-22  Inaki Larranaga  <dooteo@euskalgnu.org>
     
-    	* configure.in: Added "eu" (Basque) to ALL_LINGUAS.
+            * configure.in: Added "eu" (Basque) to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -13550,8 +13432,8 @@ Date:   Tue Aug 22 13:58:12 2006 +0000
     
     2006-08-22  Matic Žgur  <mr.zgur@gmail.com>
     
-    	* sl.po: Added Slovenian translation.
-    	* configure.in: Added Slovenian (sl) to ALL_LINGUAS.
+            * sl.po: Added Slovenian translation.
+            * configure.in: Added Slovenian (sl) to ALL_LINGUAS.
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -13580,7 +13462,7 @@ Date:   Thu Aug 17 14:29:55 2006 +0000
     
     2006-08-17  Satoru SATOH <ss@gnome.gr.jp>
     
-    	* Updated Japanese Translation.
+            * Updated Japanese Translation.
 
  po/ChangeLog |   4 ++
  po/ja.po     | 150 +++++++++++++++++++++++++++++------------------------------
@@ -13594,7 +13476,7 @@ Date:   Wed Aug 16 01:56:58 2006 +0000
     
     2006-08-16  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Translation updated.
+            * hu.po: Translation updated.
 
  po/ChangeLog |   4 ++
  po/hu.po     | 204 +++++++++++++++++++++++++++++++----------------------------
@@ -13608,7 +13490,7 @@ Date:   Tue Aug 15 21:13:41 2006 +0000
     
     2006-08-15  Hendrik Richter  <hendrikr@gnome.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
 
  po/ChangeLog |   4 ++
  po/de.po     | 152 +++++++++++++++++++++++++++++------------------------------
@@ -13622,7 +13504,7 @@ Date:   Mon Aug 14 06:57:20 2006 +0000
     
     2006-08-14  Maxim Dziumanenko <dziumanenko@gmail.com>
     
-    	* Update Ukrainian translation.
+            * Update Ukrainian translation.
 
  po/ChangeLog |   4 ++
  po/uk.po     | 177 +++++++++++++++++++++++++++++++----------------------------
@@ -13699,7 +13581,7 @@ Date:   Sat Aug 5 16:41:47 2006 +0000
     
     2006-08-05  Francisco Javier F. Serrador  <serrador@openshine.com>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 +++
  po/es.po     | 83 ++++++++++++++++++++++++++----------------------------------
@@ -13757,7 +13639,7 @@ Date:   Sun Jul 9 13:11:06 2006 +0000
     
     2006-07-09  Changwoo Ryu  <cwryu@debian.org>
     
-    	* ko.po: Updated Korean translation.
+            * ko.po: Updated Korean translation.
 
  po/ChangeLog |   4 ++
  po/ko.po     | 187 ++++++++++++++++++++++++++++++-----------------------------
@@ -13835,7 +13717,7 @@ Date:   Tue Jun 27 08:37:48 2006 +0000
     
     2006-06-27  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |   4 ++
  po/nl.po     | 149 +++++++++++++++++++++++++++++------------------------------
@@ -13859,7 +13741,7 @@ Date:   Mon Jun 19 14:07:08 2006 +0000
     
     2006-06-19  Raivis Dejus  <orvils@gmail.com>
     
-    	* lv.po: Added Latvian translation.
+            * lv.po: Added Latvian translation.
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -13916,7 +13798,7 @@ Date:   Mon May 29 01:23:03 2006 +0000
     
     2006-05-29  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
+            * nb.po: Updated Norwegian bokmål translation.
 
  po/ChangeLog |   4 ++
  po/nb.po     | 149 +++++++++++++++++++++++++++++------------------------------
@@ -13940,7 +13822,7 @@ Date:   Wed May 24 16:48:47 2006 +0000
     
     2006-05-24  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
 
  po/ChangeLog |   4 +
  po/th.po     | 245 ++++++++++++++++++++++++++++-------------------------------
@@ -13964,8 +13846,8 @@ Date:   Sat May 13 22:15:39 2006 +0000
     
     2006-05-14  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
     
-    	* zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
-    	* zh_TW.po: Updated Traditional Chinese translation(Taiwan).
+            * zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
+            * zh_TW.po: Updated Traditional Chinese translation(Taiwan).
 
  po/ChangeLog |   5 ++
  po/zh_HK.po  | 149 ++++++++++++++++++++++++++++++-----------------------------
@@ -13980,7 +13862,7 @@ Date:   Fri Apr 28 19:38:19 2006 +0000
     
     2006-04-28  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 230 ++++++++++++++++++++++++++++++++---------------------------
@@ -13995,9 +13877,9 @@ Date:   Sun Apr 23 22:44:38 2006 +0000
     2006-04-24  Sven Herzberg  <herzi@gnome-de.org>
     
             * Makefile.am: install new files
-    	* template-document.xml,
-    	* template.make,
-    	* template.omf.in: added template files (fixes bug 170483)
+            * template-document.xml,
+            * template.make,
+            * template.omf.in: added template files (fixes bug 170483)
 
  ChangeLog             |  7 +++++++
  Makefile.am           |  6 ++++++
@@ -14055,8 +13937,8 @@ Date:   Mon Apr 17 13:31:10 2006 +0000
     
     2006-04-17  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* configure.in: Remove obsolete entry for no_NO
-    	* po/no.po: And the translation.
+            * configure.in: Remove obsolete entry for no_NO
+            * po/no.po: And the translation.
 
  ChangeLog    |    5 +
  configure.in |    2 +-
@@ -14071,8 +13953,8 @@ Date:   Mon Apr 17 08:40:36 2006 +0000
     
     2006-04-17  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |   5 ++
  po/bg.po     | 148 +++++++++++++++++++++++++++++------------------------------
@@ -14338,8 +14220,8 @@ Date:   Wed Mar 29 12:59:52 2006 +0000
     
     2006-03-29  Rhys Jones  <rhys@sucs.org>
     
-    	* configure.in: Added Welsh (cy) to ALL_LINGUAS.
-    	* po/cy.po: Added Welsh translation.
+            * configure.in: Added Welsh (cy) to ALL_LINGUAS.
+            * po/cy.po: Added Welsh translation.
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -14355,7 +14237,7 @@ Date:   Mon Mar 27 06:13:40 2006 +0000
     
     2006-03-27  Priit Laes  <amd@store20.com>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog |   4 +
  po/et.po     | 258 ++++++++++++++++++-----------------------------------------
@@ -14368,9 +14250,9 @@ Date:   Wed Mar 22 11:10:53 2006 +0000
     Added Dzongkha translation from Pema Geyleg. 2006-03-22 Tommi Vainikainen
     
     2006-03-22  Tommi Vainikainen  <thv@iki.fi>
-    	* dz.po: Added Dzongkha translation from Pema Geyleg.
+            * dz.po: Added Dzongkha translation from Pema Geyleg.
     2006-03-22  Tommi Vainikainen  <thv@iki.fi>
-    	* configure.in (ALL_LINGUAS): Added Dzongkha (dz).
+            * configure.in (ALL_LINGUAS): Added Dzongkha (dz).
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -14429,7 +14311,7 @@ Date:   Sat Mar 11 00:36:58 2006 +0000
     
     2006-03-11  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 ++
  po/pt.po     | 151 ++++++++++++++++++++++++++++++++++-------------------------
@@ -14443,7 +14325,7 @@ Date:   Thu Mar 9 10:37:05 2006 +0000
     
     2006-03-09  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |   4 ++
  po/sq.po     | 150 ++++++++++++++++++++++++++++++++++-------------------------
@@ -14471,7 +14353,7 @@ Date:   Wed Mar 8 00:31:47 2006 +0000
     
     2006-03-08  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Hungarian translation updated.
+            * hu.po: Hungarian translation updated.
 
  po/ChangeLog |   4 +
  po/hu.po     | 277 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -14485,7 +14367,7 @@ Date:   Tue Mar 7 13:04:34 2006 +0000
     
     2006-03-07  Priit Laes  <amd@store20.com>
     
-    	* et.po: Translation updated.
+            * et.po: Translation updated.
 
  po/ChangeLog |   4 ++
  po/et.po     | 152 +++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -14499,8 +14381,8 @@ Date:   Sun Mar 5 10:59:38 2006 +0000
     
     2006-03-05  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |  5 +++++
  po/bg.po     | 17 +++++++++--------
@@ -14514,7 +14396,7 @@ Date:   Fri Mar 3 11:01:43 2006 +0000
     
     2006-03-03  Maxim Dziumanenko <mvd@mylinux.ua>
     
-    	* Updated Ukrainian translation.
+            * Updated Ukrainian translation.
 
  po/ChangeLog |   4 +
  po/uk.po     | 283 +++++++++++++++++++++++++++++++++++++++--------------------
@@ -14536,7 +14418,7 @@ Date:   Tue Feb 28 17:15:54 2006 +0000
     Updated Russian translation.
     
     
-    	* ru.po: Updated Russian translation.
+            * ru.po: Updated Russian translation.
 
  po/ChangeLog |   4 +
  po/ru.po     | 262 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -14550,7 +14432,7 @@ Date:   Mon Feb 27 19:31:00 2006 +0000
     
     2006-02-27  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 210 +++++++++++++++++++++++++++++++++--------------------------
@@ -14579,7 +14461,7 @@ Date:   Fri Feb 24 22:47:31 2006 +0000
     
     2006-02-25  Priit Laes  <amd@store20.com>
     
-    	* et.po: Translation updated.
+            * et.po: Translation updated.
 
  po/ChangeLog |   4 +
  po/et.po     | 385 ++++++++++++++++++++++++++++++-----------------------------
@@ -14593,7 +14475,7 @@ Date:   Thu Feb 23 09:52:18 2006 +0000
     
     2006-02-23  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |   4 +
  po/sq.po     | 396 +++++++++++++++++++++++++++++++++++------------------------
@@ -14627,7 +14509,7 @@ Date:   Mon Feb 20 22:05:17 2006 +0000
     
     2006-02-20  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |   4 ++
  po/nl.po     | 159 ++++++++++++++++++++++++++++++++++++++---------------------
@@ -14736,7 +14618,7 @@ Date:   Fri Feb 17 15:02:05 2006 +0000
     
     2006-02-17  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |   4 ++
  po/nl.po     | 159 +++++++++++++++++++++--------------------------------------
@@ -14750,7 +14632,7 @@ Date:   Thu Feb 16 23:22:43 2006 +0000
     
     2006-02-16  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: 2nd update of Portuguese translation.
+            * pt.po: 2nd update of Portuguese translation.
 
  po/ChangeLog |   4 ++
  po/pt.po     | 156 +++++++++++++++++++++++++----------------------------------
@@ -14764,7 +14646,7 @@ Date:   Thu Feb 16 01:31:22 2006 +0000
     
     2006-02-16  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 +
  po/pt.po     | 266 +++++++++++++++++++++++++++++++++++++++--------------------
@@ -14806,7 +14688,7 @@ Date:   Mon Feb 13 04:59:37 2006 +0000
     
     2006-02-13  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 24 +++++++++++++++++-------
@@ -14835,7 +14717,7 @@ Date:   Sun Feb 12 14:27:06 2006 +0000
     
     2006-02-12  Hendrik Richter  <hendi@gnome-de.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
 
  po/ChangeLog |   4 +
  po/de.po     | 240 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -14874,7 +14756,7 @@ Date:   Sat Feb 11 12:38:08 2006 +0000
     
     2006-02-11  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 177 ++++++++++++++++++++++-------------------------------------
@@ -14898,7 +14780,7 @@ Date:   Thu Feb 9 19:06:22 2006 +0000
     
     2006-02-09  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 ++++
  po/es.po     | 22 +++++++---------------
@@ -14985,8 +14867,8 @@ Date:   Sun Jan 29 00:48:25 2006 +0000
     
     2006-01-29  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
     
-    	* zh_TW.po: Updated Traditional Chinese translation(Taiwan).
-    	* zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
+            * zh_TW.po: Updated Traditional Chinese translation(Taiwan).
+            * zh_HK.po: Updated Traditional Chinese translation(Hong Kong).
 
  po/ChangeLog |  5 +++++
  po/zh_HK.po  | 25 ++++++++++++++-----------
@@ -15001,7 +14883,7 @@ Date:   Tue Jan 24 16:52:31 2006 +0000
     
     2006-01-24  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |  4 ++++
  po/nl.po     | 17 +++++++++--------
@@ -15015,7 +14897,7 @@ Date:   Mon Jan 23 21:50:58 2006 +0000
     
     2006-01-23  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog | 4 ++++
  po/es.po     | 6 +++---
@@ -15029,8 +14911,8 @@ Date:   Mon Jan 23 10:08:00 2006 +0000
     
     2006-01-23  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
-    	* no.po: Same.
+            * nb.po: Updated Norwegian bokmål translation.
+            * no.po: Same.
 
  po/ChangeLog |  5 +++++
  po/nb.po     | 17 +++++++++--------
@@ -15045,7 +14927,7 @@ Date:   Sun Jan 22 21:50:58 2006 +0000
     
     2006-01-22  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 ++++
  po/es.po     | 24 +++++++++++++++---------
@@ -15108,7 +14990,7 @@ Date:   Thu Jan 19 14:13:03 2006 +0000
     
     2006-01-19  Takeshi AIHANA <aihana@gnome.gr.jp>
     
-    	* ja.po: Updated Japanese translation for v0.5.3.
+            * ja.po: Updated Japanese translation for v0.5.3.
 
  po/ChangeLog |  4 ++++
  po/ja.po     | 24 +++++++++++++++++-------
@@ -15163,7 +15045,7 @@ Date:   Tue Jan 17 19:41:53 2006 +0000
     
     2006-01-17  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 19 ++++++++++---------
@@ -15205,7 +15087,7 @@ Date:   Tue Jan 17 03:17:38 2006 +0000
     
     2006-01-17  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
 
  po/ChangeLog |  4 ++++
  po/th.po     | 20 ++++++++++++--------
@@ -15256,7 +15138,7 @@ Date:   Mon Jan 16 18:01:15 2006 +0000
     
     2006-01-16  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 ++++
  po/es.po     | 40 +++++++++++++++++++++++++++++-----------
@@ -15271,8 +15153,8 @@ Date:   Sat Jan 14 01:26:05 2006 +0000
     
     2006-01-14  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
     
-    	* zh_TW.po: Updated Traditional Chinese translation(Taiwan).
-    	* zh_HK.po: Added Traditional Chinese translation(Hong Kong).
+            * zh_TW.po: Updated Traditional Chinese translation(Taiwan).
+            * zh_HK.po: Added Traditional Chinese translation(Hong Kong).
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -15290,7 +15172,7 @@ Date:   Tue Jan 10 02:54:24 2006 +0000
     
     2006-01-09  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 ++
  po/en_CA.po  | 185 ++++++++++++++++++++++++++++++++---------------------------
@@ -15304,8 +15186,8 @@ Date:   Mon Jan 9 16:40:48 2006 +0000
     
     2006-01-09  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |   5 ++
  po/bg.po     | 235 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -15349,7 +15231,7 @@ Date:   Sun Jan 8 14:03:41 2006 +0000
     
     2006-01-08  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |   4 ++
  po/nl.po     | 119 ++++++++---------------------------------------------------
@@ -15363,8 +15245,8 @@ Date:   Sun Jan 8 14:01:12 2006 +0000
     
     2006-01-08  Kjartan Maraas <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
-    	* no.po: Same
+            * nb.po: Updated Norwegian bokmål translation.
+            * no.po: Same
 
  po/ChangeLog |  5 +++++
  po/nb.po     | 24 ++++++++++++++++++------
@@ -15379,7 +15261,7 @@ Date:   Sun Jan 8 07:22:20 2006 +0000
     
     2006-01-08  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* th.po: Updated Thai translation.
+            * th.po: Updated Thai translation.
 
  po/ChangeLog |  4 ++++
  po/th.po     | 18 ++++++++++++------
@@ -15433,7 +15315,7 @@ Date:   Fri Jan 6 23:10:32 2006 +0000
     
     2006-01-07  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Tino Meinen.
+            * nl.po: Translation updated by Tino Meinen.
 
  po/ChangeLog |   4 +
  po/nl.po     | 270 +++++++++++++++++++++++++++++++++++++++--------------------
@@ -15477,7 +15359,7 @@ Date:   Tue Dec 27 14:22:01 2005 +0000
     
     2005-12-27  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* th.po: Adjusted Thai translation.
+            * th.po: Adjusted Thai translation.
 
  po/ChangeLog |  4 ++++
  po/th.po     | 36 ++++++++++++++++++------------------
@@ -15491,8 +15373,8 @@ Date:   Mon Dec 26 11:08:10 2005 +0000
     
     2005-12-26  Theppitak Karoonboonyanan  <thep@linux.thai.net>
     
-    	* configure.in: Added 'th' (Thai) to ALL_LINGUAS.
-    	* po/th.po: Added Thai translation.
+            * configure.in: Added 'th' (Thai) to ALL_LINGUAS.
+            * po/th.po: Added Thai translation.
 
  ChangeLog    |    4 +
  configure.in |    2 +-
@@ -15508,8 +15390,8 @@ Date:   Wed Dec 21 21:41:14 2005 +0000
     
     2005-12-21  Peter Williams  <peter@newton.cx>
     
-    	* xslt/docbook/html/db2html-info.xsl: Fix generation of
-    	copyright information.
+            * xslt/docbook/html/db2html-info.xsl: Fix generation of
+            copyright information.
 
  ChangeLog                          | 5 +++++
  xslt/docbook/html/db2html-info.xsl | 4 ++--
@@ -15568,7 +15450,7 @@ Date:   Sun Dec 11 21:55:32 2005 +0000
     
     2005-12-11  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |   4 +
  po/cs.po     | 262 +++++++++++++++++++++++++++++++++++++++++++----------------
@@ -15661,8 +15543,8 @@ Date:   Thu Dec 8 04:11:06 2005 +0000
     
     2005-12-08  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
-    	* no.po: Same
+            * nb.po: Updated Norwegian bokmål translation.
+            * no.po: Same
 
  po/ChangeLog |   5 ++
  po/nb.po     | 243 +++++++++++++++++++++++++++++++++++++++++------------------
@@ -15692,7 +15574,7 @@ Date:   Sat Dec 3 20:05:43 2005 +0000
     
     2005-12-03  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 ++
  po/en_CA.po  | 222 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -15706,8 +15588,8 @@ Date:   Tue Nov 29 19:17:03 2005 +0000
     
     2005-11-28  Peter Williams  <peter@newton.cx>
     
-    	* xslt/docbook/html/Makefile.am (xsl_DATA): Add the new
-    	db2html-bibliography.xsl to xsl_DATA.
+            * xslt/docbook/html/Makefile.am (xsl_DATA): Add the new
+            db2html-bibliography.xsl to xsl_DATA.
 
  ChangeLog                     | 5 +++++
  xslt/docbook/html/Makefile.am | 1 +
@@ -15748,7 +15630,7 @@ Date:   Sun Nov 27 07:45:57 2005 +0000
     
     2005-11-27  Takeshi AIHANA <aihana@gnome.gr.jp>
     
-    	* ja.po: Updated Japanese translation for v0.5.1.
+            * ja.po: Updated Japanese translation for v0.5.1.
 
  po/ChangeLog |   4 ++
  po/ja.po     | 223 ++++++++++++++++++++++++++++++++++++++++-------------------
@@ -15790,7 +15672,7 @@ Date:   Sat Nov 26 18:25:48 2005 +0000
     
     2005-11-26  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 +
  po/es.po     | 279 ++++++++++++++++++++++++++++++++++++++---------------------
@@ -15858,7 +15740,7 @@ Date:   Thu Oct 27 21:49:27 2005 +0000
     
     2005-10-28  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog | 4 ++++
  po/et.po     | 2 +-
@@ -15963,8 +15845,8 @@ Date:   Sat Oct 1 20:19:25 2005 +0000
     
     2005-10-01  Crispin Flowerday  <gnome@flowerday.cx>
     
-    	* configure.in: Up version number to 0.5.1
-    	(requested by shaunm)
+            * configure.in: Up version number to 0.5.1
+            (requested by shaunm)
 
  ChangeLog    | 5 +++++
  configure.in | 2 +-
@@ -16151,8 +16033,8 @@ Date:   Tue Sep 6 07:15:06 2005 +0000
     
     2005-09-06  Frank Arnold  <farnold@cvs.gnome.org>
     
-    	* de.po: Fixed two messages with untranslated content.
-    	See Bug #315328. Spotted by Danilo.
+            * de.po: Fixed two messages with untranslated content.
+            See Bug #315328. Spotted by Danilo.
 
  po/ChangeLog |  5 +++++
  po/de.po     | 28 ++++++++++++++--------------
@@ -16204,7 +16086,7 @@ Date:   Mon Sep 5 18:22:13 2005 +0000
     
     2005-09-05  Žygimantas Beručka  <zygis@gnome.org>
     
-    	* lt.po: Updated Lithuanian translation.
+            * lt.po: Updated Lithuanian translation.
 
  po/ChangeLog |   4 ++
  po/lt.po     | 164 +++++++++++++++++++++++++++++++++++++----------------------
@@ -16218,7 +16100,7 @@ Date:   Mon Sep 5 11:35:51 2005 +0000
     
     2005-09-05  Mugurel Tudor  <mugurelu@gnome.ro>
     
-    	* ro.po: Updated Romanian translation
+            * ro.po: Updated Romanian translation
 
  po/ChangeLog | 4 ++++
  po/ro.po     | 1 +
@@ -16232,7 +16114,7 @@ Date:   Mon Sep 5 11:29:30 2005 +0000
     
     2005-09-05  Mugurel Tudor  <mugurelu@gnome.ro>
     
-    	* ro.po: Updated Romanian translation
+            * ro.po: Updated Romanian translation
 
  po/ChangeLog |   4 +
  po/ro.po     | 378 ++++++++++++++++++++++++-----------------------------------
@@ -16288,7 +16170,7 @@ Date:   Sat Sep 3 05:58:13 2005 +0000
     
     2005-09-03  Chao-Hsiung Liao  <j_h_liau@yahoo.com.tw>
     
-    	* zh_TW.po: Updated Traditional Chinese translation.
+            * zh_TW.po: Updated Traditional Chinese translation.
 
  po/ChangeLog |   4 +
  po/zh_TW.po  | 370 ++++++++++++++++++++++++++---------------------------------
@@ -16360,7 +16242,7 @@ Date:   Tue Aug 30 08:57:52 2005 +0000
     
     2005-08-30  Yair Hershkovitz  <yairhr@gmail.com>
     
-    	he.po: Added Hebrew translation.
+            he.po: Added Hebrew translation.
 
  ChangeLog    |    6 +-
  configure.in |    2 +-
@@ -16412,7 +16294,7 @@ Date:   Mon Aug 29 18:16:59 2005 +0000
     
     2005-08-29  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 +
  po/es.po     | 356 +++++++++--------------------------------------------------
@@ -16447,7 +16329,7 @@ Date:   Sun Aug 28 16:41:07 2005 +0000
     
     2005-08-28  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 +
  po/pt.po     | 253 +++++++++++++++++++++++++++++++++++++----------------------
@@ -16517,8 +16399,8 @@ Date:   Tue Aug 23 02:18:46 2005 +0000
     
     2005-08-22  Evandro Fernandes Giovanini <evandrofg@ig.com.br>
     
-    	* pt_BR.po: Updated Brazilian Portuguese translation
-    	from Pedro de Medeiros <pedro.medeiros@gmail.com>.
+            * pt_BR.po: Updated Brazilian Portuguese translation
+            from Pedro de Medeiros <pedro.medeiros@gmail.com>.
 
  po/ChangeLog |   5 ++
  po/pt_BR.po  | 271 +++++++++++++++++++++++++++++++++++------------------------
@@ -16555,7 +16437,7 @@ Date:   Fri Aug 19 05:50:38 2005 +0000
     
     2005-08-19  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog |   4 ++
  po/et.po     | 150 ++++++++++++++++++++++++++++++++++-------------------------
@@ -16569,7 +16451,7 @@ Date:   Thu Aug 18 18:29:25 2005 +0000
     
     2005-08-18  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |   4 +
  po/nl.po     | 263 ++++++++++++++++++++++++++++++++++++-----------------------
@@ -16583,7 +16465,7 @@ Date:   Tue Aug 16 17:21:42 2005 +0000
     
     2005-08-16  Maxim Dziumanenko <mvd@mylinux.ua>
     
-    	* Updated Ukrainian translation.
+            * Updated Ukrainian translation.
 
  po/ChangeLog |   4 +
  po/uk.po     | 365 ++++++++++++++++++++++++++---------------------------------
@@ -16597,7 +16479,7 @@ Date:   Sun Aug 14 22:03:33 2005 +0000
     
     2005-08-15  Gabor Kelemen  <kelemeng@gnome.hu>
     
-    	* hu.po: Hungarian translation updated.
+            * hu.po: Hungarian translation updated.
 
  po/ChangeLog |   4 +
  po/hu.po     | 432 ++++++++++++++++++++++-------------------------------------
@@ -16611,8 +16493,8 @@ Date:   Fri Aug 12 07:05:48 2005 +0000
     
     2005-08-12  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |   5 +++
  po/bg.po     | 129 ++++++++++++++++++++++++++++++++++++++---------------------
@@ -16659,7 +16541,7 @@ Date:   Tue Aug 9 09:24:02 2005 +0000
     
     2005-08-09  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |   4 +
  po/sq.po     | 395 +++++++++++++++++++++++++----------------------------------
@@ -16673,7 +16555,7 @@ Date:   Sun Aug 7 06:16:07 2005 +0000
     
     2005-08-07  Takeshi AIHANA <aihana@gnome.gr.jp>
     
-    	* ja.po: Updated Japanese translation for HEAD.
+            * ja.po: Updated Japanese translation for HEAD.
 
  po/ChangeLog |   4 ++
  po/ja.po     | 166 +++++++++++++++++++++++++++++++++--------------------------
@@ -16687,8 +16569,8 @@ Date:   Sat Aug 6 02:57:07 2005 +0000
     
     2005-08-06  Terance Sola  <terance@lyse.net>
     
-    	* nb.po: Updated Norwegian Bbokmål translation.
-    	* no.po: Same.
+            * nb.po: Updated Norwegian Bbokmål translation.
+            * no.po: Same.
 
  po/ChangeLog |   5 ++
  po/nb.po     | 226 +++++++++++++++++++++++++++++++++++++++--------------------
@@ -16703,7 +16585,7 @@ Date:   Fri Aug 5 20:14:57 2005 +0000
     
     2005-08-05  Marcel Telka  <marcel@telka.sk>
     
-    	* sk.po: Updated Slovak translation.
+            * sk.po: Updated Slovak translation.
 
  po/ChangeLog |   4 ++
  po/sk.po     | 168 +++++++++++++++++++++++++++++++++++------------------------
@@ -16717,8 +16599,8 @@ Date:   Fri Aug 5 09:38:28 2005 +0000
     
     2005-08-05  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Updated Norwegian bokmål translation.
-    	* no.po: Same
+            * nb.po: Updated Norwegian bokmål translation.
+            * no.po: Same
 
  po/ChangeLog |   5 ++
  po/nb.po     | 251 +++++++++++++++--------------------------------------------
@@ -16733,7 +16615,7 @@ Date:   Thu Aug 4 14:38:32 2005 +0000
     
     2005-08-04  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 177 +++++++++++++++++++++++++++++------------------------------
@@ -16758,7 +16640,7 @@ Date:   Tue Aug 2 17:13:17 2005 +0000
     
     2005-08-02  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 ++
  po/en_CA.po  | 215 +++++++++++++++++++++++++++++++----------------------------
@@ -16791,7 +16673,7 @@ Date:   Tue Aug 2 08:41:16 2005 +0000
     Updated Finnish translation.
     
     2005-08-02  Tommi Vainikainen  <thv@iki.fi>
-    	* fi.po: Updated Finnish translation.
+            * fi.po: Updated Finnish translation.
 
  po/ChangeLog |   4 ++
  po/fi.po     | 129 ++++++++++++++++++++++++++++++++++++++---------------------
@@ -16958,8 +16840,8 @@ Date:   Mon Aug 1 14:19:01 2005 +0000
     
     2005-08-01  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |  5 ++++
  po/bg.po     | 77 +++++++++++++++++++++++++++++++++++-------------------------
@@ -16972,7 +16854,7 @@ Date:   Mon Aug 1 13:43:46 2005 +0000
     Updated Finnish translation.
     
     2005-08-01  Tommi Vainikainen  <thv@iki.fi>
-    	* fi.po: Updated Finnish translation.
+            * fi.po: Updated Finnish translation.
 
  po/ChangeLog |  4 ++++
  po/fi.po     | 77 +++++++++++++++++++++++++++++++++++-------------------------
@@ -16986,7 +16868,7 @@ Date:   Fri Jul 29 19:58:49 2005 +0000
     
     2005-07-29  Marcel Telka  <marcel@telka.sk>
     
-    	* sk.po: Updated Slovak translation.
+            * sk.po: Updated Slovak translation.
 
  po/ChangeLog |    4 +
  po/sk.po     | 1857 +++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17028,9 +16910,9 @@ Date:   Thu Jul 28 15:29:25 2005 +0000
     
     2005-07-28  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-utils.m4:
-    	- Use $PACKAGE instead of $AC_PACKAGE_TARNAME which seems to not
-    	work with packages using older auto*.
+            * gnome-doc-utils.m4:
+            - Use $PACKAGE instead of $AC_PACKAGE_TARNAME which seems to not
+            work with packages using older auto*.
 
  ChangeLog          | 6 ++++++
  gnome-doc-utils.m4 | 2 +-
@@ -17044,8 +16926,8 @@ Date:   Thu Jul 28 10:41:44 2005 +0000
     
     2005-07-28  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |   20 +-
  po/bg.po     | 1878 ++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -17059,8 +16941,8 @@ Date:   Wed Jul 27 18:55:31 2005 +0000
     
     2005-07-27  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-utils.m4:
-    	- Only apply the version check when we're not configuring g-d-u
+            * gnome-doc-utils.m4:
+            - Only apply the version check when we're not configuring g-d-u
 
  ChangeLog          |  6 ++++++
  gnome-doc-utils.m4 | 12 +++++++-----
@@ -17074,10 +16956,10 @@ Date:   Wed Jul 27 17:41:00 2005 +0000
     
     2005-07-27  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-utils.m4:
-    	- Add minimum-version argument to GNOME_DOC_INIT, and check
-    	for the required gdu version. Minimum is 0.3.2 if not specified.
-    	Fixes bug #311661.
+            * gnome-doc-utils.m4:
+            - Add minimum-version argument to GNOME_DOC_INIT, and check
+            for the required gdu version. Minimum is 0.3.2 if not specified.
+            Fixes bug #311661.
 
  ChangeLog          |  7 +++++++
  gnome-doc-utils.m4 | 10 +++++++++-
@@ -17198,7 +17080,7 @@ Date:   Mon Jul 25 10:56:27 2005 +0000
     
     2005-07-25  Tommi Vainikainen  <thv@iki.fi>
     
-    	* fi.po: Updated Finnish translation.
+            * fi.po: Updated Finnish translation.
 
  po/ChangeLog |    4 +
  po/fi.po     | 2062 +++++++++++++++++++++++++++++++++++++++++++++++++++-------
@@ -17212,7 +17094,7 @@ Date:   Sat Jul 23 16:40:13 2005 +0000
     
     2005-07-23  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |    4 +
  po/cs.po     | 1905 ++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -17251,10 +17133,10 @@ Date:   Fri Jul 22 20:58:10 2005 +0000
     
     2005-07-22 Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-prepare.in:
-    	Copy gnome-doc-utils.m4 to the AC_CONFIG_MACRO_DIR if
-    	present. Should fix "make configure" after changing
-    	configure.
+            * gnome-doc-prepare.in:
+            Copy gnome-doc-utils.m4 to the AC_CONFIG_MACRO_DIR if
+            present. Should fix "make configure" after changing
+            configure.
 
  ChangeLog            |  7 +++++++
  gnome-doc-prepare.in | 39 +++++++++++++++++++++++++++++++++++++++
@@ -17451,7 +17333,7 @@ Date:   Mon Jul 18 08:42:58 2005 +0000
     
     2005-07-18  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |    4 +
  po/en_CA.po  | 1895 +++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17475,7 +17357,7 @@ Date:   Sun Jul 17 10:32:40 2005 +0000
     
     2005-07-17  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |    4 +
  po/es.po     | 2022 +++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17515,18 +17397,17 @@ Date:   Sun Jul 17 07:48:16 2005 +0000
     * xslt/gettext/gettext.xsl:
     - Added more plural forms
 
- ChangeLog                |  20 ++
- Makefile.am              |   6 -
- TRANSLATORS.xhtml        | 560 -----------------------------------------------
- i18n/Makefile            |  10 +
- i18n/PLURALS.txt         | 127 +++++++++++
- i18n/STYLESHEETS.xhtml   | 560 +++++++++++++++++++++++++++++++++++++++++++++++
- i18n/notes/vi.txt        |  35 +++
- i18n/plurals.sh          |  74 +++++++
- po/POTFILES.in           |   1 -
- xslt/gettext/gettext.xsl | 121 +++++++++-
- xslt/gettext/l10n.xml.in |  72 +++---
- 11 files changed, 975 insertions(+), 611 deletions(-)
+ ChangeLog                                   |  20 +++++
+ Makefile.am                                 |   6 --
+ i18n/Makefile                               |  10 +++
+ i18n/PLURALS.txt                            | 127 ++++++++++++++++++++++++++++
+ TRANSLATORS.xhtml => i18n/STYLESHEETS.xhtml |   0
+ i18n/notes/vi.txt                           |  35 ++++++++
+ i18n/plurals.sh                             |  74 ++++++++++++++++
+ po/POTFILES.in                              |   1 -
+ xslt/gettext/gettext.xsl                    | 121 ++++++++++++++++++++++++--
+ xslt/gettext/l10n.xml.in                    |  72 ++++++++--------
+ 10 files changed, 415 insertions(+), 51 deletions(-)
 
 commit fc16361be7681111719cc3a26af9b37a992784e0
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -17551,7 +17432,7 @@ Date:   Sat Jul 16 16:01:11 2005 +0000
     
     2005-07-17  Takeshi AIHANA <aihana@gnome.gr.jp>
     
-    	* ja.po: Updated Japanese translation for v0.3.1.
+            * ja.po: Updated Japanese translation for v0.3.1.
 
  po/ChangeLog |    4 +
  po/ja.po     | 1888 +++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17639,7 +17520,7 @@ Date:   Mon Jul 11 21:29:51 2005 +0000
     
     2005-07-12  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog |    4 +
  po/et.po     | 2017 +++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17762,7 +17643,7 @@ Date:   Thu Jun 23 22:26:15 2005 +0000
     
     2005-06-23  Marcel Telka  <marcel@telka.sk>
     
-    	* sk.po: Updated Slovak translation.
+            * sk.po: Updated Slovak translation.
 
  po/ChangeLog | 4 ++++
  po/sk.po     | 7 ++++---
@@ -17776,7 +17657,7 @@ Date:   Wed Jun 22 21:14:53 2005 +0000
     
     2005-06-22  Marcel Telka  <marcel@telka.sk>
     
-    	* sk.po: Updated Slovak translation.
+            * sk.po: Updated Slovak translation.
 
  po/ChangeLog |   4 +
  po/sk.po     | 445 +++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -17790,7 +17671,7 @@ Date:   Mon Jun 20 20:51:02 2005 +0000
     
     2005-06-20  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 +
  po/es.po     | 376 +++++++++++++++++++++++++++++++++++++++++++++++++++--------
@@ -17804,7 +17685,7 @@ Date:   Mon Jun 20 20:41:52 2005 +0000
     
     2005-06-20  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/es.po | 24 +++++++++++-------------
  1 file changed, 11 insertions(+), 13 deletions(-)
@@ -17852,7 +17733,7 @@ Date:   Sat Jun 4 23:51:33 2005 +0000
     
     2005-06-05  Christian Rose  <menthos@menthos.com>
     
-    	* sv.po: Changed the translation of stylesheet.
+            * sv.po: Changed the translation of stylesheet.
 
  po/ChangeLog | 4 ++++
  po/sv.po     | 6 +++---
@@ -17866,7 +17747,7 @@ Date:   Wed Jun 1 18:17:18 2005 +0000
     
     2005-06-01  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated.
+            * et.po: Translation updated.
 
  po/ChangeLog |  4 ++++
  po/et.po     | 42 +++++++++++++++---------------------------
@@ -17894,7 +17775,7 @@ Date:   Mon May 30 13:56:07 2005 +0000
     
     2005-05-30  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated by Ivar Smolin.
+            * et.po: Translation updated by Ivar Smolin.
 
  po/ChangeLog |   4 +
  po/et.po     | 509 +++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -17908,8 +17789,8 @@ Date:   Wed May 25 20:47:46 2005 +0000
     
     2005-05-25  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Update
-    	* no.po: Update
+            * nb.po: Update
+            * no.po: Update
 
  po/ChangeLog |   5 +
  po/nb.po     | 374 +++++++++++++++++++++++++++++++++++++++++++++++++++--------
@@ -17937,7 +17818,7 @@ Date:   Thu May 19 18:18:40 2005 +0000
     
     2005-05-19  Adam Weinberger  <adamw@gnome.org>
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 +
  po/en_CA.po  | 437 ++++++++++++++++++++++++++++++++++++++++++++++++-----------
@@ -17951,7 +17832,7 @@ Date:   Fri May 13 19:05:16 2005 +0000
     
     2005-05-13  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |   4 +
  po/nl.po     | 441 +++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -17965,7 +17846,7 @@ Date:   Thu May 12 09:47:31 2005 +0000
     
     2005-05-12  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |   4 +
  po/cs.po     | 443 +++++++++++++++++++++++++++++++++++++++++++++++------------
@@ -18074,8 +17955,8 @@ Date:   Tue Apr 12 18:15:07 2005 +0000
     
     2005-04-12  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-utils.make:
-    	- Fix the rule to copy pofiles from srcdir to builddir.
+            * gnome-doc-utils.make:
+            - Fix the rule to copy pofiles from srcdir to builddir.
 
  ChangeLog            | 5 +++++
  gnome-doc-utils.make | 2 +-
@@ -18620,7 +18501,7 @@ Date:   Wed Mar 16 23:28:58 2005 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog | 4 ++++
  po/en_CA.po  | 2 +-
@@ -18634,9 +18515,9 @@ Date:   Thu Mar 10 19:19:12 2005 +0000
     
     2005-03-10  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* gnome-doc-utils.m4:
+            * gnome-doc-utils.m4:
     
-    	Fix for srcdir != builddir. Part of bug #169768.
+            Fix for srcdir != builddir. Part of bug #169768.
 
  ChangeLog          | 6 ++++++
  gnome-doc-utils.m4 | 2 +-
@@ -18650,11 +18531,11 @@ Date:   Thu Mar 10 19:17:47 2005 +0000
     
     2005-03-10  Christian Persch  <chpe@cvs.gnome.org>
     
-    	* xslt/docbook/common/Makefile.am:
-    	* xslt/gettext/Makefile.am:
+            * xslt/docbook/common/Makefile.am:
+            * xslt/gettext/Makefile.am:
     
-    	Fix for srcdir != builddir. Add generated files to CLEANFILES.
-    	From bug #169324.
+            Fix for srcdir != builddir. Add generated files to CLEANFILES.
+            From bug #169324.
 
  ChangeLog                       | 8 ++++++++
  xslt/docbook/common/Makefile.am | 6 ++++--
@@ -18681,7 +18562,7 @@ Date:   Tue Mar 8 09:51:28 2005 +0000
     
     2005-03-08  Funda Wang  <fundawang@linux.net.cn>
     
-    	* xml2po.py: Standard POT Header Output.
+            * xml2po.py: Standard POT Header Output.
 
  xml2po/ChangeLog | 6 ++++++
  xml2po/xml2po.py | 8 ++++----
@@ -18764,7 +18645,7 @@ Date:   Fri Mar 4 14:39:43 2005 +0000
     
     2005-03-04  Laszlo Dvornik  <dvornik@gnome.hu>
     
-    	* hu.po: Hungarian translation updated by Gabor Kelemen.
+            * hu.po: Hungarian translation updated by Gabor Kelemen.
 
  po/ChangeLog |   4 +
  po/hu.po     | 684 ++++++++++++++++++++++++++++++++++++++++++-----------------
@@ -18798,7 +18679,7 @@ Date:   Thu Mar 3 20:05:06 2005 +0000
     
     2005-03-03  Abel Cheung  <maddog@linuxhall.org>
     
-    	* configure.in: Added "vi" "zh_TW" to ALL_LINGUAS.
+            * configure.in: Added "vi" "zh_TW" to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -18810,7 +18691,7 @@ Date:   Thu Mar 3 20:04:47 2005 +0000
 
     New traditional Chinese translation by GNOME HK Team.
     
-    	* zh_TW.po: New traditional Chinese translation by GNOME HK Team.
+            * zh_TW.po: New traditional Chinese translation by GNOME HK Team.
 
  po/ChangeLog |   4 +
  po/zh_TW.po  | 552 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -18824,8 +18705,8 @@ Date:   Thu Mar 3 16:18:59 2005 +0000
     
     2005-03-03  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |   5 +
  po/bg.po     | 461 +++++++++++++++++++++++++++++++++++++++++++----------------
@@ -18852,7 +18733,7 @@ Date:   Thu Mar 3 01:35:12 2005 +0000
     Updated Japanese translation.
     
     2005-03-03  Takeshi AIHANA <aihana@jcom.home.ne.jp>
-    	* ja.po: Updated Japanese translation.
+            * ja.po: Updated Japanese translation.
 
  po/ChangeLog |   4 +
  po/ja.po     | 544 +++++++++++++++++++++++++++++++++++++++++------------------
@@ -18897,26 +18778,26 @@ Date:   Tue Mar 1 16:06:16 2005 +0000
     
     2005-03-01  Danilo Šegan  <dsegan@gmx.net>
     
-    	* TODO (DONE): add tags in source references and output PO header.
+            * TODO (DONE): add tags in source references and output PO header.
     
-    	* xml2po.py (MessageOutput.outputMessage): Add "tag" in source
-    	references.
-    	(processElementTag): Pass node.name as tag to outputMessage.
-    	(MessageOutput.outputHeader): output PO file header.
-    	(MessageOutput.outputAll): call outputHeader.
+            * xml2po.py (MessageOutput.outputMessage): Add "tag" in source
+            references.
+            (processElementTag): Pass node.name as tag to outputMessage.
+            (MessageOutput.outputHeader): output PO file header.
+            (MessageOutput.outputAll): call outputHeader.
     
     2005-03-01  Danilo Šegan  <dsegan@gmx.net>
     
-    	Fix #168571.
+            Fix #168571.
     
-    	* examples/two.po: Updated example.
+            * examples/two.po: Updated example.
     
-    	* xml2po.py (processElementTag): Rewritten.
-    	(processFinalTag): Removed.
-    	(worthOutputting): Final tags are worth if non-empty.
-    	(doSerialize): Respect new processElementTag semantics.
-    	(isFinalNode): Also 1 if all node.children are final.
-    	(getTranslation): Updated doc string.
+            * xml2po.py (processElementTag): Rewritten.
+            (processFinalTag): Removed.
+            (worthOutputting): Final tags are worth if non-empty.
+            (doSerialize): Respect new processElementTag semantics.
+            (isFinalNode): Also 1 if all node.children are final.
+            (getTranslation): Updated doc string.
 
  xml2po/ChangeLog       |  23 ++++++++++
  xml2po/TODO            |   6 ++-
@@ -18941,8 +18822,8 @@ Date:   Tue Mar 1 03:21:56 2005 +0000
     
     2005-03-01  Ahmad Riza H Nst  <ari@160c.afraid.org>
     
-    	* configure.in: Added id (Indonesian) in ALL_LINGUAS line.
-    	* po/id.po: Added Indonesian Translation.
+            * configure.in: Added id (Indonesian) in ALL_LINGUAS line.
+            * po/id.po: Added Indonesian Translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -18993,7 +18874,7 @@ Date:   Mon Feb 28 11:40:59 2005 +0000
     
     2005-02-28  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation updated.
+            * et.po: Translation updated.
 
  po/ChangeLog |  4 +++
  po/et.po     | 79 +++++++++++++++++++++++++++++++-----------------------------
@@ -19052,7 +18933,7 @@ Date:   Fri Feb 25 08:05:54 2005 +0000
     
     2005-02-25  Frank Arnold  <farnold@cvs.gnome.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
 
  po/ChangeLog | 4 ++++
  po/de.po     | 6 +++---
@@ -19066,7 +18947,7 @@ Date:   Thu Feb 24 22:47:21 2005 +0000
     
     2005-02-24  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 ++++
  po/es.po     | 22 ++++++++++++++++++++--
@@ -19081,10 +18962,10 @@ Date:   Thu Feb 24 19:27:22 2005 +0000
     
     2005-02-24  Arafat Medini  <kinryu@silverpen.de>
     
-    	* ar.po: Updated Arabic translation.
+            * ar.po: Updated Arabic translation.
     2005-02-24  Arafat Medini  <kinryu@silverpen.de>
     
-    	* ar.po: Updated Arabic translation.
+            * ar.po: Updated Arabic translation.
 
  po/ChangeLog |   4 ++
  po/ar.po     | 138 +++++++++++++++++++----------------------------------------
@@ -19150,7 +19031,7 @@ Date:   Tue Feb 22 23:49:47 2005 +0000
     
     2005-02-23  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 182 ++++++++++++++++++++++++++++++-----------------------------
@@ -19165,7 +19046,7 @@ Date:   Tue Feb 22 08:17:32 2005 +0000
     
     2005-02-22  Arafat Medini  <kinryu@silverpen.de>
     
-    	* ar.po: Added Arabic translation.
+            * ar.po: Added Arabic translation.
 
  ChangeLog    |   5 +
  configure.in |   4 +
@@ -19181,7 +19062,7 @@ Date:   Fri Feb 18 09:43:55 2005 +0000
     
     2005-02-18  Frank Arnold  <farnold@cvs.gnome.org>
     
-    	* de.po: German translation bugfix.
+            * de.po: German translation bugfix.
 
  po/ChangeLog |   4 +
  po/de.po     | 298 ++++++++++++++++++++++++++++++++---------------------------
@@ -19195,7 +19076,7 @@ Date:   Fri Feb 18 01:22:45 2005 +0000
     
     2005-02-18  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 ++
  po/pt.po     | 194 ++++++++++++++++++++++++++++++++---------------------------
@@ -19209,8 +19090,8 @@ Date:   Wed Feb 16 16:59:15 2005 +0000
     
     2005-02-16  Alexander Shopov  <ash@contact.bg>
     
-    	* bg.po: Updated Bulgarian translation by
-    	Alexander Shopov <ash@contact.bg>
+            * bg.po: Updated Bulgarian translation by
+            Alexander Shopov <ash@contact.bg>
 
  po/ChangeLog |  11 +++-
  po/bg.po     | 187 ++++++++++++++++++++++++++++++++---------------------------
@@ -19236,7 +19117,7 @@ Date:   Tue Feb 15 13:11:17 2005 +0000
     
     2005-02-15  Changwoo Ryu  <cwryu@debian.org>
     
-    	* configure.in: Added "ko" to ALL_LINGUAS.
+            * configure.in: Added "ko" to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -19250,7 +19131,7 @@ Date:   Tue Feb 15 13:10:22 2005 +0000
     
     2005-02-15  Changwoo Ryu  <cwryu@debian.org>
     
-    	* ko.po: Added Korean translation.
+            * ko.po: Added Korean translation.
 
  po/ChangeLog |   4 +
  po/ko.po     | 295 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -19264,9 +19145,9 @@ Date:   Mon Feb 14 12:11:49 2005 +0000
     
     2005-02-14  Pawan Chitrakar  <pawan@nplinux.org>
     
-    	* ne.po: Added Nepali Translation
+            * ne.po: Added Nepali Translation
     
-    	* configure.in: Added ne "Nepali" in ALL_LINGUAS
+            * configure.in: Added ne "Nepali" in ALL_LINGUAS
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -19325,7 +19206,7 @@ Date:   Thu Feb 10 12:42:27 2005 +0000
     
     2005-02-10  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Update
+            * nb.po: Update
 
  po/ChangeLog |   4 +
  po/nb.po     | 220 ++++++++++++++++++++-----------------------
@@ -19368,7 +19249,7 @@ Date:   Tue Feb 1 08:57:25 2005 +0000
     
     2005-02-01  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |   4 +
  po/sq.po     | 381 ++++++++++++++++++++++++++++-------------------------------
@@ -19382,7 +19263,7 @@ Date:   Tue Feb 1 00:48:28 2005 +0000
     
     2005-02-01  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |   4 ++
  po/nl.po     | 197 +++++++++++++++++++++++++++++++++--------------------------
@@ -19396,9 +19277,9 @@ Date:   Fri Jan 28 20:51:35 2005 +0000
     
     2005-01-28  Matthias Clasen  <mclasen@redhat.com>
     
-    	* modes/Makefile.am (commondir):
-    	* Makefile.am (commondir): Use $(destdir), not
-    	@destdir@, which is resolved too early.
+            * modes/Makefile.am (commondir):
+            * Makefile.am (commondir): Use $(destdir), not
+            @destdir@, which is resolved too early.
 
  xml2po/Makefile.am       | 2 +-
  xml2po/modes/Makefile.am | 2 +-
@@ -19479,7 +19360,7 @@ Date:   Thu Jan 20 15:21:17 2005 +0000
     
     2005-01-20  Frank Arnold  <farnold@cvs.gnome.org>
     
-    	* de.po: Updated German translation.
+            * de.po: Updated German translation.
 
  po/ChangeLog |   4 ++
  po/de.po     | 193 +++++++++++++++++++++++++++++++----------------------------
@@ -19510,7 +19391,7 @@ Date:   Wed Jan 19 18:52:03 2005 +0000
     
     2005-01-19  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* configure.in: Added et to ALL_LINGUAS.
+            * configure.in: Added et to ALL_LINGUAS.
 
  configure.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -19523,7 +19404,7 @@ Date:   Wed Jan 19 18:52:00 2005 +0000
     
     2005-01-19  Priit Laes  <plaes@cvs.gnome.org>
     
-    	* et.po: Translation added.
+            * et.po: Translation added.
 
  po/ChangeLog |   4 +
  po/et.po     | 289 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -19606,7 +19487,7 @@ Date:   Sat Jan 15 22:08:15 2005 +0000
     
     2005-01-15  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Update
+            * nb.po: Update
 
  po/ChangeLog |   4 ++
  po/nb.po     | 199 ++++++++++++++++++++++++++++++++---------------------------
@@ -19652,7 +19533,7 @@ Date:   Wed Jan 12 13:56:20 2005 +0000
     
     2005-01-05  Maxim Dziumanenko <mvd@mylinux.com.ua>
     
-    	* Update Ukrainian translation
+            * Update Ukrainian translation
 
  po/ChangeLog |   4 +
  po/uk.po     | 380 +++++++++++++++++++++++++++++------------------------------
@@ -19742,7 +19623,7 @@ Date:   Mon Jan 3 23:39:19 2005 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 +++
  po/en_CA.po  | 113 ++++++++++++++++++-----------------------------------------
@@ -19756,7 +19637,7 @@ Date:   Mon Jan 3 16:43:34 2005 +0000
     
     2005-01-03  Christian Rose  <menthos@menthos.com>
     
-    	* sv.po: Updated Swedish translation.
+            * sv.po: Updated Swedish translation.
 
  po/ChangeLog |   4 +
  po/sv.po     | 521 ++++++++++++++++++++++++++++++++++++-----------------------
@@ -19871,7 +19752,7 @@ Date:   Sun Jan 2 14:16:38 2005 +0000
     
     2005-01-02  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |   4 ++
  po/cs.po     | 148 ++++++++++++++++++++++++++++-------------------------------
@@ -19938,7 +19819,7 @@ Date:   Sat Jan 1 13:43:17 2005 +0000
     
     2005-01-01  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 ++
  po/es.po     | 192 +++++++++++++++++++++++++++++++++--------------------------
@@ -19953,7 +19834,7 @@ Date:   Fri Dec 31 16:53:10 2004 +0000
     2004-12-31  Žygimantas Beručka  <uid0@akl.lt>
     
             * po/lt.po: Added Lithuanian translation.
-    	* configure.in (ALL_LINGUAS): Added lt.
+            * configure.in (ALL_LINGUAS): Added lt.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -19969,7 +19850,7 @@ Date:   Wed Dec 29 21:36:20 2004 +0000
     
     2004-12-29  Marcel Telka  <marcel@telka.sk>
     
-    	* configure.in (ALL_LINGUAS): Added sk.
+            * configure.in (ALL_LINGUAS): Added sk.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -19983,7 +19864,7 @@ Date:   Wed Dec 29 21:34:23 2004 +0000
     
     2004-12-29  Marcel Telka  <marcel@telka.sk>
     
-    	* sk.po: Added Slovak translation.
+            * sk.po: Added Slovak translation.
 
  po/ChangeLog |   4 +
  po/sk.po     | 299 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -20178,7 +20059,7 @@ Date:   Sat Dec 25 15:02:16 2004 +0000
     
     2004-12-25  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 45 +++++++++++++++++++++++++++++++++++----------
@@ -20191,7 +20072,7 @@ Date:   Thu Dec 23 15:40:22 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 45 +++++++++++++++++++++++++++++++++++----------
@@ -20326,7 +20207,7 @@ Date:   Sun Dec 19 17:13:08 2004 +0000
     
     2004-12-19  Alexander Shopov  <ash@contact.bg>
     
-    	* Added Bulgarian translation
+            * Added Bulgarian translation
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -20385,7 +20266,7 @@ Date:   Sat Dec 11 21:40:38 2004 +0000
     
     2004-12-11  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog | 4 ++++
  po/cs.po     | 9 +++++++--
@@ -20399,7 +20280,7 @@ Date:   Sat Dec 11 13:17:45 2004 +0000
     
     2004-12-11  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Updated Portuguese translation.
+            * pt.po: Updated Portuguese translation.
 
  po/ChangeLog |   4 +
  po/pt.po     | 433 +++++++++++++++++++++++++++++++++++++----------------------
@@ -20426,7 +20307,7 @@ Date:   Fri Dec 10 05:57:32 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 11 ++++++++---
@@ -20495,7 +20376,7 @@ Date:   Tue Dec 7 17:23:03 2004 +0000
     
     2004-12-07  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog | 4 ++++
  po/cs.po     | 8 ++++----
@@ -20552,7 +20433,7 @@ Date:   Sun Dec 5 00:17:11 2004 +0000
     
     2004-12-05  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |   4 +
  po/es.po     | 431 ++++++++++++++++++++++++++++++++++++-----------------------
@@ -20669,7 +20550,7 @@ Date:   Wed Nov 24 22:11:05 2004 +0000
     
     2004-11-24  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |   4 +
  po/nl.po     | 291 ++++++++++++++++++++++++++++++++++++-----------------------
@@ -20821,7 +20702,7 @@ Date:   Sat Nov 20 15:25:56 2004 +0000
     
     2004-11-20  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 36 ++++++++++++++++++++++--------------
@@ -20851,7 +20732,7 @@ Date:   Fri Nov 19 16:53:44 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 36 ++++++++++++++++++++++--------------
@@ -20918,7 +20799,7 @@ Date:   Thu Nov 18 23:36:18 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 39 ++++++++++++++++++++++-----------------
@@ -20966,7 +20847,7 @@ Date:   Tue Nov 16 16:54:53 2004 +0000
     
     2004-11-16  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* configure.in: Add «nb» to ALL_LINGUAS.
+            * configure.in: Add «nb» to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -20980,7 +20861,7 @@ Date:   Tue Nov 16 16:53:40 2004 +0000
     
     2004-11-16  Kjartan Maraas  <kmaraas@gnome.org>
     
-    	* nb.po: Add this.
+            * nb.po: Add this.
 
  po/ChangeLog |   4 +
  po/nb.po     | 302 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -21033,7 +20914,7 @@ Date:   Sat Nov 13 11:16:50 2004 +0000
     
     2004-11-13  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 39 ++++++++++++++++++++++-----------------
@@ -21162,7 +21043,7 @@ Date:   Tue Nov 9 22:37:31 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 ++
  po/en_CA.po  | 221 ++++++++++++++++++++++++++++++-----------------------------
@@ -21190,7 +21071,7 @@ Date:   Tue Nov 9 14:22:35 2004 +0000
     
     2004-11-09  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 21 ++++++++++++++-------
@@ -21399,7 +21280,7 @@ Date:   Sun Oct 31 13:48:15 2004 +0000
     
     2004-10-31  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |   4 +
  po/nl.po     | 301 +++++++++++++++++++++++++++++++++--------------------------
@@ -21459,7 +21340,7 @@ Date:   Fri Oct 29 08:50:31 2004 +0000
     
     2004-10-29  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 29 +++++++++++++++++------------
@@ -21472,7 +21353,7 @@ Date:   Thu Oct 28 19:41:49 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 29 +++++++++++++++++------------
@@ -21519,7 +21400,7 @@ Date:   Thu Oct 21 19:40:38 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |   4 ++
  po/en_CA.po  | 201 ++++++++++++++++++++---------------------------------------
@@ -21533,7 +21414,7 @@ Date:   Thu Oct 21 14:51:59 2004 +0000
     
     2004-10-21  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |   4 ++
  po/cs.po     | 201 ++++++++++++++++++++---------------------------------------
@@ -21612,7 +21493,7 @@ Date:   Tue Oct 19 14:57:20 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 47 +++++++++++++++++++++++++++++++++++++++++------
@@ -21626,7 +21507,7 @@ Date:   Tue Oct 19 13:26:28 2004 +0000
     
     2004-10-19  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 47 +++++++++++++++++++++++++++++++++++++++++------
@@ -21680,7 +21561,7 @@ Date:   Mon Oct 18 09:51:51 2004 +0000
     
     2004-10-18  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 33 +++++++++++++++++++--------------
@@ -21693,7 +21574,7 @@ Date:   Sun Oct 17 19:01:19 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 36 +++++++++++++++++++++---------------
@@ -21761,9 +21642,9 @@ Date:   Sat Oct 9 16:00:26 2004 +0000
     
     2004-10-09  Danilo Šegan  <dsegan@gmx.net>
     
-    	* modes/docbook.py (docbookXmlMode.getSpacePreserveTags): Add
-    	'classsynopsisinfo', 'funcsynopsisinfo', 'synopsis', as per
-    	DocBook Definitive Guide.
+            * modes/docbook.py (docbookXmlMode.getSpacePreserveTags): Add
+            'classsynopsisinfo', 'funcsynopsisinfo', 'synopsis', as per
+            DocBook Definitive Guide.
 
  xml2po/ChangeLog        |  6 ++++++
  xml2po/modes/docbook.py | 11 ++++++++++-
@@ -21777,7 +21658,7 @@ Date:   Fri Oct 8 23:22:31 2004 +0000
     
     2004-10-09  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Taco Witte.
+            * nl.po: Translation updated by Taco Witte.
 
  po/ChangeLog |  4 ++++
  po/nl.po     | 25 ++++++++++++++++---------
@@ -21792,7 +21673,7 @@ Date:   Fri Oct 8 12:21:22 2004 +0000
     2004-10-08  Hendrik Brandt  <hebra@cvs.gnome.org>
     
             * configure.in: Added "de" (German) to ALL_LINGUAS.
-    	* po/de.po: Added German (de) translation.
+            * po/de.po: Added German (de) translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -22289,14 +22170,14 @@ Date:   Thu Sep 16 11:58:16 2004 +0000
     
     2004-09-16  Danilo Šegan  <dsegan@gmx.net>
     
-    	* modes/docbook.py (docbookXmlMode.getSpacePreserveTags): Add
-    	'screen' and 'literallayout'.
+            * modes/docbook.py (docbookXmlMode.getSpacePreserveTags): Add
+            'screen' and 'literallayout'.
     
-    	* xml2po.py (MessageOutput.outputAll): Output "no-wrap" if needed.
-    	(MessageOutput.__init__): Add nowrap hash.
-    	(MessageOutput.outputMessage): Set nowrap for space-preserving messages.
+            * xml2po.py (MessageOutput.outputAll): Output "no-wrap" if needed.
+            (MessageOutput.__init__): Add nowrap hash.
+            (MessageOutput.outputMessage): Set nowrap for space-preserving messages.
     
-    	* TODO (TODO): More suggestions from Karl.
+            * TODO (TODO): More suggestions from Karl.
 
  xml2po/ChangeLog        | 11 +++++++++++
  xml2po/TODO             |  3 +++
@@ -22312,8 +22193,8 @@ Date:   Wed Sep 15 17:35:02 2004 +0000
     
     2004-09-15  Danilo Šegan  <dsegan@gmx.net>
     
-    	* xml2po.py (normalizeString): No, never ends: remove more
-    	debuging output.
+            * xml2po.py (normalizeString): No, never ends: remove more
+            debuging output.
 
  xml2po/ChangeLog | 5 +++++
  xml2po/xml2po.py | 3 ++-
@@ -22327,10 +22208,10 @@ Date:   Wed Sep 15 09:53:43 2004 +0000
     
     2004-09-15  Danilo Šegan  <dsegan@gmx.net>
     
-    	* TODO (TODO): Uhm, it was Karl Eichwalder who proposed these, not
-    	Keld (embarrasment never ends!).
+            * TODO (TODO): Uhm, it was Karl Eichwalder who proposed these, not
+            Keld (embarrasment never ends!).
     
-    	* xml2po.py: Remove embarrasing debugging printouts.
+            * xml2po.py: Remove embarrasing debugging printouts.
 
  xml2po/ChangeLog | 7 +++++++
  xml2po/TODO      | 4 ++--
@@ -22365,21 +22246,21 @@ Date:   Tue Sep 14 18:35:30 2004 +0000
     
     2004-09-14  Danilo Šegan  <dsegan@gmx.net>
     
-    	* xml2po.py (normalizeString): Fix the crash below: this now
-    	reports some errors when messages contain entities, and they're
-    	not correctly normalized, but at least it doesn't crash (only
-    	when used with -k option).
+            * xml2po.py (normalizeString): Fix the crash below: this now
+            reports some errors when messages contain entities, and they're
+            not correctly normalized, but at least it doesn't crash (only
+            when used with -k option).
     
     2004-09-14  Danilo Šegan  <dsegan@gmx.net>
     
-    	* TODO (TODO): Add some items suggested by Keld.
+            * TODO (TODO): Add some items suggested by Keld.
     
-    	* configure.ac: Version up to 1.0.11.
+            * configure.ac: Version up to 1.0.11.
     
-    	* xml2po.py (stringForEntity): Use expand_entities variable.
-    	Add expand_entities variable and "-k", "--keep-entities" options
-    	(this currently crashes with the "Segmentation fault" — need to
-    	look into it).
+            * xml2po.py (stringForEntity): Use expand_entities variable.
+            Add expand_entities variable and "-k", "--keep-entities" options
+            (this currently crashes with the "Segmentation fault" — need to
+            look into it).
 
  xml2po/ChangeLog    | 18 ++++++++++++++++++
  xml2po/TODO         |  4 ++++
@@ -22395,7 +22276,7 @@ Date:   Fri Sep 10 14:33:01 2004 +0000
     
     2004-09-10  Maxim Dziumanenko <mvd@mylinux.com.ua>
     
-    	* Added Ukrainian translation.
+            * Added Ukrainian translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -22437,7 +22318,7 @@ Date:   Fri Sep 3 16:56:42 2004 +0000
     
     2004-09-03  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |  4 ++++
  po/sq.po     | 24 +++++++++++++-----------
@@ -22451,7 +22332,7 @@ Date:   Fri Sep 3 12:23:14 2004 +0000
     
     2004-09-03  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Updated Czech translation.
+            * cs.po: Updated Czech translation.
 
  po/ChangeLog |  4 ++++
  po/cs.po     | 17 +++++++++++------
@@ -22464,7 +22345,7 @@ Date:   Thu Sep 2 03:21:18 2004 +0000
     Updated Canadian English translation.
     
     
-    	* en_CA.po: Updated Canadian English translation.
+            * en_CA.po: Updated Canadian English translation.
 
  po/ChangeLog |  4 ++++
  po/en_CA.po  | 17 +++++++++++------
@@ -22523,7 +22404,7 @@ Date:   Fri Aug 27 23:12:05 2004 +0000
     
     2004-08-28  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation updated by Elros Cyriatan.
+            * nl.po: Translation updated by Elros Cyriatan.
 
  po/ChangeLog |  4 ++++
  po/nl.po     | 20 ++++++++++----------
@@ -22537,7 +22418,7 @@ Date:   Sat Aug 21 16:11:23 2004 +0000
     
     2004-08-21  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Updated Spanish translation.
+            * es.po: Updated Spanish translation.
 
  po/ChangeLog |  4 ++++
  po/es.po     | 19 +++++++++----------
@@ -22551,7 +22432,7 @@ Date:   Fri Aug 20 16:49:14 2004 +0000
     
     2004-08-20  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog | 4 ++++
  po/sq.po     | 6 ++++--
@@ -22565,7 +22446,7 @@ Date:   Wed Aug 18 10:56:17 2004 +0000
     
     2004-08-18  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Updated Albanian translation.
+            * sq.po: Updated Albanian translation.
 
  po/ChangeLog |  4 ++++
  po/sq.po     | 73 ++----------------------------------------------------------
@@ -22579,7 +22460,7 @@ Date:   Tue Aug 17 19:25:41 2004 +0000
     
     2004-08-17  Laszlo Dvornik  <dvornik@gnome.hu>
     
-    	* configure.in: Added hu to ALL_LINGUAS.
+            * configure.in: Added hu to ALL_LINGUAS.
 
  configure.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -22592,7 +22473,7 @@ Date:   Tue Aug 17 19:25:38 2004 +0000
     
     2004-08-17  Laszlo Dvornik  <dvornik@gnome.hu>
     
-    	* hu.po: Added Hungarian translation by Gabor Kelemen.
+            * hu.po: Added Hungarian translation by Gabor Kelemen.
 
  po/ChangeLog |   4 +
  po/hu.po     | 311 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22606,7 +22487,7 @@ Date:   Tue Aug 17 12:32:11 2004 +0000
     
     2004-08-17  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* configure.in: Added nl to ALL_LINGUAS.
+            * configure.in: Added nl to ALL_LINGUAS.
 
  configure.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -22619,7 +22500,7 @@ Date:   Tue Aug 17 12:32:09 2004 +0000
     
     2004-08-17  Vincent van Adrighem  <adrighem@gnome.org>
     
-    	* nl.po: Translation added by Elros Cyriatan.
+            * nl.po: Translation added by Elros Cyriatan.
 
  po/ChangeLog |   4 +
  po/nl.po     | 313 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22633,7 +22514,7 @@ Date:   Sun Aug 8 01:38:14 2004 +0000
     
     2004-08-08  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* configure.in: Added Portuguese (pt) to ALL_LINGUAS.
+            * configure.in: Added Portuguese (pt) to ALL_LINGUAS.
 
  ChangeLog    | 4 ++++
  configure.in | 2 +-
@@ -22647,7 +22528,7 @@ Date:   Sun Aug 8 01:36:55 2004 +0000
     
     2004-08-08  Duarte Loreto <happyguy_pt@hotmail.com>
     
-    	* pt.po: Added Portuguese translation.
+            * pt.po: Added Portuguese translation.
 
  po/ChangeLog |   4 +
  po/pt.po     | 311 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22660,8 +22541,8 @@ Date:   Wed Aug 4 00:49:52 2004 +0000
     Added en_CA and en_GB to ALL_LINGUAS. Added Canadian English translation.
     
     
-    	* configure.in: Added en_CA and en_GB to ALL_LINGUAS.
-    	* po/en_CA.po: Added Canadian English translation.
+            * configure.in: Added en_CA and en_GB to ALL_LINGUAS.
+            * po/en_CA.po: Added Canadian English translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -22677,7 +22558,7 @@ Date:   Wed Jul 28 17:57:47 2004 +0000
     
     2004-07-28  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* configure.in: Added sq to ALL_LINGUAS.
+            * configure.in: Added sq to ALL_LINGUAS.
 
  configure.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -22690,7 +22571,7 @@ Date:   Wed Jul 28 17:57:45 2004 +0000
     
     2004-07-28  Laurent Dhima  <laurenti@alblinux.net>
     
-    	* sq.po: Added Albanian translation.
+            * sq.po: Added Albanian translation.
 
  po/ChangeLog |   4 +
  po/sq.po     | 382 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22730,7 +22611,7 @@ Date:   Sun Jul 25 15:32:29 2004 +0000
     
     2004-07-25  Miloslav Trmac  <mitr@volny.cz>
     
-    	* configure.in: Added cs to ALL_LINGUAS.
+            * configure.in: Added cs to ALL_LINGUAS.
 
  configure.in | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -22743,7 +22624,7 @@ Date:   Sun Jul 25 15:32:21 2004 +0000
     
     2004-07-25  Miloslav Trmac  <mitr@volny.cz>
     
-    	* cs.po: Added Czech translation.
+            * cs.po: Added Czech translation.
 
  po/ChangeLog |   4 +
  po/cs.po     | 312 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -22757,7 +22638,7 @@ Date:   Sun Jul 25 10:48:45 2004 +0000
     
     2004-07-25  Francisco Javier F. Serrador  <serrador@cvs.gnome.org>
     
-    	* es.po: Added Spanish translation.
+            * es.po: Added Spanish translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -22787,8 +22668,8 @@ Date:   Sat Jul 24 18:02:17 2004 +0000
     
     2004-07-24  Christian Rose  <menthos@menthos.com>
     
-    	* configure.in: Added "sv" to ALL_LINGUAS.
-    	* po/sv.po: Added Swedish translation.
+            * configure.in: Added "sv" to ALL_LINGUAS.
+            * po/sv.po: Added Swedish translation.
 
  ChangeLog    |   4 +
  configure.in |   2 +-
@@ -22804,8 +22685,8 @@ Date:   Sat Jul 24 17:47:28 2004 +0000
     
     2004-07-24  Christian Rose  <menthos@menthos.com>
     
-    	* .cvsignore: More entries.
-    	* POTFILES.in: Added more files and comment.
+            * .cvsignore: More entries.
+            * POTFILES.in: Added more files and comment.
 
  po/.cvsignore  | 10 ++++++++++
  po/ChangeLog   |  5 +++++
@@ -23107,18 +22988,18 @@ Date:   Sun Jun 20 14:23:09 2004 +0000
     
     2004-06-19  Danilo Šegan  <dsegan@gmx.net>
     
-    	* NEWS: Documented changes in 1.0.8, 1.0.9 and 1.0.10.
+            * NEWS: Documented changes in 1.0.8, 1.0.9 and 1.0.10.
     
-    	* configure.ac: Move version up to 1.0.10.
+            * configure.ac: Move version up to 1.0.10.
     
-    	* README.in (Updating a translation): Changed recommendations for
-    	"-u" option.
-    	* xml2po.py: Suggest full filename for "-u" option.
+            * README.in (Updating a translation): Changed recommendations for
+            "-u" option.
+            * xml2po.py: Suggest full filename for "-u" option.
     
-    	* xml2po.py (MessageOutput): Add support for translations.
-    	Add "-r" parameter for reusing translations.
+            * xml2po.py (MessageOutput): Add support for translations.
+            Add "-r" parameter for reusing translations.
     
-    	* TODO (TODO, DONE): Updated with new goals and achievements.
+            * TODO (TODO, DONE): Updated with new goals and achievements.
 
  xml2po/ChangeLog    | 15 +++++++++++++++
  xml2po/NEWS         | 26 ++++++++++++++++++++++++++
@@ -23167,22 +23048,21 @@ Date:   Wed Jun 9 11:43:12 2004 +0000
     * xslt/docbook/html/db2html-css.xsl:
     - Nothing important
 
- ChangeLog                                 |  22 ++
- xslt/docbook/common/Makefile.am           |   4 +-
- xslt/docbook/common/db-common.xsl         |   2 +
- xslt/docbook/common/db-label.xsl          | 621 ++++++++++++++++++++++++++++++
- xslt/docbook/common/db-xref.xsl           |  72 ++++
- xslt/docbook/html/Makefile.am             |   1 -
- xslt/docbook/html/db2html-autotoc.xsl     |  14 +-
- xslt/docbook/html/db2html-cmdsynopsis.xsl |   2 +-
- xslt/docbook/html/db2html-css.xsl         |  11 +-
- xslt/docbook/html/db2html-label.xsl       | 621 ------------------------------
- xslt/docbook/html/db2html-qanda.xsl       |   2 +-
- xslt/docbook/html/db2html-suppressed.xsl  |   2 +-
- xslt/docbook/html/db2html-title.xsl       |   4 +-
- xslt/docbook/html/db2html-xref.xsl        |  58 +--
- xslt/docbook/html/db2html.xsl             |   5 +-
- 15 files changed, 775 insertions(+), 666 deletions(-)
+ ChangeLog                                          |  22 +++
+ xslt/docbook/common/Makefile.am                    |   4 +-
+ xslt/docbook/common/db-common.xsl                  |   2 +
+ .../db2html-label.xsl => common/db-label.xsl}      | 208 ++++++++++-----------
+ xslt/docbook/common/db-xref.xsl                    |  72 +++++++
+ xslt/docbook/html/Makefile.am                      |   1 -
+ xslt/docbook/html/db2html-autotoc.xsl              |  14 +-
+ xslt/docbook/html/db2html-cmdsynopsis.xsl          |   2 +-
+ xslt/docbook/html/db2html-css.xsl                  |  11 +-
+ xslt/docbook/html/db2html-qanda.xsl                |   2 +-
+ xslt/docbook/html/db2html-suppressed.xsl           |   2 +-
+ xslt/docbook/html/db2html-title.xsl                |   4 +-
+ xslt/docbook/html/db2html-xref.xsl                 |  58 +++---
+ xslt/docbook/html/db2html.xsl                      |   5 +-
+ 14 files changed, 258 insertions(+), 149 deletions(-)
 
 commit 5f369abb014a992821bcd376d15a4b99edf487a3
 Author: Shaun McCance <shaunm@src.gnome.org>
@@ -23500,14 +23380,13 @@ Date:   Sat May 22 01:24:45 2004 +0000
     - Changed mediadata to imagedata, only using with imagedata and *graphic
     - Implemented some elements
 
- ChangeLog                           |  15 +++
- configure.in                        |   2 -
- test/Makefile.am                    |   2 +-
- test/testdocs/Makefile              |  18 +++
- test/testdocs/Makefile.am           |  18 ---
- xslt/docbook/html/db2html-list.xsl  | 234 ++++++++++++++++++++----------------
- xslt/docbook/html/db2html-media.xsl | 138 +++++++++++----------
- 7 files changed, 234 insertions(+), 193 deletions(-)
+ ChangeLog                               |  15 ++
+ configure.in                            |   2 -
+ test/Makefile.am                        |   2 +-
+ test/testdocs/{Makefile.am => Makefile} |   2 +-
+ xslt/docbook/html/db2html-list.xsl      | 234 ++++++++++++++++++--------------
+ xslt/docbook/html/db2html-media.xsl     | 138 +++++++++----------
+ 6 files changed, 217 insertions(+), 176 deletions(-)
 
 commit 95324b289251f0422a0ec3b5dac1529c2b75d7e6
 Author: Shaun McCance <shaunm@src.gnome.org>

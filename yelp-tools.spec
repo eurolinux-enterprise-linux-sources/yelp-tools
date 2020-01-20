@@ -1,12 +1,12 @@
 Name:          yelp-tools
-Version:       3.18.0
+Version:       3.28.0
 Release:       1%{?dist}
 Summary:       Create, manage, and publish documentation for Yelp
 
 Group:         Applications/Publishing
 License:       GPLv2+
 URL:           https://wiki.gnome.org/Apps/Yelp/Tools
-Source0:       https://download.gnome.org/sources/%{name}/3.18/%{name}-%{version}.tar.xz
+Source0:       https://download.gnome.org/sources/%{name}/3.28/%{name}-%{version}.tar.xz
 BuildArch:     noarch
 
 BuildRequires: pkgconfig(yelp-xsl)
@@ -44,6 +44,10 @@ make %{?_smp_mflags}
 %{_datadir}/aclocal/yelp.m4
 
 %changelog
+* Mon Mar 12 2018 Kalev Lember <klember@redhat.com> - 3.28.0-1
+- Update to 3.28.0
+- Resolves: #1569805
+
 * Mon Sep 21 2015 Kalev Lember <klember@redhat.com> - 3.18.0-1
 - Update to 3.18.0
 - Resolves: #1387063
