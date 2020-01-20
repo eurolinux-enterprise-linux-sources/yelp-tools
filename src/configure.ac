@@ -1,4 +1,4 @@
-AC_INIT([yelp-tools], [3.14.1],
+AC_INIT([yelp-tools], [3.18.0],
         [http://bugzilla.gnome.org/enter_bug.cgi?product=yelp-tools])
 AM_INIT_AUTOMAKE([1.9 no-dist-gzip dist-bzip2])
 
@@ -39,7 +39,7 @@ fi
 
 PKG_CHECK_MODULES(YELP_XSL,
 [
-	yelp-xsl
+	yelp-xsl >= 3.17.3
 ])
 
 XSL_PATH="`$PKG_CONFIG --variable=xsltdir yelp-xsl`"

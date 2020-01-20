@@ -1,3 +1,262 @@
+commit 6df6bf24e385bbc1ac0b800be8a6e878f18a775c
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Jul 22 10:25:26 2015 -0400
+
+    yelp-tools.doap: Update homepage
+
+ yelp-tools.doap | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit 118a13509f30fd318acda1e7dcb78bc3a16f842e
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jul 20 18:01:17 2015 -0400
+
+    Version 3.17.4
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 052a5d2790356eb129b6cd7c9e30126b7cc35244
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Jul 7 09:25:38 2015 -0400
+
+    yelp-check: Added Mallard Sites support for orphans command
+
+ tools/yelp-check.in | 49 +++++++++++++++++++++++++++++++++++++------------
+ 1 file changed, 37 insertions(+), 12 deletions(-)
+
+commit 27b9ea28b8ddd3c173600941d554d8ae8879286d
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jul 6 11:57:27 2015 -0400
+
+    yelp-check: Support Mallard Sites for links checker
+
+ tools/yelp-check.in | 69 +++++++++++++++++++++++++++++++++--------------------
+ 1 file changed, 43 insertions(+), 26 deletions(-)
+
+commit 4d0b2e1a02f34cb73c2bcd2e5796f752e1577df4
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun Jul 5 09:45:56 2015 -0400
+
+    yelp-check: Support Mallard Sites for media checker
+
+ tools/yelp-check.in | 96 +++++++++++++++++++++++++++++++++++------------------
+ xslt/media.xsl      | 11 +-----
+ 2 files changed, 65 insertions(+), 42 deletions(-)
+
+commit 9ed7b7f884b8f30293900cfcb487d262706f0ebe
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Tue Jun 30 22:46:11 2015 -0400
+
+    yelp-check: Support Mallard Sites for status
+
+ tools/yelp-check.in | 12 +++++++++++-
+ xslt/mal-status.xsl |  4 +++-
+ 2 files changed, 14 insertions(+), 2 deletions(-)
+
+commit f89842ac1223faa6a02a908dceacacd032df9026
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 29 10:57:54 2015 -0400
+
+    Version 3.17.3
+
+ NEWS         | 8 ++++++++
+ configure.ac | 2 +-
+ 2 files changed, 9 insertions(+), 1 deletion(-)
+
+commit 03dcc8e9d643eb7c3892073f9a976ab6d368f9f8
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 29 10:48:50 2015 -0400
+
+    configure.ac: Bump yelp-xsl dependency
+
+ configure.ac | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit af4d79bdccb1cf545b9cd38e16ed5a0d1730da67
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Jun 19 20:21:55 2015 -0400
+
+    yelp-check: Support Mallard Sites for ids
+
+ tools/yelp-check.in | 44 +++++++++++++++++++++++++++++---------------
+ 1 file changed, 29 insertions(+), 15 deletions(-)
+
+commit 4ac06ef504c234144a10f3b5f5fd7cfcb5e138d3
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Jun 19 12:28:55 2015 -0400
+
+    yelp-check: Always quote "$@"
+
+ tools/yelp-check.in | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+commit fefaa9b9f60c187b5ed63d8771bcdc43fad683b8
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Jun 19 12:22:01 2015 -0400
+
+    yelp-check: Fix pipe flow for license
+    
+    Getting return values for commands in a pipeline is hard. I did it
+    wrong. I'm giving up for now for license, since error exits aren't
+    normal for the license subcommand.
+
+ tools/yelp-check.in | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 1ad0853ee662ae67d52107949f2cebb7f13ec772
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Thu Jun 18 20:31:02 2015 -0400
+
+    yelp-check: Support Mallard Sites for hrefs
+
+ tools/yelp-check.in | 118 +++++++++++++++++++++++++++-------------------------
+ 1 file changed, 61 insertions(+), 57 deletions(-)
+
+commit 52f6a118201328ab89b4acbfd5818d5592e2a57e
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Jun 17 23:56:42 2015 -0400
+
+    yelp-build: Mallard Sites support for cache
+    
+    Probably won't gain Sites support for building HTML. Use a site tool
+    like Pintail for that. But being able to generate site-aware cache
+    means more of the yelp-check commands can be site-aware.
+
+ tools/yelp-build.in | 60 ++++++++++++++++++++++++++++++++++++++++-------------
+ 1 file changed, 46 insertions(+), 14 deletions(-)
+
+commit fbd32f47e0217dbee34901ec7ea468146c26dc3c
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed Jun 17 23:56:25 2015 -0400
+
+    yelp-check: Cleanup after Sites support for validate
+
+ tools/yelp-check.in | 35 ++++++-----------------------------
+ 1 file changed, 6 insertions(+), 29 deletions(-)
+
+commit 370b139e1c4a6a5443cdaf28c8ffc67967e7ee1a
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 15 20:33:22 2015 -0400
+
+    yelp-check: Mallard Sites support for validate
+
+ tools/yelp-check.in | 28 ++++++++++++++++++++++++++++
+ 1 file changed, 28 insertions(+)
+
+commit 5003e16f6ad3fb9123e642fe11be9923d0d28252
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 15 16:58:45 2015 -0400
+
+    yelp-check: Support Mallard Sites for comments and license
+
+ tools/yelp-check.in  | 141 +++++++++++++++++++++++++++++++++++++--------------
+ xslt/comments.xsl    |   2 +
+ xslt/mal-license.xsl |   3 ++
+ 3 files changed, 109 insertions(+), 37 deletions(-)
+
+commit 81a9abddd1963ceaf7c4633399e7b8b2b2307653
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 15 15:04:36 2015 -0400
+
+    Convert tabs to spaces
+
+ tools/yelp-build.in | 14 ++++++++------
+ tools/yelp-check.in | 26 ++++++++++++++------------
+ 2 files changed, 22 insertions(+), 18 deletions(-)
+
+commit 1c32c10b252819b59177f6fc3f357a1cdc05b9fb
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 1 19:20:18 2015 -0400
+
+    Accept -h as well as --help
+
+ tools/yelp-build.in |  6 +++---
+ tools/yelp-check.in | 26 +++++++++++++-------------
+ 2 files changed, 16 insertions(+), 16 deletions(-)
+
+commit b44a00287a3e59332a6e57cb39202bb57e1d9dea
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Jun 1 11:04:05 2015 -0400
+
+    yelp-build: Drop use of non-portable `expr substr`, #743911
+
+ tools/yelp-build.in | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
+
+commit 529e23b8bb5357f33fef143564b0dac64186a177
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun May 31 23:52:05 2015 -0400
+
+    yelp-build: Fix some broken and non-portable expr usage, #743911
+    
+    Both `expr index` and `expr substr` are non-portable. What's more,
+    my usage of `expr index` was wrong, and there was a bug that nobody
+    ever seemed to trip up. Fix it and use portable stuff.
+    
+    Bug #743911 partially addressed.
+
+ tools/yelp-build.in | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
+
+commit 6286b53fe217657d527c5776dff177e15f6372a1
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Sun May 31 09:08:05 2015 -0400
+
+    yelp-build: Fixed media copying with -i for Mallard
+    
+    When I changed the way yelp-build finds media files for Mallard
+    documents, I forgot to change a variable name in one place. So
+    the -i option to ignore missing media files actually causes it
+    to ignore all media files.
+
+ tools/yelp-build.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+commit 3c0f83d87b215b1262f78a7d30f152f9774d0b08
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Wed May 27 20:05:08 2015 -0400
+
+    help/C: Adding some docs in Mallard
+
+ help/C/index.page      |  14 ++
+ help/C/yelp-build.page | 186 ++++++++++++++++++++++++++
+ help/C/yelp-check.page | 356 +++++++++++++++++++++++++++++++++++++++++++++++++
+ help/C/yelp-new.page   |  71 ++++++++++
+ help/C/yelp.m4.page    | 232 ++++++++++++++++++++++++++++++++
+ 5 files changed, 859 insertions(+)
+
+commit a572f35ba8b3143b9b67b251721634c3fedd9c1f
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Apr 13 17:56:31 2015 -0400
+
+    Version 3.16.1
+
+ NEWS         | 4 ++++
+ configure.ac | 2 +-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+commit 0191878e599e5b0a809ff1a7a2cbaa56728a0961
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Fri Apr 3 08:42:26 2015 -0400
+
+    yelp-check: Check media correctly in subdirs, #727557
+
+ tools/yelp-check.in | 13 +++++++++++--
+ xslt/media.xsl      |  3 +++
+ 2 files changed, 14 insertions(+), 2 deletions(-)
+
+commit 65438f09534c4abc5b968626f9b2547dfdd0503d
+Author: Shaun McCance <shaunm@gnome.org>
+Date:   Mon Oct 13 17:14:33 2014 -0400
+
+    Version 3.14.1
+
+ NEWS         | 5 +++++
+ configure.ac | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
 commit 772643215db9c841ae31016b5e0fa12fca8ede61
 Author: Sebastian Geiger <sbastig@gmx.net>
 Date:   Thu Oct 9 13:43:05 2014 +0200

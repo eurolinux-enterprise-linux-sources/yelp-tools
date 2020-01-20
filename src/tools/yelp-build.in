@@ -1,6 +1,8 @@
 #!/bin/sh
+# -*- indent-tabs-mode: nil -*-
+#
 # yelp-build
-# Copyright (C) 2010 Shaun McCance <shaunm@gnome.org>
+# Copyright (C) 2010-2015 Shaun McCance <shaunm@gnome.org>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -105,6 +107,7 @@ yelp_usage_cache () {
         echo ""
         echo "Options:"
         echo "  -o OUT        Output cache to the file OUT"
+        echo "  -s            Treat pages as belonging to a Mallard site"
     ) 1>&2
 }
 yelp_usage_epub () {
@@ -149,29 +152,54 @@ yelp_paths_normalize () {
     done | tr '\n' ' '
 }
 
+yelp_cache_in_page () {
+    fbase=$(basename "$1")
+    fdir=$( (cd $(dirname "$1") && pwd) )
+    sdir=${fdir##${cache_site_root}}/
+    url=file://$(echo "$fdir/$fbase" | urlencode)
+    if [ "x$cache_site" = "x1" ]; then
+        siteattr=' site:dir="'"$sdir"'"'
+    fi
+    echo '<page cache:href="'"$url"'"'"$siteattr"'/>'
+}
+
+yelp_cache_in_site () {
+    for dir in "$1"/*; do
+        if [ -d "$dir" ]; then
+            if [ $(basename "$dir") != "__pintail__" ]; then
+                yelp_cache_in_site "$dir"
+            fi
+        fi
+    done
+    for page in "$1"/*.page; do
+        if [ -e "$page" ]; then
+            yelp_cache_in_page "$page"
+        fi
+    done
+}
+
 yelp_cache_in () {
     echo '<cache:cache xmlns:cache="http://projectmallard.org/cache/1.0/"'
+    if [ "x$cache_site" = "x1" ]; then
+        echo '  xmlns:site="http://projectmallard.org/site/1.0/"'
+    fi
     echo '  xmlns="http://projectmallard.org/1.0/">'
     for page in "$@"; do
         if [ -d "$page" ]; then
-            for sub in "$page"/*.page; do
-                fbase=`basename "$sub"`
-                fdir=`dirname "$sub"`
-                fdir=`(cd "$fdir" && pwd)`
-                echo "$fdir/$fbase"
-            done
+            if [ "x$cache_site" = "x1" ]; then
+                yelp_cache_in_site "$page"
+            else
+                for sub in "$page"/*.page; do
+                    yelp_cache_in_page "$sub"
+                done
+            fi
         else
-            fbase=`basename "$page"`
-            fdir=`dirname "$page"`
-            fdir=`(cd "$fdir" && pwd)`
-            echo "$fdir/$fbase"
+            yelp_cache_in_page "$page"
         fi
-    done | urlencode |
-    while read line; do
-        echo '<page cache:href="file://'"$line"'"/>'
     done
     echo '</cache:cache>'
 }
+
 yelp_cache () {
     cache_out="index.cache"
     while [ "$#" != "0" ]; do
@@ -181,17 +209,23 @@ yelp_cache () {
                 cache_out="$1"
                 shift
                 ;;
+            "-s")
+                cache_site="1"
+                cache_site_root=$(pwd)
+                shift
+                ;;
             *)
                 break
                 ;;
         esac
     done
-    if [ "$#" = "0" -o "x$1" = "x--help" ]; then
+    if [ "$#" = "0" -o "x$1" = "x--help" -o "x$1" = "x-h" ]; then
         yelp_usage_cache
         exit 1
     fi
     yelp_cache_in "$@" | xsltproc --path "$html_paths" \
-        --xinclude -o "$cache_out" "$xsl_mal_cache" -
+                                  --xinclude -o "$cache_out" \
+                                  "$xsl_mal_cache" -
 }
 
 yelp_html_xsl_common () {
@@ -295,9 +329,8 @@ yelp_html_db2html () {
                 moutput="$html_out/$mfile"
                 mkdir_p `dirname "$moutput"`
                 if [ ! -f "$minput" -a "x$html_paths" != "x" ]; then
-                    if [ $(expr index "$minput" "$(pwd)/") = 1 ]; then
-                        minput_rel=$(expr substr "$minput" \
-                            $(expr length "$(pwd)//") $(expr length "$minput"))
+                    minput_rel=${minput#"$(pwd)/"}
+                    if [ "x$minput_rel" != "x$minput_src" ]; then
                         for path in $html_paths; do
                             if [ -f "$path/$minput_rel" ]; then
                                 minput="$path/$minput_rel"
@@ -424,19 +457,17 @@ yelp_html_mal2html () {
         --stringparam mal.files.copy.js.dir "$yelp_js_dir" \
         - "$html_tmp_infile") | sort | uniq | \
     while read line; do
-        use_internal_datadir=`expr substr "$line" 1 1`
-        line=`expr substr "$line" 2 1000`
-        line_src=`echo "$line" | cut -d' ' -f1`
-        line_src=`echo "$line_src" | urldecode`
+        use_internal_datadir=$(echo "$line" | cut -c1)
+        line=$(echo "$line" | cut -c2-)
+        line_src=$(echo "$line" | cut -d' ' -f1 | urldecode)
         if [ "x$use_internal_datadir" = "x+" ]; then
-            line_dest="$html_out/$html_internal_datadir"`echo "$line" | cut -d' ' -f2`
+            line_dest="$html_out/$html_internal_datadir"$(echo "$line" | cut -d' ' -f2)
         else
-            line_dest="$html_out/"`echo "$line" | cut -d' ' -f2`
+            line_dest="$html_out/"$(echo "$line" | cut -d' ' -f2)
         fi
         if [ ! -f "$line_src" -a "x$html_paths" != "x" ]; then
-            if [ $(expr index "$line_src" "$(pwd)/") = 1 ]; then
-                line_src_rel=$(expr substr "$line_src" \
-                    $(expr length "$(pwd)//") $(expr length "$line_src"))
+            line_src_rel=${line_src#"$(pwd)/"}
+            if [ "x$line_src_rel" != "x$line_src" ]; then
                 for path in $html_paths; do
                     if [ -f "$path/$line_src_rel" ]; then
                         line_src="$path/$line_src_rel"
@@ -449,7 +480,7 @@ yelp_html_mal2html () {
         if [ "$line_src" != "$line_dest" ]; then
             line_dir=`dirname "$line_dest"`
             mkdir_p "$line_dir"
-            if [ -f "$minput" -o "x$html_ignore_media" != "x1" ]; then
+            if [ -f "$line_src" -o "x$html_ignore_media" != "x1" ]; then
                 cp "$line_src" "$line_dest"
             fi
         fi
@@ -508,7 +539,7 @@ yelp_html () {
         html_custom_dir=`(cd "$html_custom_dir" && pwd)`
         html_custom="$html_custom_dir"/`basename "$html_custom"`
     fi
-    if [ "$#" = "0" -o "x$1" = "x--help" ]; then
+    if [ "$#" = "0" -o "x$1" = "x--help" -o "x$1" = "x-h" ]; then
         yelp_usage_html
         exit 1
     fi
@@ -552,7 +583,7 @@ yelp_epub () {
                 ;;
         esac
     done
-    if [ "$#" = "0" -o "x$1" = "x--help" ]; then
+    if [ "$#" = "0" -o "x$1" = "x--help" -o "x$1" = "x-h" ]; then
         yelp_usage_epub
         exit 1
     fi

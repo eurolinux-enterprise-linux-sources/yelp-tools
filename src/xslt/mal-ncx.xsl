@@ -15,8 +15,8 @@
 
 <xsl:param name="ncx.id"/>
 
-<xsl:include href="file:///usr/share/yelp-xsl/xslt/mallard/common/mal-link.xsl"/>
-<xsl:include href="file:///usr/share/yelp-xsl/xslt/mallard/common/mal-sort.xsl"/>
+<xsl:include href="file:///usr/local/share/yelp-xsl/xslt/mallard/common/mal-link.xsl"/>
+<xsl:include href="file:///usr/local/share/yelp-xsl/xslt/mallard/common/mal-sort.xsl"/>
 
 <xsl:param name="mal.cache" select="/cache:cache"/>
 
