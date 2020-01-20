@@ -1,6 +1,6 @@
 Name:          yelp-tools
 Version:       3.6.1
-Release:       2%{?dist}
+Release:       3%{?dist}
 Summary:       Create, manage, and publish documentation for Yelp
 
 Group:         Applications/Publishing
@@ -42,6 +42,9 @@ make install DESTDIR=$RPM_BUILD_ROOT
 %{_datadir}/aclocal/yelp.m4
 
 %changelog
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 3.6.1-3
+- Mass rebuild 2013-12-27
+
 * Fri Feb 15 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.6.1-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
